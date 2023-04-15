@@ -7,7 +7,7 @@ dev-be : BE 개발 환경 브랜치
  
 ## 🌲 Branch
 
-```js
+```
 📌 Pull Request Merge 담당 📌
 ❗️주의 : 해당 브랜치별로 담당 인원분들은 전부 모여 코드리뷰 및 동의 후에 
 Merge를 진행합니다.
