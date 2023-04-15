@@ -25,7 +25,7 @@ back-dev <- feat : 홍승현 (남지훈, 김현지A)
 ## ✉️ Commit Message
 
 
-|  | | 
+| Message |설명 | 
 | :--: | :--: |  
 |   init | 브랜치 시작   |      
 | feat   | 새로운 기능을 추가할 경우 ex) feat: 로그인 기능 추가    |      
