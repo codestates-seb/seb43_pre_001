@@ -5,7 +5,7 @@
 </br>
 `dev-fe` : FE 개발 환경 브랜치 
 </br>
-dev-be : BE 개발 환경 브랜치
+`dev-be` : BE 개발 환경 브랜치
 </br>
 `feat/개발명` : 기능 개발 브랜치 ex) `feat/Login`
  
