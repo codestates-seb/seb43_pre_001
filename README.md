@@ -17,8 +17,8 @@ main <- dev : 이호승 홍승현
 dev <- dev-fe : 이호승 홍승현 
 dev <- dev-be : 이호승 홍승현
 
-front-dev <- feat : 이호승  (조원호, 최현아)
-back-dev <- feat : 홍승현 (남지훈, 김현지A)
+dev-fe <- feat : 이호승  (조원호, 최현아)
+dev-be <- feat : 홍승현 (남지훈, 김현지A)
 ``` 
 
 
