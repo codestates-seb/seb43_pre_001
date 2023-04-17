@@ -2,6 +2,7 @@ import styled from 'styled-components';
 import stackLogo from '../../assets/stack-logo.svg';
 import LoginWith from './LoginMaterial/LoginWith';
 import LoginForm from './LoginMaterial/LoginForm';
+import { Link } from 'react-router-dom';
 
 const StackLoginBlock = styled.div`
   display: flex;
@@ -43,6 +44,10 @@ const BelowTxt = styled.div`
   }
 `;
 
+const StyledLink = styled(Link)`
+  text-decoration: none;
+`;
+
 const StackLogin = () => {
   return (
     <StackLoginBlock>
@@ -59,7 +64,10 @@ const StackLogin = () => {
         <BelowTxt>
           {/* Sign up 글자 부분에 라우터를 사용해서 signup페이지로 이동 시켜야 함 */}
           <span>
-            Don&rsquo;t have an account? <span className='blue-txt'>Sign up</span>
+            Don&rsquo;t have an account?{' '}
+            <StyledLink to='/signup'>
+              <span className='blue-txt'>Sign up</span>
+            </StyledLink>
           </span>
         </BelowTxt>
       </RealLoginBlock>
