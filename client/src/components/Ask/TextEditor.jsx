@@ -1,3 +1,4 @@
+import '@toast-ui/editor/dist/toastui-editor.css';
 import { Editor } from '@toast-ui/react-editor';
 import styled from 'styled-components';
 import { useRef } from 'react';
@@ -14,7 +15,7 @@ function TextEditor({ title, desc }) {
       <div>
         <label>{title}</label>
         <p>{desc}</p>
-        <EditorBox previewStyle='vertical' initialEditType='wysiwyg' useCommandShortcut={true} ref={editorRef} onFocus={showNotice} />
+        <EditorBox previewStyle='vertical' initialEditType='markdown' useCommandShortcut={true} ref={editorRef} onFocus={showNotice} />
       </div>
       <button>Next</button>
     </Div>
@@ -24,6 +25,6 @@ function TextEditor({ title, desc }) {
 const Div = styled(AskBoxStyle)``;
 
 const EditorBox = styled(Editor)`
-  height: 254.664px;
+  height: 255px;
 `;
 export default TextEditor;

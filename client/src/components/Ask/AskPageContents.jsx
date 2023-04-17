@@ -1,12 +1,12 @@
+import Input from './Input';
 import TextEditor from './TextEditor';
 import styled from 'styled-components';
-import Notice from './Notice';
-import AskPageNotice from './AskPageNotice';
+import AskPageSideNotice from './AskPageSideNotice';
+import AskPageMainNotice from './AskPageMainNotice';
 import { ask, problem, tryAndExpect, tags, review } from '../../assets/askNoticeData';
 import { ReactComponent as Background } from '../../assets/robot-img.svg';
-import Input from './Input';
 
-function MainContent() {
+function AskPageContents() {
   return (
     <Main>
       <div>
@@ -14,27 +14,27 @@ function MainContent() {
           <h1>Ask a public question</h1>
           <BgImg />
         </Top>
-        <AskPageNotice />
+        <AskPageMainNotice />
       </div>
       <InputSet>
         <Input title={ask.title} desc={ask.desc} />
-        <Notice noticeTitle={ask.noticeTitle} noticeDesc={ask.noticeDesc} />
+        <AskPageSideNotice noticeTitle={ask.noticeTitle} noticeDesc={ask.noticeDesc} />
       </InputSet>
       <InputSet>
         <TextEditor title={problem.title} desc={problem.desc} />
-        <Notice noticeTitle={problem.noticeTitle} noticeDesc={problem.noticeDesc} />
+        <AskPageSideNotice noticeTitle={problem.noticeTitle} noticeDesc={problem.noticeDesc} />
       </InputSet>
       <InputSet>
         <TextEditor title={tryAndExpect.title} desc={tryAndExpect.desc} />
-        <Notice noticeTitle={tryAndExpect.noticeTitle} noticeDesc={tryAndExpect.noticeDesc} />
+        <AskPageSideNotice noticeTitle={tryAndExpect.noticeTitle} noticeDesc={tryAndExpect.noticeDesc} />
       </InputSet>
       <InputSet>
         <Input title={tags.title} desc={tags.desc} />
-        <Notice noticeTitle={tags.noticeTitle} noticeDesc={tags.noticeDesc} />
+        <AskPageSideNotice noticeTitle={tags.noticeTitle} noticeDesc={tags.noticeDesc} />
       </InputSet>
       <InputSet>
         <Input title={review.title} desc={review.desc} />
-        <Notice noticeTitle={review.noticeTitle} noticeDesc={review.noticeDesc} />
+        <AskPageSideNotice noticeTitle={review.noticeTitle} noticeDesc={review.noticeDesc} />
       </InputSet>
       <Button>Discard draft</Button>
     </Main>
@@ -81,4 +81,4 @@ const Button = styled.button`
   }
 `;
 
-export default MainContent;
+export default AskPageContents;
