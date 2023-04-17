@@ -1,8 +1,10 @@
 import { createGlobalStyle } from 'styled-components';
 import HeadNotLoginMain from './components/StackHead/HeadNotLoginMain';
+import Questions from './pages/Questions';
+
 const GlobalStyled = createGlobalStyle`
-  body {
-    background-color: ${({ backgroundColor }) => backgroundColor || '#F1F2F3'};
+  body { //#F1F2F3
+    background-color: ${({ backgroundColor }) => backgroundColor || '#FFF'};
   }
 `;
 
@@ -11,6 +13,7 @@ function App() {
     <>
       <GlobalStyled />
       <HeadNotLoginMain />
+      <Questions></Questions>
     </>
   );
 }
