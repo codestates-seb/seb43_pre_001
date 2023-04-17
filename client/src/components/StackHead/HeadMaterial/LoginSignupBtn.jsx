@@ -88,7 +88,7 @@ const LoginSignupBtn = () => {
     <LoginSignupBtnBlock>
       <div className='rev-login-signup'>
         <Link to='/login'>
-          <button className='login'>
+          <button className='login' tabIndex='-1'>
             <div className='login-bg'>
               <span>Log in</span>
             </div>
@@ -96,7 +96,7 @@ const LoginSignupBtn = () => {
         </Link>
 
         <Link to='/signup'>
-          <button className='signup'>
+          <button className='signup' tabIndex='-1'>
             <div className='signup-bg'>
               <span>Sign up</span>
             </div>
