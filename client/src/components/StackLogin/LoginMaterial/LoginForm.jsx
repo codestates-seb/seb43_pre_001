@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-const LoginFormBlock = styled.div`
+const LoginFormBlock = styled.form`
   width: 288px;
   height: 236px;
   margin-top: 19px;
