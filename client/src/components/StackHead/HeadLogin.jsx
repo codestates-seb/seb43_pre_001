@@ -1,7 +1,7 @@
-import styled from "styled-components";
-import stackoverflowLogo from "../../assets/stackoverflow-logo.svg";
-import searchIcon from "../../assets/search-icon.svg";
-import profileImg from "../../assets/profile-img.svg";
+import styled from 'styled-components';
+import stackoverflowLogo from '../../assets/stackoverflow-logo.svg';
+import searchIcon from '../../assets/search-icon.svg';
+import profileImg from '../../assets/profile-img.svg';
 
 const HeadBlock = styled.header`
   height: 50px;
@@ -87,7 +87,7 @@ const ReverseSearchApfBtn = styled.div`
       border: 1px solid #bbc0c5;
       border-radius: 3.5px;
       padding-left: 33px;
-      background: no-repeat url("${searchIcon}");
+      background: no-repeat url('${searchIcon}');
       background-color: #fff;
       background-position: 9px 7px;
 
@@ -189,45 +189,45 @@ const RightIcons = styled.div`
 const HeadLogin = () => {
   return (
     <HeadBlock>
-      <div className="orange-line"></div>
+      <div className='orange-line'></div>
       <RealHeadBlock>
         <HeadBg>
-          <div className="logo">
-            <img src={stackoverflowLogo} alt="logo" />
+          <div className='logo'>
+            <img src={stackoverflowLogo} alt='logo' />
           </div>
 
           {/* row-reverse */}
           <RowReverseBlock>
             {/* 프로필 사진, 아이콘들 */}
             <RightIcons>
-              <button className="profile">
-                <img src={profileImg} alt="profile-img" />
+              <button className='profile'>
+                <img src={profileImg} alt='profile-img' />
                 <span>1</span>
               </button>
-              <button className="inbox">
-                <i className="i-inbox-icon" />
+              <button className='inbox'>
+                <i className='i-inbox-icon' />
               </button>
-              <button className="trophy">
-                <i className="i-trophy-icon" />
+              <button className='trophy'>
+                <i className='i-trophy-icon' />
               </button>
-              <button className="ques">
-                <i className="i-ques-icon" />
+              <button className='ques'>
+                <i className='i-ques-icon' />
               </button>
-              <button className="msg">
-                <i className="i-msg-icon" />
+              <button className='msg'>
+                <i className='i-msg-icon' />
               </button>
             </RightIcons>
 
             <ReverseSearchApfBtn>
               {/* Products 버튼 */}
-              <div className="products">
-                <button className="products-btn">Products</button>
+              <div className='products'>
+                <button className='products-btn'>Products</button>
               </div>
               {/* 검색창 */}
-              <form className="search-from">
-                <input className="search-input" type="search" placeholder="Search..." />
+              <form className='search-from'>
+                <input className='search-input' type='search' placeholder='Search...' />
               </form>
-              <i className="i-throphy-icon" />
+              <i className='i-throphy-icon' />
             </ReverseSearchApfBtn>
           </RowReverseBlock>
         </HeadBg>

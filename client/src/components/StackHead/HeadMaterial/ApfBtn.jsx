@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
 const ApfBtnBlock = styled.div`
   display: flex;
@@ -45,10 +45,10 @@ const ApfBtnBlock = styled.div`
 const ApfBtn = () => {
   return (
     <ApfBtnBlock>
-      <div className="rev-apf-btn">
-        <button className="about">About</button>
-        <button className="products">Products</button>
-        <button className="for-teams">For Teams</button>
+      <div className='rev-apf-btn'>
+        <button className='about'>About</button>
+        <button className='products'>Products</button>
+        <button className='for-teams'>For Teams</button>
       </div>
     </ApfBtnBlock>
   );

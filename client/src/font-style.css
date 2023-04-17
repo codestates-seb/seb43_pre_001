@@ -1,8 +1,8 @@
 @font-face {
-  font-family: "icomoon";
-  src: url("fonts/icomoon.eot?dw6wum");
-  src: url("fonts/icomoon.eot?dw6wum#iefix") format("embedded-opentype"), url("fonts/icomoon.ttf?dw6wum") format("truetype"),
-    url("fonts/icomoon.woff?dw6wum") format("woff"), url("fonts/icomoon.svg?dw6wum#icomoon") format("svg");
+  font-family: 'icomoon';
+  src: url('fonts/icomoon.eot?dw6wum');
+  src: url('fonts/icomoon.eot?dw6wum#iefix') format('embedded-opentype'), url('fonts/icomoon.ttf?dw6wum') format('truetype'),
+    url('fonts/icomoon.woff?dw6wum') format('woff'), url('fonts/icomoon.svg?dw6wum#icomoon') format('svg');
   font-weight: normal;
   font-style: normal;
   font-display: block;
@@ -10,7 +10,7 @@
 
 i {
   /* use !important to prevent issues with browser extensions that change fonts */
-  font-family: "icomoon" !important;
+  font-family: 'icomoon' !important;
   /* speak: never; */
   font-style: normal;
   font-weight: normal;
@@ -24,77 +24,77 @@ i {
 }
 
 .i-earth-icon:before {
-  content: "\e900";
+  content: '\e900';
   color: #858b95;
 }
 .i-facebook-icon:before {
-  content: "\e901";
+  content: '\e901';
   color: #fff;
 }
 .i-github-icon:before {
-  content: "\e902";
+  content: '\e902';
   color: #fff;
 }
 .i-inbox-icon:before {
-  content: "\e903";
+  content: '\e903';
   color: #53595f;
 }
 .i-menu-icon:before {
-  content: "\e904";
+  content: '\e904';
   color: #636b72;
 }
 .i-msg-icon:before {
-  content: "\e905";
+  content: '\e905';
   color: #52595f;
 }
 .i-pencil-icon:before {
-  content: "\e906";
+  content: '\e906';
 }
 .i-prize-icon:before {
-  content: "\e907";
+  content: '\e907';
   color: #0a95ff;
 }
 .i-ques-icon:before {
-  content: "\e908";
+  content: '\e908';
   color: #54595f;
 }
 .i-speech2-icon:before {
-  content: "\e909";
+  content: '\e909';
   color: #6da7d5;
 }
 .i-speech-icon:before {
-  content: "\e90a";
+  content: '\e90a';
   color: #0a95ff;
 }
 .i-stack-gray-icon:before {
-  content: "\e90b";
+  content: '\e90b';
   color: #53575c;
 }
 .i-tags-icon:before {
-  content: "\e90c";
+  content: '\e90c';
   color: #0a95ff;
 }
 .i-trophy-icon:before {
-  content: "\e90d";
+  content: '\e90d';
   color: #535a5f;
 }
 .i-updown-icon:before {
-  content: "\e90e";
+  content: '\e90e';
   color: #0a95ff;
 }
 .i-up-icon:before {
-  content: "\e90f";
+  content: '\e90f';
   color: #6b747d;
 }
 .i-vote-down-icon:before {
-  content: "\e910";
+  content: '\e910';
   color: #babfc4;
 }
 .i-vote-up-icon:before {
-  content: "\e911";
+  content: '\e911';
   color: #babfc4;
 }
 .i-x-icon:before {
-  content: "\e912";
+  content: '\e912';
   color: #636b72;
 }

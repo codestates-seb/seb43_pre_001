@@ -7,7 +7,11 @@ const GlobalStyled = createGlobalStyle`
 `;
 
 function App() {
-  return;
+  return (
+    <>
+      <GlobalStyled />
+    </>
+  );
 }
 
 export default App;

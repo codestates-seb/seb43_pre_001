@@ -1,8 +1,8 @@
-import styled from "styled-components";
-import stackoverflowLogo from "../../assets/stackoverflow-logo.svg";
-import searchIcon from "../../assets/search-icon.svg";
-import ApfBtn from "./HeadMaterial/ApfBtn";
-import LoginSignupBtn from "./HeadMaterial/LoginSignupBtn";
+import styled from 'styled-components';
+import stackoverflowLogo from '../../assets/stackoverflow-logo.svg';
+import searchIcon from '../../assets/search-icon.svg';
+import ApfBtn from './HeadMaterial/ApfBtn';
+import LoginSignupBtn from './HeadMaterial/LoginSignupBtn';
 
 const HeadBlock = styled.header`
   height: 50px;
@@ -79,7 +79,7 @@ const ReverseSearchApfBtn = styled.div`
       border: 1px solid #bbc0c5;
       border-radius: 3.5px;
       padding-left: 33px;
-      background: no-repeat url("${searchIcon}");
+      background: no-repeat url('${searchIcon}');
       background-color: #fff;
       background-position: 9px 7px;
 
@@ -100,14 +100,14 @@ const ReverseSearchApfBtn = styled.div`
 const HeadNotLogin = () => {
   return (
     <HeadBlock>
-      <div className="orange-line"></div>
+      <div className='orange-line'></div>
       <RealHeadBlock>
         <HeadBg>
-          <div className="menu-icon">
-            <i className="i-menu-icon" />
+          <div className='menu-icon'>
+            <i className='i-menu-icon' />
           </div>
-          <div className="logo">
-            <img src={stackoverflowLogo} alt="logo" />
+          <div className='logo'>
+            <img src={stackoverflowLogo} alt='logo' />
           </div>
 
           {/* row-reverse */}
@@ -118,9 +118,9 @@ const HeadNotLogin = () => {
             <ReverseSearchApfBtn>
               {/* About, Products, For Teams 버튼 */}
               <ApfBtn />
-              <form className="search-from">
+              <form className='search-from'>
                 {/* 검색창 */}
-                <input className="search-input" type="search" placeholder="Search..." />
+                <input className='search-input' type='search' placeholder='Search...' />
               </form>
             </ReverseSearchApfBtn>
           </RowReverseBlock>

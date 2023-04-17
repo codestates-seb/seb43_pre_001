@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
 const LoginSignupBtnBlock = styled.div`
   display: flex;
@@ -85,14 +85,14 @@ const LoginSignupBtnBlock = styled.div`
 const LoginSignupBtn = () => {
   return (
     <LoginSignupBtnBlock>
-      <div className="rev-login-signup">
-        <button className="login">
-          <div className="login-bg">
+      <div className='rev-login-signup'>
+        <button className='login'>
+          <div className='login-bg'>
             <span>Log in</span>
           </div>
         </button>
-        <button className="signup">
-          <div className="signup-bg">
+        <button className='signup'>
+          <div className='signup-bg'>
             <span>Sign up</span>
           </div>
         </button>
