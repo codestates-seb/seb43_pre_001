@@ -5,14 +5,15 @@ import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.time.LocalDateTime;
 @Getter
 @Setter
 public class AnswerResponseDto {
+    private String memberId;
+    private Long questionId;
     private Long answerId;
-    private String member;
     private String content;
-    private Answer.AnswerStatus answerStatus;
-    private Data createdAt;
-    private Data updatedAt;
+    private LocalDateTime createdAt;
+    private LocalDateTime modifiedAt;
 
 }
