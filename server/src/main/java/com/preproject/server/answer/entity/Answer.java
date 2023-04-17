@@ -3,32 +3,40 @@ package com.preproject.server.answer.entity;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.springframework.data.annotation.CreatedDate;
+import org.springframework.data.annotation.LastModifiedDate;
 
 import javax.persistence.*;
+import java.lang.reflect.Member;
+import java.time.LocalDateTime;
 
 @Entity
 @Getter
 @Setter
 @NoArgsConstructor
 public class Answer {
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long answerId;
-    private Long Member;
-
+    private Long questionId;
     @Column(length = 1000, nullable = false)
     private String content;
 
-    public enum AnswerStatus{
-        ANSWER_NOT_EXIST("존재하지 않는 답변"),
-        ANSWER_EXIST("존재하는 답변");
+    @CreatedDate
+    @Column(name = "created_at", updatable = false)
+    private LocalDateTime createdAt = LocalDateTime.now();
 
-        @Getter
-        private String status;
+    @LastModifiedDate
+    @Column(name = "LAST_MODIFIED_AT")
+    private LocalDateTime modifiedAt = LocalDateTime.now();
 
-        AnswerStatus(String status){
-            this.status = status;
-        }
+    @ManyToOne
+    @JoinColumn(name = "MEMBER_ID")
+    private Member member;
+
+    public Answer(Long questionId, String content, Member member){
+        this.questionId = questionId;
+        this.content = content;
+        this.member = member;
     }
 }
