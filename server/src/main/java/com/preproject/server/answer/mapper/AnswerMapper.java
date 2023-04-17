@@ -4,6 +4,7 @@ import com.preproject.server.answer.dto.AnswerPatchDto;
 import com.preproject.server.answer.dto.AnswerPostDto;
 import com.preproject.server.answer.dto.AnswerResponseDto;
 import com.preproject.server.answer.entity.Answer;
+import com.preproject.server.answer.service.AnswerService;
 import org.mapstruct.Mapper;
 
 import java.lang.reflect.Member;

@@ -2,6 +2,8 @@ package com.preproject.server.answer.controller;
 
 import com.preproject.server.answer.dto.AnswerPatchDto;
 import com.preproject.server.answer.dto.AnswerPostDto;
+import com.preproject.server.member.Member;
+import com.preproject.server.member.MemberRepository;
 import com.preproject.server.answer.entity.Answer;
 import com.preproject.server.answer.mapper.AnswerMapper;
 import com.preproject.server.answer.service.AnswerService;
@@ -13,18 +15,20 @@ import org.springframework.web.bind.annotation.*;
 import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Positive;
-import java.lang.reflect.Member;
+
 
 @RestController
 @Validated
 @RequestMapping("/answers")
 public class AnswerController {
     private AnswerService answerService;
+    private MemberRepository memberRepository;
     private AnswerMapper mapper;
 //    private QuestionService questionService;
 
-    public AnswerController(AnswerService answerService, AnswerMapper mapper){
+    public AnswerController(AnswerService answerService, MemberRepository memberRepository, AnswerMapper mapper){
         this.answerService = answerService;
+        this.memberRepository = memberRepository;
         this.mapper = mapper;
     }
 
@@ -50,14 +54,14 @@ public class AnswerController {
      자기 답 아닌데 접근 ->  예외 발생
      **/
     @PatchMapping("/{answer_id}")
-    public ResponseEntity patchAnswer(@PathVariable("answer-id") @Positive @NotNull long answerId,
+    public ResponseEntity patchAnswer(@PathVariable("answer_id") @Positive @NotNull long answerId,
                                       @Valid @RequestBody AnswerPatchDto requestBody){
         requestBody.setAnswer_id(answerId);
-        Answer answer = mapper.answerPatchDtoToAnswer(answerService, requestBody);
+//        Member member = memberRepository.findById(requestBody.getMember_id()).orElseThrow(() -> new RuntimeException());
+        Answer answer = mapper.answerPatchDtoToAnswer(requestBody, member);
         Answer updatedAnswer = answerService.updateAnswer(answer);
 
-
-        return new ResponseEntity<>(mapper.answerToAnswerResponseDto(answer), HttpStatus.OK);
+        return new ResponseEntity<>(mapper.answerToAnswerResponseDto(updatedAnswer), HttpStatus.OK);
     }
 
     // 답변 삭제
