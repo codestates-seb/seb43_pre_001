@@ -2,6 +2,7 @@ import styled from 'styled-components';
 import stackoverflowLogo from '../../assets/stackoverflow-logo.svg';
 import searchIcon from '../../assets/search-icon.svg';
 import profileImg from '../../assets/profile-img.svg';
+import { Link } from 'react-router-dom';
 
 const HeadBlock = styled.header`
   height: 50px;
@@ -192,9 +193,11 @@ const HeadLogin = () => {
       <div className='orange-line'></div>
       <RealHeadBlock>
         <HeadBg>
-          <div className='logo'>
-            <img src={stackoverflowLogo} alt='logo' />
-          </div>
+          <Link to='/'>
+            <div className='logo'>
+              <img src={stackoverflowLogo} alt='logo' />
+            </div>
+          </Link>
 
           {/* row-reverse */}
           <RowReverseBlock>

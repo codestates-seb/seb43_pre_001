@@ -3,13 +3,14 @@ import stackoverflowLogo from '../../assets/stackoverflow-logo.svg';
 import searchIcon from '../../assets/search-icon.svg';
 import ApfBtn from './HeadMaterial/ApfBtn';
 import LoginSignupBtn from './HeadMaterial/LoginSignupBtn';
+import { Link } from 'react-router-dom';
 
 const HeadBlock = styled.header`
   height: 50px;
   width: 100%;
   background-color: #f8f9f9;
   box-shadow: 0 1px 7px 0 rgba(0, 0, 0, 0.15);
-  /* position: fixed; */
+  position: fixed;
 
   .orange-line {
     height: 3px;
@@ -91,9 +92,11 @@ const HeadNotLoginMain = () => {
       <div className='orange-line'></div>
       <RealHeadBlock>
         <HeadBg>
-          <div className='logo'>
-            <img src={stackoverflowLogo} alt='logo' />
-          </div>
+          <Link to='/'>
+            <div className='logo'>
+              <img src={stackoverflowLogo} alt='logo' />
+            </div>
+          </Link>
 
           {/* row-reverse */}
           <RowReverseBlock>

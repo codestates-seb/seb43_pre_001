@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { Link } from 'react-router-dom';
 
 const LoginSignupBtnBlock = styled.div`
   display: flex;
@@ -86,16 +87,21 @@ const LoginSignupBtn = () => {
   return (
     <LoginSignupBtnBlock>
       <div className='rev-login-signup'>
-        <button className='login'>
-          <div className='login-bg'>
-            <span>Log in</span>
-          </div>
-        </button>
-        <button className='signup'>
-          <div className='signup-bg'>
-            <span>Sign up</span>
-          </div>
-        </button>
+        <Link to='/login'>
+          <button className='login'>
+            <div className='login-bg'>
+              <span>Log in</span>
+            </div>
+          </button>
+        </Link>
+
+        <Link to='/signup'>
+          <button className='signup'>
+            <div className='signup-bg'>
+              <span>Sign up</span>
+            </div>
+          </button>
+        </Link>
       </div>
     </LoginSignupBtnBlock>
   );
