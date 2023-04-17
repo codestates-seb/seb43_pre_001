@@ -30,9 +30,9 @@ public class MemberController {
     @PostMapping("/signup")
     public ResponseEntity postMember(@Valid @RequestBody MemberDto.Post memberPostDto) throws Exception {
         Member member = mapper.memberPostDtoToMember(memberPostDto);
-        memberService.createMember(member);
+        Member createdMember = memberService.createMember(member);
 
-        return new ResponseEntity<>(HttpStatus.CREATED);
+        return new ResponseEntity<>(mapper.memberToMemberResponseDto(createdMember),HttpStatus.CREATED);
     }
 
 }
