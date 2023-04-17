@@ -14,12 +14,7 @@ import javax.validation.constraints.NotNull;
 @NoArgsConstructor
 @AllArgsConstructor
 public class AnswerPatchDto {
-    @Setter
-    private long answerId;
-
-    // 답 수정
+    private Long memberId;
+    private Long answerId;
     private String content;
-
-    // 답 삭제
-    private Answer.AnswerStatus answerStatus;
 }

@@ -1,4 +1,4 @@
-package dto;
+package com.preproject.server.answer.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -13,9 +13,9 @@ import javax.validation.constraints.NotNull;
 @NoArgsConstructor
 @AllArgsConstructor
 public class AnswerPostDto {
+    private Long questionId;
     @NotNull
-    private String member;
-
+    private Long memberId;
     @NotEmpty
     private String content;
 }
