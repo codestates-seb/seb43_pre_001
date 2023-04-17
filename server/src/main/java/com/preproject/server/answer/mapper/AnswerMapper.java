@@ -1,5 +1,6 @@
 package com.preproject.server.answer.mapper;
 
+import com.preproject.server.answer.dto.AnswerPatchDto;
 import com.preproject.server.answer.dto.AnswerPostDto;
 import com.preproject.server.answer.dto.AnswerResponseDto;
 import com.preproject.server.answer.entity.Answer;
@@ -13,6 +14,13 @@ public interface AnswerMapper {
     default Answer answerPostDtoToAnswer(AnswerPostDto answerPostDto){
         Answer answer = new Answer();
         answer.setContent(answerPostDto.getContent());
+        return answer;
+    }
+
+    default Answer answerPatchDtoToAnswer(AnswerPatchDto answerPatchDto){
+        Answer answer = new Answer();
+        answer.setAnswerId(answerPatchDto.getAnswerId());
+        answer.setContent(answerPatchDto.getContent());
         return answer;
     }
 

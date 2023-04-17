@@ -35,4 +35,16 @@ public class AnswerController {
         return new ResponseEntity<>(mapper.answerToAnswerResponseDto(question), HttpStatus.CREATED);
     }
 
+    /**
+     답변 수정
+     **/
+    @PatchMapping("/{answer_id}")
+    public ResponseEntity patchAnswer(@PathVariable("answer-id") @Positive @NotNull long answerId,
+                                      @Valid @RequestBody AnswerPatchDto answerPatchDto){
+        answerPatchDto.setAnswerId(answerId);
+        Answer answer = mapper.answerPatchDtoToAnswer(answerPatchDto);
+
+        return new ResponseEntity<>(mapper.answerToAnswerResponseDto(answer), HttpStatus.OK);
+    }
+
 }
