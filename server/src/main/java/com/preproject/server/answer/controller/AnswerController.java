@@ -37,6 +37,13 @@ public class AnswerController {
         return new ResponseEntity<>(mapper.answerToAnswerResponseDto(question), HttpStatus.CREATED);
     }
 
+    // 답변 조회
+    @GetMapping("/{question_id}")
+    public ResponseEntity getAnswer(@PathVariable("question_id") @Positive long answerId) {
+        Answer answer = answerService.findVerifiedAnswer(answerId);
+        return new ResponseEntity<>(mapper.answerToAnswerResponseDto(answer), HttpStatus.OK);
+    }
+
     /**
      답변 수정
      자기가 작성한 답만 수정,삭제 가능
