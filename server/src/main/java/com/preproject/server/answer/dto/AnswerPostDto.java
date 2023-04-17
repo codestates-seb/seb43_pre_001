@@ -10,12 +10,11 @@ import javax.validation.constraints.NotNull;
 
 @Getter
 @Setter
-@NoArgsConstructor
 @AllArgsConstructor
-public class AnswerPostDto {
-    private Long questionId;
+public class AnswerPostDto { // Request Body
+    private Long question_id;
     @NotNull
-    private Long memberId;
+    private Long member_id;
     @NotEmpty
     private String content;
 }
