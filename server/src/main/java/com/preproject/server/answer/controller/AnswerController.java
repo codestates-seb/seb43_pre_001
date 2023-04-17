@@ -60,4 +60,11 @@ public class AnswerController {
         return new ResponseEntity<>(mapper.answerToAnswerResponseDto(answer), HttpStatus.OK);
     }
 
+    // 답변 삭제
+    @DeleteMapping("/{answer_id}")
+    public ResponseEntity deleteAnswer(@PathVariable("answer_id") @Positive long answerId) {
+        answerService.deleteAnswer(answerId);
+        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+    }
+
 }

@@ -33,6 +33,11 @@ public class AnswerService {
         return updatedQuestion;
     }
 
+    public void deleteAnswer(long answerId){
+        Answer findAnswer = answerRepository.findById(answerId).orElseThrow(() -> new RuntimeException());
+        answerRepository.delete(findAnswer);
+    }
+
     public Answer findVerifiedAnswer(long answerId){ // 요청된 답이 DB에 없으면 에러
         Optional<Answer> optionalAnswer = answerRepository.findById(answerId);
         Answer findAnswer = optionalAnswer.orElseThrow();
