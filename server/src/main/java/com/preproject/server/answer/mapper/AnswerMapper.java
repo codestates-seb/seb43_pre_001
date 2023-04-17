@@ -5,9 +5,11 @@ import com.preproject.server.answer.dto.AnswerResponseDto;
 import com.preproject.server.answer.entity.Answer;
 import org.mapstruct.Mapper;
 
+import java.util.List;
+
 @Mapper(componentModel = "Spring")
 public interface AnswerMapper {
-    // AnswerDto.Post -> Answer
+    // AnswerPostDto -> Answer
     default Answer answerPostDtoToAnswer(AnswerPostDto answerPostDto){
         Answer answer = new Answer();
         answer.setContent(answerPostDto.getContent());
@@ -22,4 +24,6 @@ public interface AnswerMapper {
 
         return answerResponseDto;
     }
+
+    List<AnswerResponseDto> answersToAnswerResponseDtos(List<Answer> answers);
 }
