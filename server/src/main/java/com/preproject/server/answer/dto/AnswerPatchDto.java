@@ -1,5 +1,6 @@
-package dto;
+package com.preproject.server.answer.dto;
 
+import com.preproject.server.answer.entity.Answer;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -13,8 +14,12 @@ import javax.validation.constraints.NotNull;
 @NoArgsConstructor
 @AllArgsConstructor
 public class AnswerPatchDto {
-    @NotNull
-    private String member;
-    @NotEmpty
+    @Setter
+    private long answerId;
+
+    // 답 수정
     private String content;
+
+    // 답 삭제
+    private Answer.AnswerStatus answerStatus;
 }
