@@ -6,13 +6,13 @@ import com.preproject.server.answer.entity.Answer;
 import org.mapstruct.Mapper;
 
 @Mapper(componentModel = "Spring")
-public class AnswerMapper {
+public interface AnswerMapper {
     // AnswerDto.Post -> Answer
     default Answer answerPostDtoToAnswer(AnswerPostDto answerPostDto){
         Answer answer = new Answer();
         answer.setContent(answerPostDto.getContent());
         return answer;
-    };
+    }
 
     // Answer -> AnswerResponseDto
     default AnswerResponseDto answerToAnswerResponseDto(Answer answer){
@@ -21,5 +21,5 @@ public class AnswerMapper {
         answerResponseDto.setContent(answer.getContent());
 
         return answerResponseDto;
-    };
+    }
 }
