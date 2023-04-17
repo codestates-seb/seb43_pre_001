@@ -14,6 +14,7 @@ public class MemberDto {
     @AllArgsConstructor
     @NoArgsConstructor
     @Getter
+    @Setter
     public static class Post{
         @Valid
         @NotNull(message = "닉네임을 입력하세요.")
@@ -30,5 +31,15 @@ public class MemberDto {
         @Valid
         @NotNull(message = "패스워드를 입력하세요.")
         private String password;
+    }
+
+    @Getter
+    @AllArgsConstructor
+    public static class Response{
+        @Positive
+        private long memberId;
+        private String nickname;
+        private String name;
+        private String email;
     }
 }
