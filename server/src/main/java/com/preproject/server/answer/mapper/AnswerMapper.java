@@ -6,32 +6,25 @@ import com.preproject.server.answer.dto.AnswerResponseDto;
 import com.preproject.server.answer.entity.Answer;
 import org.mapstruct.Mapper;
 
+import java.lang.reflect.Member;
 import java.util.List;
 
 @Mapper(componentModel = "Spring")
 public interface AnswerMapper {
     // AnswerPostDto -> Answer
-    default Answer answerPostDtoToAnswer(AnswerPostDto answerPostDto){
-        Answer answer = new Answer();
-        answer.setContent(answerPostDto.getContent());
+    default Answer answerPostDtoToAnswer(AnswerPostDto requestBody, Member member){
+        Answer answer = new Answer(requestBody.getMember_id(), requestBody.getContent(), member);
         return answer;
     }
 
-    default Answer answerPatchDtoToAnswer(AnswerPatchDto answerPatchDto){
-        Answer answer = new Answer();
-        answer.setAnswerId(answerPatchDto.getAnswerId());
-        answer.setContent(answerPatchDto.getContent());
+    default Answer answerPatchDtoToAnswer(AnswerPatchDto requestBody, Member member){
+        Answer answer = new Answer(requestBody.getMember_id(), requestBody.getContent(), member);
+        answer.setAnswerId(requestBody.getAnswer_id());
         return answer;
     }
 
     // Answer -> AnswerResponseDto
-    default AnswerResponseDto answerToAnswerResponseDto(Answer answer){
-        AnswerResponseDto answerResponseDto = new AnswerResponseDto();
-        answerResponseDto.setAnswerId(answer.getAnswerId());
-        answerResponseDto.setContent(answer.getContent());
-
-        return answerResponseDto;
-    }
+    AnswerResponseDto answerToAnswerResponseDto(Answer answer);
 
     List<AnswerResponseDto> answersToAnswerResponseDtos(List<Answer> answers);
 }
