@@ -12,9 +12,10 @@ import javax.validation.constraints.NotNull;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class AnswerUpdateDto {
+public class AnswerPostDto {
     @NotNull
     private String member;
+
     @NotEmpty
     private String content;
 }
