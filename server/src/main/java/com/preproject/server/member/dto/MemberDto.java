@@ -1,4 +1,4 @@
-package com.preproject.server.member;
+package com.preproject.server.member.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

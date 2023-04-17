@@ -1,4 +1,4 @@
-package com.preproject.server.member;
+package com.preproject.server.member.entity;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;

@@ -1,5 +1,7 @@
-package com.preproject.server.member;
+package com.preproject.server.member.service;
 
+import com.preproject.server.member.entity.Member;
+import com.preproject.server.member.repository.MemberRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.Optional;

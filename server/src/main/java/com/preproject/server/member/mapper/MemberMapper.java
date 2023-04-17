@@ -1,5 +1,7 @@
-package com.preproject.server.member;
+package com.preproject.server.member.mapper;
 
+import com.preproject.server.member.dto.MemberDto;
+import com.preproject.server.member.entity.Member;
 import org.mapstruct.Mapper;
 
 @Mapper(componentModel = "spring")
