@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
 const SignupFormBlock = styled.form`
   width: 317px;
@@ -133,35 +133,35 @@ const SignupFormBlock = styled.form`
 const SignupForm = () => {
   return (
     <SignupFormBlock>
-      <label className="label-name" htmlFor="username">
+      <label className='label-name' htmlFor='username'>
         Display name
       </label>
-      <input type="text" id="username" name="username" autoComplete="username" required />
+      <input type='text' id='username' name='username' autoComplete='username' required />
 
-      <label className="label-email" htmlFor="email">
+      <label className='label-email' htmlFor='email'>
         Email
       </label>
-      <input type="email" id="email" name="email" autoComplete="username" required />
+      <input type='email' id='email' name='email' autoComplete='username' required />
 
-      <label className="label-pwd" htmlFor="pwd">
+      <label className='label-pwd' htmlFor='pwd'>
         Password
       </label>
-      <input type="password" id="pwd" name="pwd" autoComplete="current-password" required />
+      <input type='password' id='pwd' name='pwd' autoComplete='current-password' required />
 
-      <div className="p-pwd-txt">
+      <div className='p-pwd-txt'>
         <p>Passwords must contain at least eight characters, including at least 1 letter and 1 number.</p>
       </div>
 
-      <button className="submit-btn" type="submit">
-        <div className="submit-bg">
+      <button className='submit-btn' type='submit'>
+        <div className='submit-bg'>
           <span>Sign up</span>
         </div>
       </button>
 
-      <div className="p-by-txt">
+      <div className='p-by-txt'>
         <p>
-          By clicking “Sign up”, you agree to our <span className="blue-txt">terms of service</span>, <span className="blue-txt">privacy</span> policy
-          and <span className="blue-txt">cookie policy</span>
+          By clicking “Sign up”, you agree to our <span className='blue-txt'>terms of service</span>, <span className='blue-txt'>privacy</span> policy
+          and <span className='blue-txt'>cookie policy</span>
         </p>
       </div>
     </SignupFormBlock>

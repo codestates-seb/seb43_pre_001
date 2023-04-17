@@ -1,6 +1,6 @@
-import styled from "styled-components";
-import SignupWith from "./SignupMaterial/SignupWith";
-import SignupForm from "./SignupMaterial/SignupForm";
+import styled from 'styled-components';
+import SignupWith from './SignupMaterial/SignupWith';
+import SignupForm from './SignupMaterial/SignupForm';
 
 const StackSignupBlock = styled.div`
   display: flex;
@@ -124,30 +124,30 @@ const StackSignup = () => {
         <LeftTxt>
           <h3>Join the Stack Overflow community</h3>
 
-          <div className="ques">
-            <i className="i-speech-icon" />
+          <div className='ques'>
+            <i className='i-speech-icon' />
             <span>Get unstuck — ask a question</span>
           </div>
 
-          <div className="updown">
-            <i className="i-updown-icon" />
+          <div className='updown'>
+            <i className='i-updown-icon' />
             <span>Unlock new privileges like voting and commenting</span>
           </div>
 
-          <div className="tags">
-            <i className="i-tags-icon" />
+          <div className='tags'>
+            <i className='i-tags-icon' />
             <span>Save your favorite tags, filters, and jobs</span>
           </div>
 
-          <div className="prize">
-            <i className="i-prize-icon" />
+          <div className='prize'>
+            <i className='i-prize-icon' />
             <span>Earn reputation and badges</span>
           </div>
 
-          <div className="mini-txt">
+          <div className='mini-txt'>
             <span>Collaborate and share knowledge with a private group for FREE.</span>
             <br />
-            <span className="blue-txt">Get Stack Overflow for Teams free for up to 50 users.</span>
+            <span className='blue-txt'>Get Stack Overflow for Teams free for up to 50 users.</span>
           </div>
         </LeftTxt>
 

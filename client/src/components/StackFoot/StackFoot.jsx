@@ -1,5 +1,6 @@
-import styled from "styled-components";
-import stackLogo from "../../assets/stack-logo.svg";
+import styled from 'styled-components';
+import stackLogo from '../../assets/stack-logo.svg';
+import { Link } from 'react-router-dom';
 
 const StackFootBlock = styled.footer`
   display: flex;
@@ -116,26 +117,28 @@ const StackFoot = () => {
     <StackFootBlock>
       <RealFootBlock>
         {/* 로고 누르면 메인 페이지로 이동하도록 라우터 설정해 줘야 함 */}
-        <div className="stack-logo">
-          <img src={stackLogo} alt="logo" />
-        </div>
+        <Link to='/'>
+          <div className='stack-logo'>
+            <img src={stackLogo} alt='logo' />
+          </div>
+        </Link>
 
-        <ul className="stack-overflow">
-          <li className="bold">STACK OVERFLOW</li>
+        <ul className='stack-overflow'>
+          <li className='bold'>STACK OVERFLOW</li>
           <li>Questions</li>
           <li>Help</li>
         </ul>
 
-        <ul className="produsts">
-          <li className="bold">PRODUCTS</li>
+        <ul className='produsts'>
+          <li className='bold'>PRODUCTS</li>
           <li>Teams</li>
           <li>Advertising</li>
           <li>Collectives</li>
           <li>Talent</li>
         </ul>
 
-        <ul className="company">
-          <li className="bold">COMPANY</li>
+        <ul className='company'>
+          <li className='bold'>COMPANY</li>
           <li>About</li>
           <li>Press</li>
           <li>Work Here</li>
@@ -147,20 +150,20 @@ const StackFoot = () => {
           <li>Cookie Policy</li>
         </ul>
 
-        <ul className="stack-exchange-network">
-          <li className="bold">STACK EXCHANGE NETWORK</li>
+        <ul className='stack-exchange-network'>
+          <li className='bold'>STACK EXCHANGE NETWORK</li>
           <li>Technology</li>
           <li>Culture & recreation</li>
           <li>Life & arts</li>
           <li>Science</li>
           <li>Professional</li>
           <li>Business</li>
-          <li className="api">API</li>
+          <li className='api'>API</li>
           <li>Data</li>
         </ul>
 
-        <div className="small-txt">
-          <div className="top-txt">
+        <div className='small-txt'>
+          <div className='top-txt'>
             <span>Blog</span>
             <span>Facebook</span>
             <span>Twitter</span>
@@ -168,7 +171,7 @@ const StackFoot = () => {
             <span>Instagram</span>
           </div>
 
-          <div className="bottom-txt">
+          <div className='bottom-txt'>
             <p>
               Site design / logo © 2023 Stack Exchange Inc; user contributions licensed under <span>CC BY-SA</span>. rev 2023.4.12.43383
             </p>

@@ -1,7 +1,11 @@
 import HeadNotLoginMain from '../components/StackHead/HeadNotLoginMain';
 
 const MainPage = () => {
-  return <HeadNotLoginMain />;
+  return (
+    <>
+      <HeadNotLoginMain />
+    </>
+  );
 };
 
 export default MainPage;

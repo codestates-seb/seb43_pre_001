@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
 const LoginFormBlock = styled.div`
   width: 288px;
@@ -110,21 +110,21 @@ const LoginFormBlock = styled.div`
 const LoginForm = () => {
   return (
     <LoginFormBlock>
-      <label className="label-email" htmlFor="email">
+      <label className='label-email' htmlFor='email'>
         Email
       </label>
-      <input type="email" id="email" name="email" autoComplete="username" required />
+      <input type='email' id='email' name='email' autoComplete='username' required />
 
-      <div className="pwd-label-span">
-        <label className="label-pwd" htmlFor="pwd">
+      <div className='pwd-label-span'>
+        <label className='label-pwd' htmlFor='pwd'>
           Password
         </label>
         <span>Forgot password?</span>
       </div>
-      <input type="password" id="pwd" name="pwd" autoComplete="current-password" required />
+      <input type='password' id='pwd' name='pwd' autoComplete='current-password' required />
 
-      <button className="submit-btn" type="submit">
-        <div className="submit-bg">
+      <button className='submit-btn' type='submit'>
+        <div className='submit-bg'>
           <span>Log in</span>
         </div>
       </button>

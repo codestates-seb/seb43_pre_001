@@ -1,5 +1,5 @@
-import styled from "styled-components";
-import googleLogo from "../../../assets/google-icon.svg";
+import styled from 'styled-components';
+import googleLogo from '../../../assets/google-icon.svg';
 
 const LoginWithBlock = styled.div`
   width: 288px;
@@ -90,18 +90,18 @@ const LoginWithBlock = styled.div`
 const LoginWith = () => {
   return (
     <LoginWithBlock>
-      <button className="google">
-        <img src={googleLogo} alt="google-logo" />
+      <button className='google'>
+        <img src={googleLogo} alt='google-logo' />
         <span>Log in with Google</span>
       </button>
 
-      <button className="github">
-        <i className="i-github-icon" />
+      <button className='github'>
+        <i className='i-github-icon' />
         <span>Log in with Github</span>
       </button>
 
-      <button className="facebook">
-        <i className="i-facebook-icon" />
+      <button className='facebook'>
+        <i className='i-facebook-icon' />
         <span>Log in with Facebook</span>
       </button>
     </LoginWithBlock>

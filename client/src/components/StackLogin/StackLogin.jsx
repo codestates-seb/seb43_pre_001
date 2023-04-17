@@ -1,7 +1,7 @@
-import styled from "styled-components";
-import stackLogo from "../../assets/stack-logo.svg";
-import LoginWith from "./LoginMaterial/LoginWith";
-import LoginForm from "./LoginMaterial/LoginForm";
+import styled from 'styled-components';
+import stackLogo from '../../assets/stack-logo.svg';
+import LoginWith from './LoginMaterial/LoginWith';
+import LoginForm from './LoginMaterial/LoginForm';
 
 const StackLoginBlock = styled.div`
   display: flex;
@@ -47,8 +47,8 @@ const StackLogin = () => {
   return (
     <StackLoginBlock>
       <RealLoginBlock>
-        <div className="logo-img">
-          <img src={stackLogo} alt="logo" />
+        <div className='logo-img'>
+          <img src={stackLogo} alt='logo' />
         </div>
         {/* Login Google, Login Github, Login Facebook 버튼 구역 */}
         <LoginWith />
@@ -59,7 +59,7 @@ const StackLogin = () => {
         <BelowTxt>
           {/* Sign up 글자 부분에 라우터를 사용해서 signup페이지로 이동 시켜야 함 */}
           <span>
-            Don't have an account? <span className="blue-txt">Sign up</span>
+            Don&rsquo;t have an account? <span className='blue-txt'>Sign up</span>
           </span>
         </BelowTxt>
       </RealLoginBlock>
