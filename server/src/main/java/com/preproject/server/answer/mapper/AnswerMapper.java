@@ -34,6 +34,7 @@ public interface AnswerMapper {
     // Answer -> AnswerResponseDto
     default AnswerResponseDto answerToAnswerResponseDto(MemberMapper memberMapper, Answer answer){
         AnswerResponseDto answerResponseDto = new AnswerResponseDto();
+        answerResponseDto.setQuestion_id(answer.getQuestionId());
         answerResponseDto.setAnswer_id(answer.getAnswerId());
         answerResponseDto.setContent(answer.getContent());
         answerResponseDto.setCreated_at(answer.getCreatedAt());

@@ -1,5 +1,6 @@
 package com.preproject.server.answer.controller;
 
+import com.preproject.server.dto.SingleResponseDto;
 import com.preproject.server.member.entity.Member;
 import com.preproject.server.answer.dto.AnswerPatchDto;
 import com.preproject.server.answer.dto.AnswerPostDto;
@@ -35,7 +36,6 @@ public class AnswerController {
     // 답변 작성
     @PostMapping
     public ResponseEntity postAnswer(@Valid @RequestBody AnswerPostDto answerPostDto){
-//        Member member = memberRepository.findById(answerPostDto.getMember_id()).orElseThrow(() -> new RuntimeException());
         Answer question = answerService.createAnswer(
                 mapper.answerPostDtoToAnswer(memberService, answerPostDto));
 
@@ -48,7 +48,7 @@ public class AnswerController {
     @GetMapping("/{question_id}")
     public ResponseEntity getAnswer(@PathVariable("question_id") @Positive long answerId) {
         Answer answer = answerService.findVerifiedAnswer(answerId);
-        return new ResponseEntity<>(mapper.answerToAnswerResponseDto(memberMapper, answer), HttpStatus.OK);
+        return new ResponseEntity<>(new SingleResponseDto<>(mapper.answerToAnswerResponseDto(memberMapper, answer)), HttpStatus.OK);
     }
 
     /**
@@ -64,7 +64,7 @@ public class AnswerController {
         Answer answer = mapper.answerPatchDtoToAnswer(requestBody , member);
         Answer updatedAnswer = answerService.updateAnswer(answer);
 
-        return new ResponseEntity<>(mapper.answerToAnswerResponseDto(memberMapper, updatedAnswer), HttpStatus.OK);
+        return new ResponseEntity<>(new SingleResponseDto<>(mapper.answerToAnswerResponseDto(memberMapper, updatedAnswer)), HttpStatus.OK);
     }
 
     // 답변 삭제

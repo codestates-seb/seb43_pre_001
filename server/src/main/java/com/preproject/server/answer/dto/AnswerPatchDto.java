@@ -10,7 +10,7 @@ import javax.validation.constraints.NotNull;
 @Setter
 @AllArgsConstructor
 public class AnswerPatchDto {
-    @NotNull
+
     private Long member_id;
     @Setter
     private Long answer_id;
