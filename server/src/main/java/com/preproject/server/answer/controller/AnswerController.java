@@ -39,14 +39,14 @@ public class AnswerController {
         Answer question = answerService.createAnswer(
                 mapper.answerPostDtoToAnswer(answerPostDto, member));
 
-        return new ResponseEntity<>(mapper.answerToAnswerResponseDto(memberMapper, question), HttpStatus.CREATED);
+        return new ResponseEntity<>(mapper.answerToAnswerResponseDto(question), HttpStatus.CREATED);
     }
 
     // 답변 조회
     @GetMapping("/{question_id}")
     public ResponseEntity getAnswer(@PathVariable("question_id") @Positive long answerId) {
         Answer answer = answerService.findVerifiedAnswer(answerId);
-        return new ResponseEntity<>(new SingleResponseDto<>(mapper.answerToAnswerResponseDto(memberMapper, answer)), HttpStatus.OK);
+        return new ResponseEntity<>(new SingleResponseDto<>(mapper.answerToAnswerResponseDto(answer)), HttpStatus.OK);
     }
 
     /**
@@ -62,7 +62,7 @@ public class AnswerController {
         Answer answer = mapper.answerPatchDtoToAnswer(requestBody , member);
         Answer updatedAnswer = answerService.updateAnswer(answer);
 
-        return new ResponseEntity<>(new SingleResponseDto<>(mapper.answerToAnswerResponseDto(memberMapper, updatedAnswer)), HttpStatus.OK);
+        return new ResponseEntity<>(new SingleResponseDto<>(mapper.answerToAnswerResponseDto(updatedAnswer)), HttpStatus.OK);
     }
 
     // 답변 삭제

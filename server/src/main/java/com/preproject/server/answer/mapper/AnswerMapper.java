@@ -5,8 +5,6 @@ import com.preproject.server.answer.dto.AnswerPatchDto;
 import com.preproject.server.answer.dto.AnswerPostDto;
 import com.preproject.server.answer.dto.AnswerResponseDto;
 import com.preproject.server.answer.entity.Answer;
-import com.preproject.server.member.mapper.MemberMapper;
-import com.preproject.server.member.service.MemberService;
 import org.mapstruct.Mapper;
 
 import java.util.List;
@@ -33,7 +31,7 @@ public interface AnswerMapper {
 
 
     // Answer -> AnswerResponseDto
-    default AnswerResponseDto answerToAnswerResponseDto(MemberMapper memberMapper, Answer answer){
+    default AnswerResponseDto answerToAnswerResponseDto(Answer answer){
         AnswerResponseDto answerResponseDto = new AnswerResponseDto();
         answerResponseDto.setQuestion_id(answer.getQuestionId());
         answerResponseDto.setAnswer_id(answer.getAnswerId());
