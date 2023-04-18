@@ -7,7 +7,6 @@ const Container = styled.div`
   top: 50px;
   width: 100vw;
   height: 100vh;
-  border-top: 2.5px solid #e8e8e8;
   .wrapper {
     margin: 0 auto;
     max-width: 1246px;
