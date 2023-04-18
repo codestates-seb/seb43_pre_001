@@ -1,19 +1,16 @@
 import styled from 'styled-components';
-import earthIcon from '../../assets/earth-icon.svg';
+import earthIcon from '../../../assets/earth-icon.svg';
 import { Link } from 'react-router-dom';
 
 const LeftSideBarBox = styled.nav`
   padding-top: 24px;
-  border-right: 1px solid #d6d9dc;
-  width: 164px;
-  height: 100vh;
+  width: 163px;
+  height: 741px;
   font-size: 13px;
-  position: fixed;
 
   ul {
     display: flex;
     flex-direction: column;
-    /* align-items: center; */
     li {
       display: flex;
       color: rgb(106, 115, 124);
@@ -67,7 +64,7 @@ const StyledLink = styled(Link)`
   text-decoration: none;
 `;
 
-const LeftSideBar = () => {
+const LeftSideBarProfile = () => {
   return (
     <>
       <LeftSideBarBox>
@@ -80,9 +77,8 @@ const LeftSideBar = () => {
             </li>
           </StyledLink>
           <li className='inner'>Tags</li>
-          <StyledLink to='/profile'>
-            <li className='inner'>Users</li>
-          </StyledLink>
+          <StyledLink to='/profile'></StyledLink>
+          <li className='inner'>Users</li>
           <li className='inner'>Companies</li>
         </ul>
       </LeftSideBarBox>
@@ -90,4 +86,4 @@ const LeftSideBar = () => {
   );
 };
 
-export default LeftSideBar;
+export default LeftSideBarProfile;

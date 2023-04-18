@@ -4,7 +4,7 @@ import LoginPage from './pages/LoginPage';
 import SignupPage from './pages/SignupPage';
 import QuestionsPage from './pages/QuestionsPage';
 import DetailQuestionPage from './pages/DetailQuestion';
-import AskPageContents from './components/Ask/AskPageContents';
+import ProfilePage from './pages/ProfilePage';
 
 const GlobalStyled = createGlobalStyle`
   body { //#F1F2F3
@@ -22,6 +22,7 @@ function App() {
           <Route path='/questions/:id' element={<DetailQuestionPage />} />
           <Route path='/login' element={<LoginPage />} />
           <Route path='/signup' element={<SignupPage />} />
+          <Route path='/profile' element={<ProfilePage />} />
         </Routes>
       </BrowserRouter>
     </>
