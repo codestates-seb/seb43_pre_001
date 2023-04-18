@@ -13,16 +13,12 @@ import java.util.List;
 @Mapper(componentModel = "Spring")
 public interface AnswerMapper {
     // AnswerPostDto -> Answer
-    default Answer answerPostDtoToAnswer(AnswerPostDto requestBody, Member member){
-        Answer answer = new Answer(requestBody.getMember_id(), requestBody.getContent(), member);
-        return answer;
-    }
+    Answer answerPostDtoToAnswer(AnswerPostDto answerPostDto);
 
-    default Answer answerPatchDtoToAnswer(AnswerPatchDto requestBody, Member member){
-        Answer answer = new Answer(requestBody.getMember_id(), requestBody.getContent(), member);
-        answer.setAnswerId(requestBody.getAnswer_id());
-        return answer;
-    }
+
+    // AnswerPatchDto -> Answer
+    Answer answerPatchDtoToAnswer(AnswerPatchDto answerPatchDto);
+
 
     // Answer -> AnswerResponseDto
     AnswerResponseDto answerToAnswerResponseDto(Answer answer);
