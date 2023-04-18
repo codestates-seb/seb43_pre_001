@@ -3,8 +3,9 @@ import fePencilImg from '../../assets/fePencil2.svg';
 import stackgrayImg from '../../assets/stack-gray-icon.svg';
 
 const RightSideBox = styled.div`
+  min-width: 235px;
   width: 300px;
-  height: 300px;
+  height: 330px;
   margin: 24px 0;
   background-color: #fdf7e2;
   border-radius: 3px;

@@ -1,11 +1,11 @@
 import HeadNotLoginMain from '../components/StackHead/HeadNotLoginMain';
 import Questions from '../components/StackQuestions/Questions';
 
-const QuestionsPage = () => {
+const QuestionsPage = ({ curTab, onTabSelect }) => {
   return (
     <>
       <HeadNotLoginMain />
-      <Questions />
+      <Questions curTab={curTab} onTabSelect={onTabSelect} />
     </>
   );
 };
