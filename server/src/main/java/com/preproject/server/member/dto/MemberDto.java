@@ -6,6 +6,8 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.validation.Valid;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Positive;
 
@@ -17,19 +19,20 @@ public class MemberDto {
     @Setter
     public static class Post{
         @Valid
-        @NotNull(message = "닉네임을 입력하세요.")
+        @NotBlank(message = "닉네임을 입력하세요.")
         private String nickname;
 
         @Valid
-        @NotNull(message = "이름을 입력하세요.")
+        @NotBlank(message = "이름을 입력하세요.")
         private String name;
 
         @Valid
-        @NotNull(message = "이메일을 입력하세요.")
+        @Email
+        @NotBlank(message = "이메일을 입력하세요.")
         private String email;
 
         @Valid
-        @NotNull(message = "패스워드를 입력하세요.")
+        @NotBlank(message = "패스워드를 입력하세요.")
         private String password;
     }
 

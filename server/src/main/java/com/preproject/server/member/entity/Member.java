@@ -27,7 +27,7 @@ public class Member implements Principal {
     @Column(nullable = false)
     private String email;
 
-    @Column(nullable = false)
+    @Column(length = 100, nullable = false)
     private String password;
 
     // 사용자 권한 정보 테이블과 매핑
