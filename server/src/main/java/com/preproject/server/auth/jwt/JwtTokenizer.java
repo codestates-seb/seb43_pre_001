@@ -24,11 +24,11 @@ public class JwtTokenizer {
 
     @Getter
     @Value("${jwt.access-token-expiration-minutes}")
-    private String accessTokenExpirationMinutes; // AccessToken 만료 시간
+    private int accessTokenExpirationMinutes; // AccessToken 만료 시간
 
     @Getter
     @Value("${jwt.refresh-token-expiration-minutes}")
-    private String refreshTokenExpirationMinutes; // RefreshToken 만료 시간
+    private int refreshTokenExpirationMinutes; // RefreshToken 만료 시간
 
     // Plain text 형태의 secretKey를 Base64 형식의 문자열로 인코딩
     public String encodedBase64SecretKey(String secretKey) {
