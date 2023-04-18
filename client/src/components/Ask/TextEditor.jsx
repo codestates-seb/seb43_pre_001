@@ -6,7 +6,7 @@ import { AskBoxStyle } from './AskStyle';
 function TextEditor({ title, desc }) {
   const editorRef = useRef(null);
 
-  const showNotice = () => {
+  const showEditorData = () => {
     console.log(editorRef.current?.getInstance().getHTML());
   };
 
@@ -15,9 +15,9 @@ function TextEditor({ title, desc }) {
       <div>
         <label>{title}</label>
         <p>{desc}</p>
-        <EditorBox previewStyle='vertical' initialEditType='wysiwyg' useCommandShortcut={true} ref={editorRef} onFocus={showNotice} />
+        <EditorBox previewStyle='vertical' initialEditType='wysiwyg' useCommandShortcut={true} ref={editorRef} onFocus={showEditorData} />
       </div>
-      <button onClick={showNotice}>Next</button>
+      <button onClick={showEditorData}>Next</button>
     </Div>
   );
 }
