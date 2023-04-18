@@ -2,7 +2,7 @@ import { createGlobalStyle } from 'styled-components';
 import { useLocation } from 'react-router-dom';
 
 const GlobalStyled = createGlobalStyle`
-  body { //#F1F2F3
+  body {
     background-color: ${({ backgroundColor }) => backgroundColor || '#FFF'};
   }
 `;
