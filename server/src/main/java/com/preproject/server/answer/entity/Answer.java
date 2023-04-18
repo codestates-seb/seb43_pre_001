@@ -1,5 +1,6 @@
 package com.preproject.server.answer.entity;
 
+import com.preproject.server.member.entity.Member;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;

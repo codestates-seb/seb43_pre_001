@@ -1,27 +1,48 @@
 package com.preproject.server.answer.mapper;
 
+import com.preproject.server.member.entity.Member;
 import com.preproject.server.answer.dto.AnswerPatchDto;
 import com.preproject.server.answer.dto.AnswerPostDto;
 import com.preproject.server.answer.dto.AnswerResponseDto;
 import com.preproject.server.answer.entity.Answer;
-import com.preproject.server.answer.service.AnswerService;
+import com.preproject.server.member.mapper.MemberMapper;
+import com.preproject.server.member.service.MemberService;
 import org.mapstruct.Mapper;
 
-import java.lang.reflect.Member;
 import java.util.List;
 
 @Mapper(componentModel = "Spring")
 public interface AnswerMapper {
     // AnswerPostDto -> Answer
-    Answer answerPostDtoToAnswer(AnswerPostDto answerPostDto);
+//    default Answer answerPostDtoToAnswer(AnswerPostDto requestBody, Member member){
+//        Answer answer = new Answer(requestBody.getMember_id(), requestBody.getContent(), member);
+//        return answer;
+//    }
+
+    Answer answerPostDtoToAnswer(MemberService memberService, AnswerPostDto answerPostDto);
 
 
     // AnswerPatchDto -> Answer
-    Answer answerPatchDtoToAnswer(AnswerPatchDto answerPatchDto);
+    default Answer answerPatchDtoToAnswer(AnswerPatchDto requestBody, Member member){
+        Answer answer = new Answer(requestBody.getMember_id(), requestBody.getContent(), member);
+        answer.setAnswerId(requestBody.getAnswer_id());
+        return answer;
+    }
 
+//    Answer answerPatchDtoToAnswer(AnswerPatchDto answerPatchDto);
 
     // Answer -> AnswerResponseDto
-    AnswerResponseDto answerToAnswerResponseDto(Answer answer);
+    default AnswerResponseDto answerToAnswerResponseDto(MemberMapper memberMapper, Answer answer){
+        AnswerResponseDto answerResponseDto = new AnswerResponseDto();
+        answerResponseDto.setAnswer_id(answer.getAnswerId());
+        answerResponseDto.setContent(answer.getContent());
+        answerResponseDto.setCreated_at(answer.getCreatedAt());
+
+//        Member member = answer.getMember();
+//        answerResponseDto.setMember_id(memberMapper.memberToMemberResponseDto(member));
+
+        return answerResponseDto;
+    }
 
     List<AnswerResponseDto> answersToAnswerResponseDtos(List<Answer> answers);
 }
