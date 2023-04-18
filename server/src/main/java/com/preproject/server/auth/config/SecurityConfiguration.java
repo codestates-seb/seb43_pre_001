@@ -1,6 +1,7 @@
 package com.preproject.server.auth.config;
 
 import com.preproject.server.auth.filter.JwtAuthenticationFilter;
+import com.preproject.server.auth.filter.JwtVerificationFilter;
 import com.preproject.server.auth.handler.MemberAuthenticationFailureHandler;
 import com.preproject.server.auth.handler.MemberAuthenticationSuccessHandler;
 import com.preproject.server.auth.jwt.JwtTokenizer;
@@ -10,6 +11,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
+import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.factory.PasswordEncoderFactories;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
@@ -38,6 +40,8 @@ public class SecurityConfiguration {
                 .and()
                 .csrf().disable()
                 .cors(withDefaults()) // corsConfigurationSource라는 이름의 Bean 사용
+                .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS) // 세션을 생성하지 않음
+                .and()
                 .formLogin().disable()
                 .httpBasic().disable()
                 .apply(new CustomFilterConfigurer()) // CustomFilterConfigurer() 추가
@@ -78,7 +82,12 @@ public class SecurityConfiguration {
             jwtAuthenticationFilter.setAuthenticationSuccessHandler(new MemberAuthenticationSuccessHandler()); // 로그인 인증 성공 시 처리
             jwtAuthenticationFilter.setAuthenticationFailureHandler(new MemberAuthenticationFailureHandler()); // 로그인 인증 실패 시 처리
 
-            builder.addFilter(jwtAuthenticationFilter); // JwtAuthenticationFilter를 Spring Security Filter Chain에 추가
+            JwtVerificationFilter jwtVerificationFilter = new JwtVerificationFilter(jwtTokenizer, authorityUtils);
+
+            builder
+                    .addFilter(jwtAuthenticationFilter) // JwtAuthenticationFilter를 Spring Security Filter Chain에 추가
+                    .addFilterAfter(jwtVerificationFilter, JwtAuthenticationFilter.class);
+
         }
     }
 
