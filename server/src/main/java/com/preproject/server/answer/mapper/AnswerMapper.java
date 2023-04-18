@@ -14,11 +14,6 @@ import java.util.List;
 @Mapper(componentModel = "Spring")
 public interface AnswerMapper {
     // AnswerPostDto -> Answer
-//    default Answer answerPostDtoToAnswer(AnswerPostDto requestBody, Member member){
-//        Answer answer = new Answer(requestBody.getMember_id(), requestBody.getContent(), member);
-//        return answer;
-//    }
-
     default Answer answerPostDtoToAnswer(AnswerPostDto answerPostDto, Member member){
         Answer answer = new Answer();
         answer.setMember(member);
@@ -36,7 +31,6 @@ public interface AnswerMapper {
         return answer;
     }
 
-//    Answer answerPatchDtoToAnswer(AnswerPatchDto answerPatchDto);
 
     // Answer -> AnswerResponseDto
     default AnswerResponseDto answerToAnswerResponseDto(MemberMapper memberMapper, Answer answer){
@@ -47,8 +41,6 @@ public interface AnswerMapper {
         answerResponseDto.setCreated_at(answer.getCreatedAt());
         answerResponseDto.setMember_id(answer.getMember().getMemberId());
 
-//        Member member = answer.getMember();
-//        answerResponseDto.setMember_id(memberMapper.memberToMemberResponseDto(member));
 
         return answerResponseDto;
     }

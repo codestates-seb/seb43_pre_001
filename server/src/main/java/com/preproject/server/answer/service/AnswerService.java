@@ -37,7 +37,6 @@ public class AnswerService {
                 .ifPresent(answerQuestion->findAnswer.setQuestionId(answerQuestion));
         findAnswer.setModifiedAt(LocalDateTime.now()); // 업데이트 날짜 수정
 
-//        Answer updatedQuestion = answerRepository.save(findAnswer);
 
         return answerRepository.save(findAnswer);
     }

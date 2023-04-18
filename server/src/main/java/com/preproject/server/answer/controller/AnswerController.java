@@ -39,8 +39,6 @@ public class AnswerController {
         Answer question = answerService.createAnswer(
                 mapper.answerPostDtoToAnswer(answerPostDto, member));
 
-//        return new ResponseEntity<>(
-//                new SingleResponseDto<>(mapper.answerToAnswerResponseDto(question)), HttpStatus.OK);
         return new ResponseEntity<>(mapper.answerToAnswerResponseDto(memberMapper, question), HttpStatus.CREATED);
     }
 
