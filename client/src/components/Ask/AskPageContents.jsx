@@ -6,6 +6,49 @@ import AskPageMainNotice from './AskPageMainNotice';
 import { ask, tags, body } from '../../assets/askNoticeData';
 import { ReactComponent as Background } from '../../assets/robot-img.svg';
 
+const Main = styled.div`
+  padding: 0 24px 24px 24px;
+  max-width: 1240px;
+`;
+
+const Top = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  > h1 {
+    font-weight: 700;
+    font-size: 1.7rem;
+    margin: 24px 0 27px;
+    line-height: 1.3;
+  }
+`;
+
+const BgImg = styled(Background)`
+  width: 550px;
+`;
+
+const InputSet = styled.div`
+  display: flex;
+  :not(:last-child) {
+    margin-bottom: 12px;
+  }
+`;
+
+const Button = styled.button`
+  border: none;
+  color: hsl(358deg 62% 47%);
+  padding: 10.4px;
+  background-color: transparent;
+  letter-spacing: 0.03rem;
+  cursor: pointer;
+  :hover {
+    background-color: hsl(358deg 75% 97%);
+  }
+`;
+const PostOrDiscardButtons = styled.div`
+  display: flex;
+`;
+
 const postAsk = () => {};
 
 function AskPageContents() {
@@ -57,48 +100,5 @@ function AskPageContents() {
     </Main>
   );
 }
-
-const Main = styled.div`
-  padding: 0 24px 24px 24px;
-  max-width: 1240px;
-`;
-
-const Top = styled.div`
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  > h1 {
-    font-weight: 700;
-    font-size: 1.7rem;
-    margin: 24px 0 27px;
-    line-height: 1.3;
-  }
-`;
-
-const BgImg = styled(Background)`
-  width: 550px;
-`;
-
-const InputSet = styled.div`
-  display: flex;
-  :not(:last-child) {
-    margin-bottom: 12px;
-  }
-`;
-
-const Button = styled.button`
-  border: none;
-  color: hsl(358deg 62% 47%);
-  padding: 10.4px;
-  background-color: transparent;
-  letter-spacing: 0.03rem;
-  cursor: pointer;
-  :hover {
-    background-color: hsl(358deg 75% 97%);
-  }
-`;
-const PostOrDiscardButtons = styled.div`
-  display: flex;
-`;
 
 export default AskPageContents;

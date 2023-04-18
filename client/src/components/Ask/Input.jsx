@@ -1,5 +1,9 @@
 import styled from 'styled-components';
 import { AskBoxStyle, InputStyle } from './AskStyle';
+
+const Div = styled(AskBoxStyle)``;
+const AskPageInput = styled(InputStyle)``;
+
 function Input({ title, desc }) {
   return (
     <Div>
@@ -13,6 +17,4 @@ function Input({ title, desc }) {
   );
 }
 
-const Div = styled(AskBoxStyle)``;
-const AskPageInput = styled(InputStyle)``;
 export default Input;

@@ -1,25 +1,5 @@
 import styled from 'styled-components';
 import { mainNotice } from '../../assets/askNoticeData';
-function AskPageMainNotice() {
-  const { title, desc, stepsDetail } = mainNotice;
-  return (
-    <Div>
-      <h2>{title}</h2>
-      <div>
-        {desc.map((el, idx) => (
-          <p key={idx}>{el}</p>
-        ))}
-        <h5>Steps</h5>
-        <ul>
-          {stepsDetail.map((el, idx) => (
-            <li key={idx}>{el}</li>
-          ))}
-        </ul>
-      </div>
-    </Div>
-  );
-}
-export default AskPageMainNotice;
 
 const Div = styled.div`
   background-color: hsl(206deg 67% 95%);
@@ -45,3 +25,24 @@ const Div = styled.div`
     font-size: 0.9rem;
   }
 `;
+
+function AskPageMainNotice() {
+  const { title, desc, stepsDetail } = mainNotice;
+  return (
+    <Div>
+      <h2>{title}</h2>
+      <div>
+        {desc.map((el, idx) => (
+          <p key={idx}>{el}</p>
+        ))}
+        <h5>Steps</h5>
+        <ul>
+          {stepsDetail.map((el, idx) => (
+            <li key={idx}>{el}</li>
+          ))}
+        </ul>
+      </div>
+    </Div>
+  );
+}
+export default AskPageMainNotice;

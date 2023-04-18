@@ -3,6 +3,12 @@ import { Editor } from '@toast-ui/react-editor';
 import styled from 'styled-components';
 import { useRef } from 'react';
 import { AskBoxStyle } from './AskStyle';
+
+const Div = styled(AskBoxStyle)``;
+const EditorBox = styled(Editor)`
+  height: 255px;
+`;
+
 function TextEditor({ title, desc }) {
   const editorRef = useRef(null);
 
@@ -22,9 +28,4 @@ function TextEditor({ title, desc }) {
   );
 }
 
-const Div = styled(AskBoxStyle)``;
-
-const EditorBox = styled(Editor)`
-  height: 255px;
-`;
 export default TextEditor;

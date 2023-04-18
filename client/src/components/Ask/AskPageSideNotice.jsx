@@ -1,6 +1,9 @@
 import styled from 'styled-components';
 import { ReactComponent as NoticeIcon } from '../../assets/noticeIcon.svg';
 import { NoticeStyle } from './AskStyle';
+
+const Div = styled(NoticeStyle)``;
+
 function AskPageSideNotice({ noticeTitle, noticeDesc }) {
   return (
     <Div>
@@ -18,7 +21,5 @@ function AskPageSideNotice({ noticeTitle, noticeDesc }) {
     </Div>
   );
 }
-
-const Div = styled(NoticeStyle)``;
 
 export default AskPageSideNotice;
