@@ -1,22 +1,16 @@
-import { createGlobalStyle } from 'styled-components';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { BackgroundColor } from './GlobalStyle';
 import LoginPage from './pages/LoginPage';
 import SignupPage from './pages/SignupPage';
 import QuestionsPage from './pages/QuestionsPage';
 import DetailQuestionPage from './pages/DetailQuestion';
 import ProfilePage from './pages/ProfilePage';
 
-const GlobalStyled = createGlobalStyle`
-  body { //#F1F2F3
-    background-color: ${({ backgroundColor }) => backgroundColor || '#FFF'};
-  }
-`;
-
 function App() {
   return (
     <>
-      <GlobalStyled />
       <BrowserRouter>
+        <BackgroundColor />
         <Routes>
           <Route path='/' element={<QuestionsPage />} />
           <Route path='/questions/:id' element={<DetailQuestionPage />} />
