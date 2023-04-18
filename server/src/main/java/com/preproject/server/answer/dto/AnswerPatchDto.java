@@ -12,7 +12,6 @@ import javax.validation.constraints.NotNull;
 public class AnswerPatchDto {
     @NotNull
     private Long member_id;
-
     @Setter
     private Long answer_id;
     private String content; // 답 수정
