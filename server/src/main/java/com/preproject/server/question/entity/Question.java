@@ -5,7 +5,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
-import com.preproject.server.member.Member;
+import com.preproject.server.tempmember.Member;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;

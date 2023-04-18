@@ -1,6 +1,6 @@
 package com.preproject.server.question.mapper;
 
-import com.preproject.server.member.Member;
+import com.preproject.server.tempmember.Member;
 import com.preproject.server.question.dto.QuestionDto;
 import com.preproject.server.question.entity.Question;
 import com.preproject.server.question.dto.QuestionResponseDto;

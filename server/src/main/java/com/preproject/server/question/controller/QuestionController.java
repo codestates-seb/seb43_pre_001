@@ -1,9 +1,11 @@
 package com.preproject.server.question.controller;
 
-import com.preproject.server.dto.MultiResponseDto;
-import com.preproject.server.dto.SingleResponseDto;
-import com.preproject.server.member.Member;
-import com.preproject.server.member.MemberRepository;
+import com.preproject.server.exception.BusinessLogicException;
+import com.preproject.server.exception.ExceptionCode;
+import com.preproject.server.response.MultiResponseDto;
+import com.preproject.server.response.SingleResponseDto;
+import com.preproject.server.tempmember.Member;
+import com.preproject.server.tempmember.MemberRepository;
 import com.preproject.server.question.dto.QuestionDto;
 import com.preproject.server.question.entity.Question;
 import com.preproject.server.question.mapper.QuestionMapper;
@@ -32,7 +34,8 @@ public class QuestionController {
 
     @PostMapping("/ask")
     public ResponseEntity postQuestion(@Valid @RequestBody QuestionDto.Post requestBody) {
-        Member member = memberRepository.findById(requestBody.getMember_id()).orElseThrow(() -> new RuntimeException());
+        Member member = memberRepository.findById(requestBody.getMember_id())
+                        .orElseThrow(() -> new BusinessLogicException(ExceptionCode.MEMBER_NOT_FOUND));
         Question question = mapper.questionDtoPostToQuestion(requestBody,member);
         Question saveQuestion = service.createQuestion(question);
         return new ResponseEntity<>(
@@ -52,7 +55,8 @@ public class QuestionController {
             @PathVariable("question_id") @Positive long questionId,
             @Valid @RequestBody QuestionDto.Patch requestBody) {
         requestBody.setQuestionId(questionId);
-        Member member = memberRepository.findById(requestBody.getMember_id()).orElseThrow(() -> new RuntimeException());
+        Member member = memberRepository.findById(requestBody.getMember_id())
+                .orElseThrow(() -> new BusinessLogicException(ExceptionCode.MEMBER_NOT_FOUND));
         Question question = mapper.questionDtoPatchToQuestion(requestBody, member);
         Question updateQuestion = service.updateQuestion(question);
 
@@ -73,7 +77,6 @@ public class QuestionController {
         List<Question> questions = pageQuestions.getContent();
         return new ResponseEntity<>(
                 new MultiResponseDto<>(mapper.questionsToQuestionResponseDtos(questions),
-                        pageQuestions),
-                HttpStatus.OK);
+                        pageQuestions),HttpStatus.OK);
     }
 }
