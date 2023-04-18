@@ -2,8 +2,6 @@ package com.preproject.server.answer.controller;
 
 import com.preproject.server.answer.dto.AnswerPatchDto;
 import com.preproject.server.answer.dto.AnswerPostDto;
-import com.preproject.server.member.Member;
-import com.preproject.server.member.MemberRepository;
 import com.preproject.server.answer.entity.Answer;
 import com.preproject.server.answer.mapper.AnswerMapper;
 import com.preproject.server.answer.service.AnswerService;
@@ -22,21 +20,18 @@ import javax.validation.constraints.Positive;
 @RequestMapping("/answers")
 public class AnswerController {
     private AnswerService answerService;
-    private MemberRepository memberRepository;
     private AnswerMapper mapper;
-//    private QuestionService questionService;
 
-    public AnswerController(AnswerService answerService, MemberRepository memberRepository, AnswerMapper mapper){
+    public AnswerController(AnswerService answerService, AnswerMapper mapper){
         this.answerService = answerService;
-        this.memberRepository = memberRepository;
         this.mapper = mapper;
     }
 
     // 답변 작성
     @PostMapping
-    public ResponseEntity postAnswer(@Valid @RequestBody AnswerPostDto answerPostDto, Member member){
+    public ResponseEntity postAnswer(@Valid @RequestBody AnswerPostDto answerPostDto){
         Answer question = answerService.createAnswer(
-                mapper.answerPostDtoToAnswer(answerPostDto, member));
+                mapper.answerPostDtoToAnswer(answerPostDto));
 
         return new ResponseEntity<>(mapper.answerToAnswerResponseDto(question), HttpStatus.CREATED);
     }
@@ -58,7 +53,7 @@ public class AnswerController {
                                       @Valid @RequestBody AnswerPatchDto requestBody){
         requestBody.setAnswer_id(answerId);
 //        Member member = memberRepository.findById(requestBody.getMember_id()).orElseThrow(() -> new RuntimeException());
-        Answer answer = mapper.answerPatchDtoToAnswer(requestBody, member);
+        Answer answer = mapper.answerPatchDtoToAnswer(requestBody);
         Answer updatedAnswer = answerService.updateAnswer(answer);
 
         return new ResponseEntity<>(mapper.answerToAnswerResponseDto(updatedAnswer), HttpStatus.OK);
