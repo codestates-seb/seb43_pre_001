@@ -36,8 +36,9 @@ public class AnswerController {
     // 답변 작성
     @PostMapping
     public ResponseEntity postAnswer(@Valid @RequestBody AnswerPostDto answerPostDto){
+        Member member = memberRepository.findById(answerPostDto.getMember_id()).orElseThrow(() -> new RuntimeException());
         Answer question = answerService.createAnswer(
-                mapper.answerPostDtoToAnswer(memberService, answerPostDto));
+                mapper.answerPostDtoToAnswer(answerPostDto, member));
 
 //        return new ResponseEntity<>(
 //                new SingleResponseDto<>(mapper.answerToAnswerResponseDto(question)), HttpStatus.OK);

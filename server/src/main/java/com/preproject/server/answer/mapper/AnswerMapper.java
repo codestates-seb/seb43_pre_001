@@ -19,7 +19,14 @@ public interface AnswerMapper {
 //        return answer;
 //    }
 
-    Answer answerPostDtoToAnswer(MemberService memberService, AnswerPostDto answerPostDto);
+    default Answer answerPostDtoToAnswer(AnswerPostDto answerPostDto, Member member){
+        Answer answer = new Answer();
+        answer.setMember(member);
+        answer.setContent(answerPostDto.getContent());
+        answer.setQuestionId(answerPostDto.getQuestion_id());
+
+        return answer;
+    }
 
 
     // AnswerPatchDto -> Answer
@@ -38,6 +45,7 @@ public interface AnswerMapper {
         answerResponseDto.setAnswer_id(answer.getAnswerId());
         answerResponseDto.setContent(answer.getContent());
         answerResponseDto.setCreated_at(answer.getCreatedAt());
+        answerResponseDto.setMember_id(answer.getMember().getMemberId());
 
 //        Member member = answer.getMember();
 //        answerResponseDto.setMember_id(memberMapper.memberToMemberResponseDto(member));
