@@ -40,6 +40,7 @@ const Div = styled.div`
     margin: 15px 0 8px 0;
   }
   li {
+    list-style: disc;
     margin-left: 30px;
     font-size: 0.9rem;
   }

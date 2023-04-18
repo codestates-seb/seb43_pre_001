@@ -15,9 +15,9 @@ function TextEditor({ title, desc }) {
       <div>
         <label>{title}</label>
         <p>{desc}</p>
-        <EditorBox previewStyle='vertical' initialEditType='markdown' useCommandShortcut={true} ref={editorRef} onFocus={showNotice} />
+        <EditorBox previewStyle='vertical' initialEditType='wysiwyg' useCommandShortcut={true} ref={editorRef} onFocus={showNotice} />
       </div>
-      <button>Next</button>
+      <button onClick={showNotice}>Next</button>
     </Div>
   );
 }

@@ -3,8 +3,10 @@ import TextEditor from './TextEditor';
 import styled from 'styled-components';
 import AskPageSideNotice from './AskPageSideNotice';
 import AskPageMainNotice from './AskPageMainNotice';
-import { ask, problem, tryAndExpect, tags, review } from '../../assets/askNoticeData';
+import { ask, tags, body } from '../../assets/askNoticeData';
 import { ReactComponent as Background } from '../../assets/robot-img.svg';
+
+const postAsk = () => {};
 
 function AskPageContents() {
   return (
@@ -16,27 +18,42 @@ function AskPageContents() {
         </Top>
         <AskPageMainNotice />
       </div>
+
       <InputSet>
         <Input title={ask.title} desc={ask.desc} />
         <AskPageSideNotice noticeTitle={ask.noticeTitle} noticeDesc={ask.noticeDesc} />
       </InputSet>
+
       <InputSet>
+        <TextEditor title={body.title} desc={body.desc} />
+        <AskPageSideNotice noticeTitle={body.noticeTitle} noticeDesc={body.noticeDesc} />
+      </InputSet>
+
+      {/* <InputSet>
         <TextEditor title={problem.title} desc={problem.desc} />
         <AskPageSideNotice noticeTitle={problem.noticeTitle} noticeDesc={problem.noticeDesc} />
-      </InputSet>
+      </InputSet> */}
+
+      {/* 
       <InputSet>
         <TextEditor title={tryAndExpect.title} desc={tryAndExpect.desc} />
         <AskPageSideNotice noticeTitle={tryAndExpect.noticeTitle} noticeDesc={tryAndExpect.noticeDesc} />
-      </InputSet>
+      </InputSet> */}
+
       <InputSet>
         <Input title={tags.title} desc={tags.desc} />
         <AskPageSideNotice noticeTitle={tags.noticeTitle} noticeDesc={tags.noticeDesc} />
       </InputSet>
+      {/* 
       <InputSet>
         <Input title={review.title} desc={review.desc} />
         <AskPageSideNotice noticeTitle={review.noticeTitle} noticeDesc={review.noticeDesc} />
-      </InputSet>
-      <Button>Discard draft</Button>
+      </InputSet> */}
+
+      <PostOrDiscardButtons>
+        <button onClick={postAsk}>Post your question</button>
+        <Button>Discard draft</Button>
+      </PostOrDiscardButtons>
     </Main>
   );
 }
@@ -79,6 +96,9 @@ const Button = styled.button`
   :hover {
     background-color: hsl(358deg 75% 97%);
   }
+`;
+const PostOrDiscardButtons = styled.div`
+  display: flex;
 `;
 
 export default AskPageContents;
