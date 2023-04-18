@@ -14,5 +14,5 @@ public class AnswerPatchDto {
     private Long member_id;
     @Setter
     private Long answer_id;
-    private String content; // 답 수정
+    private String content; // 내용 수정
 }

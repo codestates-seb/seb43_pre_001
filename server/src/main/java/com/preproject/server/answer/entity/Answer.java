@@ -29,4 +29,13 @@ public class Answer {
     @Column(name = "LAST_MODIFIED_AT")
     private LocalDateTime modifiedAt = LocalDateTime.now();
 
+    @ManyToOne
+    @JoinColumn(name = "MEMBER_ID")
+    private Member member;
+
+    public Answer(Long questionId, String content, Member member) {
+        this.questionId = questionId;
+        this.content = content;
+        this.member = member;
     }
+}
