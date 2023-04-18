@@ -95,7 +95,7 @@ const MetaUserCard = styled.div`
 `;
 
 const QuestionsCard = ({ questions }) => {
-  const { nickname, score, created_at, title } = questions;
+  const { nickname, score, created_at, title, question_id } = questions;
   return (
     <>
       <QuestionsCardBox>
@@ -106,7 +106,7 @@ const QuestionsCard = ({ questions }) => {
           {/* <div className='bounty'>+50</div> */}
         </QuesionStatus>
         <QuesionContent>
-          <Content to='/questions'>{title}</Content>
+          <Content to={`/questions/${question_id}`}>{title}</Content>
           <div className='meta'>
             <MetaTags>
               <div className='tag'>java</div>
