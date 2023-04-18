@@ -28,7 +28,6 @@ import javax.validation.constraints.Positive;
 public class AnswerController {
     private AnswerService answerService;
     private MemberRepository memberRepository;
-    private MemberService memberService;
     private MemberMapper memberMapper;
     private AnswerMapper mapper;
 
