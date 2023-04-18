@@ -1,10 +1,13 @@
 package com.preproject.server.auth.config;
 
+import com.preproject.server.auth.filter.JwtAuthenticationFilter;
+import com.preproject.server.auth.jwt.JwtTokenizer;
 import com.preproject.server.auth.utils.MemberAuthorityUtils;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.security.config.Customizer;
+import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
 import org.springframework.security.crypto.factory.PasswordEncoderFactories;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
@@ -19,9 +22,11 @@ import static org.springframework.security.config.Customizer.*;
 @Configuration
 public class SecurityConfiguration {
     private final MemberAuthorityUtils authorityUtils;
+    private final JwtTokenizer jwtTokenizer;
 
-    public SecurityConfiguration(MemberAuthorityUtils authorityUtils) {
+    public SecurityConfiguration(MemberAuthorityUtils authorityUtils, JwtTokenizer jwtTokenizer) {
         this.authorityUtils = authorityUtils;
+        this.jwtTokenizer = jwtTokenizer;
     }
 
     @Bean
@@ -33,6 +38,8 @@ public class SecurityConfiguration {
                 .cors(withDefaults()) // corsConfigurationSource라는 이름의 Bean 사용
                 .formLogin().disable()
                 .httpBasic().disable()
+                .apply(new CustomFilterConfigurer()) // CustomFilterConfigurer() 추가
+                .and()
                 .authorizeHttpRequests(authorize -> authorize
                         .anyRequest().permitAll());
         return http.build();
@@ -56,4 +63,18 @@ public class SecurityConfiguration {
 
         return source;
     }
+
+    public class CustomFilterConfigurer extends AbstractHttpConfigurer<CustomFilterConfigurer, HttpSecurity> {
+        @Override
+        public void configure(HttpSecurity builder) throws Exception {
+            // getSharedObject()로 SecurityConfigurer 간 공유되는 객체 획득
+            AuthenticationManager authenticationManager = builder.getSharedObject(AuthenticationManager.class);
+
+            JwtAuthenticationFilter jwtAuthenticationFilter = new JwtAuthenticationFilter(authenticationManager, jwtTokenizer);
+            jwtAuthenticationFilter.setFilterProcessesUrl("/members/login");
+
+            builder.addFilter(jwtAuthenticationFilter); // JwtAuthenticationFilter를 Spring Security Filter Chain에 추가
+        }
+    }
+
 }
