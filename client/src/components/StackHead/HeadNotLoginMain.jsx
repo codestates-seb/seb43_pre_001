@@ -13,7 +13,6 @@ const HeadBlock = styled.header`
   position: fixed;
   z-index: 1;
 
-
   .orange-line {
     height: 3px;
     background-color: #f48224;
