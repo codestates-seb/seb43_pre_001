@@ -34,9 +34,6 @@ public class Answer {
     @JoinColumn(name = "QUESTION_ID")
     private Question question;
 
-//    public void addQuestion(Question question) {
-//        this.question = question;
-//    }
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "MEMBER_ID")
