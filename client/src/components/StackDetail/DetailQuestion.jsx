@@ -4,7 +4,6 @@ import DetailView from './DetailMeterial/DetailView';
 import LeftSideBar from '../StackSidebar/LeftSideBar';
 import RightSideBar from '../StackSidebar/RightSideBar';
 import initialData from '../initialData';
-import SharedButton from '../SharedButton';
 
 import { useParams } from 'react-router-dom';
 import { useState, useEffect } from 'react';
@@ -35,29 +34,6 @@ const MainBox = styled.div`
   }
 `;
 
-const DetailHead = styled.div`
-  /* min-width: 750px; */
-  display: flex;
-  justify-content: space-between;
-  > div {
-    font-size: 27px;
-    font-weight: 400;
-    line-height: 36.45px;
-    color: rgb(59, 64, 69);
-  }
-`;
-const DetailInfo = styled.div`
-  margin-top: 6px;
-  font-size: 13px;
-  font-weight: 400;
-  line-height: 17px;
-  color: rgb(106, 115, 124);
-  span {
-    color: rgb(35, 38, 41);
-    margin-right: 10px;
-  }
-`;
-
 const DetailQuestion = ({ curTab, onTabSelect }) => {
   const { question_id } = useParams();
 
@@ -75,14 +51,8 @@ const DetailQuestion = ({ curTab, onTabSelect }) => {
           <div className='wrapper'>
             <LeftSideBar curTab={curTab} onTabSelect={onTabSelect} />
             <MainBox>
-              <DetailHead>
-                <div>{question[0].title}</div>
-                <SharedButton buttonText='Ask Question' />
-              </DetailHead>
-              <DetailInfo>
-                Asked <span>today</span> Modified <span>today</span> Viewed <span>3 times</span>
-              </DetailInfo>
-              <div className='hr-line'></div>
+              <DetailHead question={question} />
+              <DetailView question={question}></DetailView>
             </MainBox>
           </div>
         </Container>

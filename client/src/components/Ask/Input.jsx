@@ -2,7 +2,7 @@ import styled from 'styled-components';
 import { AskBoxStyle, InputStyle } from './AskStyle';
 import SharedButton from '../SharedButton';
 import { useDispatch, useSelector } from 'react-redux';
-import { setTitle, setTitleErrorMsg, setTags, setTagsErrorMsg } from '../reducer/askSlice';
+import { setTitle, setTitleErrorMsg, setTags, setTagsErrorMsg } from '../../reducer/askSlice';
 import { useEffect } from 'react';
 
 const Div = styled(AskBoxStyle)``;

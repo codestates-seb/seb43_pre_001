@@ -1,27 +1,14 @@
 import styled from 'styled-components';
-
+import SharedButton from '../../SharedButton';
 const DetailHeadBox = styled.div`
   /* min-width: 750px; */
   display: flex;
   justify-content: space-between;
-  div {
+  > div {
     font-size: 27px;
     font-weight: 400;
     line-height: 36.45px;
     color: rgb(59, 64, 69);
-  }
-  button {
-    flex-shrink: 0;
-    width: 104px;
-    height: 38px;
-    text-shadow: 0 0 0 #fff;
-    border: 1px solid #fff;
-    color: #fff;
-    background-color: rgb(10, 149, 255);
-    border-radius: 4px;
-    :hover {
-      background-color: #3272c6;
-    }
   }
 `;
 const DetailInfo = styled.div`
@@ -41,7 +28,7 @@ const DetailHead = ({ question }) => {
     <>
       <DetailHeadBox>
         <div>{question[0].title}</div>
-        <button>Ask Question</button>
+        <SharedButton buttonText='Ask Question' />
       </DetailHeadBox>
       <DetailInfo>
         Asked <span>today</span> Modified <span>today</span> Viewed <span>3 times</span>

@@ -1,8 +1,6 @@
 import React, { useState, useCallback } from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { Provider } from 'react-redux';
-import store from './components/store/store';
-
 import { BackgroundColor } from './GlobalStyle';
 
 import LoginPage from './pages/LoginPage';
@@ -17,19 +15,17 @@ function App() {
   const [curTab, setTab] = useState('home');
   const onTabSelect = useCallback((curTab) => setTab(curTab), []);
   return (
-    <Provider store={store}>
-      <BrowserRouter>
-        <BackgroundColor />
-        <Routes>
-          <Route path='/' element={<QuestionsPage curTab={curTab} onTabSelect={onTabSelect} />} />
-          <Route path='/questions/:question_id' element={<DetailQuestionPage curTab={curTab} onTabSelect={onTabSelect} />} />
-          <Route path='/login' element={<LoginPage />} />
-          <Route path='/signup' element={<SignupPage />} />
-          <Route path='/profile' element={<ProfilePage />} />
-          <Route path='/questions/ask' element={<AskPage />} />
-        </Routes>
-      </BrowserRouter>
-    </Provider>
+    <BrowserRouter>
+      <BackgroundColor />
+      <Routes>
+        <Route path='/' element={<QuestionsPage curTab={curTab} onTabSelect={onTabSelect} />} />
+        <Route path='/questions/:question_id' element={<DetailQuestionPage curTab={curTab} onTabSelect={onTabSelect} />} />
+        <Route path='/login' element={<LoginPage />} />
+        <Route path='/signup' element={<SignupPage />} />
+        <Route path='/profile' element={<ProfilePage />} />
+        <Route path='/questions/ask' element={<AskPage />} />
+      </Routes>
+    </BrowserRouter>
   );
 }
 
