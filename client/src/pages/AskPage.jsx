@@ -11,7 +11,7 @@ const Content = styled.div`
   overflow: visible;
   background-color: transparent;
 `;
-function Ask() {
+function AskPage() {
   return (
     <>
       <HeadLogin />
@@ -23,4 +23,4 @@ function Ask() {
   );
 }
 
-export default Ask;
+export default AskPage;
