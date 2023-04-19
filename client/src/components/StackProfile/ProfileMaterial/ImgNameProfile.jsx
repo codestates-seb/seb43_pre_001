@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import profileBigImg from '../../../assets/profile-big-img.svg';
+import { useSelector } from 'react-redux';
 
 const ImgNameProfileBlock = styled.div`
   display: flex;
@@ -61,6 +62,8 @@ const ImgNameProfileBlock = styled.div`
 `;
 
 const ImgNameProfile = () => {
+  const name = useSelector((state) => state.user.name);
+
   return (
     <ImgNameProfileBlock>
       <div className='profile-img-name'>
@@ -72,7 +75,7 @@ const ImgNameProfile = () => {
           <div className='gray-txt'>user name</div>
 
           <div className='txt-tata-logout'>
-            <span className='bold-txt'>tata-v</span>
+            <span className='bold-txt'>{name ? name : 'tata-v'}</span>
             <button className='gray-bg'>log out</button>
           </div>
         </div>
