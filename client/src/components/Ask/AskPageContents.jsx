@@ -5,8 +5,10 @@ import AskPageSideNotice from './AskPageSideNotice';
 import AskPageMainNotice from './AskPageMainNotice';
 import { ask, tags, body } from '../../assets/askNoticeData';
 import { ReactComponent as Background } from '../../assets/robot-img.svg';
+import SharedButton from '../SharedButton';
 
 const Main = styled.div`
+  margin-top: 50px;
   padding: 0 24px 24px 24px;
   max-width: 1240px;
 `;
@@ -94,7 +96,7 @@ function AskPageContents() {
       </InputSet> */}
 
       <PostOrDiscardButtons>
-        <button onClick={postAsk}>Post your question</button>
+        <SharedButton buttonText='Post your question' />
         <Button>Discard draft</Button>
       </PostOrDiscardButtons>
     </Main>

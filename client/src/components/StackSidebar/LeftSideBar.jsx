@@ -44,7 +44,6 @@ const CustomLink = styled(Link)`
   text-decoration: none;
 `;
 
-
 const LeftSideBar = ({ curTab, onTabSelect }) => {
   return (
     <>
@@ -69,7 +68,6 @@ const LeftSideBar = ({ curTab, onTabSelect }) => {
         </TabMenu>
         <TabMenu className='inner'>Users</TabMenu>
         <TabMenu className='inner'>Companies</TabMenu>
-
       </LeftSideBarBox>
     </>
   );

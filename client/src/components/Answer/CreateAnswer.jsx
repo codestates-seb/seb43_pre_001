@@ -2,6 +2,8 @@ import styled from 'styled-components';
 import '@toast-ui/editor/dist/toastui-editor.css';
 import { Editor } from '@toast-ui/react-editor';
 import { useRef } from 'react';
+import SharedButton from '../SharedButton';
+
 function CreateAnswer({ title, desc }) {
   const editorRef = useRef(null);
   const showEditorData = () => {
@@ -35,7 +37,7 @@ function CreateAnswer({ title, desc }) {
         <EditorBox previewStyle='vertical' initialEditType='WYSIWYG' useCommandShortcut={true} ref={editorRef} onFocus={showEditorData} />
       </EditorContainer>
       <ButtonContainer>
-        <button>Post Your Answer</button>
+        <SharedButton buttonText='Post Your Answer' />{' '}
       </ButtonContainer>
     </Container>
   );

@@ -4,7 +4,7 @@ import LoginPage from './pages/LoginPage';
 import SignupPage from './pages/SignupPage';
 import QuestionsPage from './pages/QuestionsPage';
 import DetailQuestionPage from './pages/DetailQuestion';
-import AskPageContents from './components/Ask/AskPageContents';
+import AskPage from './pages/AskPage';
 import ProfilePage from './pages/ProfilePage';
 import { useState, useCallback } from 'react';
 
@@ -22,6 +22,7 @@ function App() {
           <Route path='/login' element={<LoginPage />} />
           <Route path='/signup' element={<SignupPage />} />
           <Route path='/profile' element={<ProfilePage />} />
+          <Route path='/questions/ask' element={<AskPage />} />
         </Routes>
       </BrowserRouter>
     </>
