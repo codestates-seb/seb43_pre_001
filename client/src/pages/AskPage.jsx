@@ -1,4 +1,4 @@
-import AskPageContents from '../components/ask/AskPageContents';
+import AskPageContents from '../components/Ask/AskPageContents';
 import styled from 'styled-components';
 
 function Ask() {
