@@ -3,12 +3,12 @@ import QuestionsHead from './QuestionsMeterial/QuestionsHead';
 import QuestionsList from './QuestionsMeterial/QuestionsList';
 import LeftSideBar from '../StackSidebar/LeftSideBar';
 import RightSideBar from '../StackSidebar/RightSideBar';
+
 const Container = styled.div`
   position: relative;
   top: 50px;
   width: 100vw;
   height: 100vh;
-  border-top: 2.5px solid #e8e8e8;
   .wrapper {
     margin: 0 auto;
     max-width: 1246px;
@@ -32,16 +32,16 @@ const QuestionsBox = styled.div`
   padding: 0 24px 24px 0;
 `;
 
-const Questions = () => {
+const Questions = ({ curTab, onTabSelect }) => {
   return (
     <>
       <Container>
         <div className='wrapper'>
-          <LeftSideBar />
+          <LeftSideBar curTab={curTab} onTabSelect={onTabSelect} />
           <MainBox>
             <QuestionsBox>
               <QuestionsHead />
-              <QuestionsList />
+              <QuestionsList onTabSelect={onTabSelect} />
             </QuestionsBox>
             <RightSideBar />
           </MainBox>

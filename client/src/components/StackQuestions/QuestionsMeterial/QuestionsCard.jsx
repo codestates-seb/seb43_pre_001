@@ -41,7 +41,11 @@ const QuesionContent = styled.div`
     align-items: center;
   }
 `;
-const Content = styled(Link)`
+const CustomLink = styled(Link)`
+  text-decoration: none;
+`;
+
+const Content = styled.div`
   font-size: 17px;
   font-weight: 500;
   text-decoration: none solid rgb(10, 149, 255);
@@ -94,7 +98,7 @@ const MetaUserCard = styled.div`
   }
 `;
 
-const QuestionsCard = ({ questions }) => {
+const QuestionsCard = ({ questions, onTabSelect }) => {
   const { nickname, score, created_at, title, question_id } = questions;
   return (
     <>
@@ -106,7 +110,9 @@ const QuestionsCard = ({ questions }) => {
           {/* <div className='bounty'>+50</div> */}
         </QuesionStatus>
         <QuesionContent>
-          <Content to={`/questions/${question_id}`}>{title}</Content>
+          <CustomLink to={`/questions/${question_id}`}>
+            <Content onClick={() => onTabSelect('questions')}>{title}</Content>
+          </CustomLink>
           <div className='meta'>
             <MetaTags>
               <div className='tag'>java</div>
