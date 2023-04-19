@@ -11,7 +11,7 @@ const LeftSideBarBox = styled.nav`
   position: fixed;
   display: flex;
   flex-direction: column;
-  gap: 8px;
+  gap: 2px;
 `;
 
 const TabMenu = styled.div`

@@ -1,4 +1,6 @@
 import styled from 'styled-components';
+import DetailHead from './DetailMeterial/DetailHead';
+import DetailView from './DetailMeterial/DetailView';
 import LeftSideBar from '../StackSidebar/LeftSideBar';
 import RightSideBar from '../StackSidebar/RightSideBar';
 import initialData from '../initialData';
@@ -26,6 +28,7 @@ const MainBox = styled.div`
   flex-direction: column;
   margin-left: 164px;
   padding: 24px;
+  min-width: 800px;
   div.hr-line {
     margin-top: 12px;
     border-bottom: 1.5px solid #d6d9dc;

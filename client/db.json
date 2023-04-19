@@ -1,0 +1,46 @@
+{
+  "data": [
+    {
+      "member": {
+        "memberId": 2,
+        "nickname": "helasdffsdlow",
+        "name": "word",
+        "email": "ssadfsdfakaw@nasdfasdfaver.com"
+      },
+      "questionId": 2,
+      "title": "질문 asdfasdf제목",
+      "content": "질문asdfasdf 내용",
+      "createdAt": "2023-04-19T12:05:41.2337282",
+      "modifiedAt": "2023-04-19T12:05:41.2337282",
+      "id": 1
+    },
+    {
+      "member": {
+        "memberId": 5,
+        "nickname": "555",
+        "name": "55",
+        "email": "555"
+      },
+      "questionId": 5,
+      "title": "55",
+      "content": "asdfasdf",
+      "createdAt": "d-04-df:05:41.555",
+      "modifiedAt": "df-04-ad:05:41.555",
+      "id": 2
+    },
+    {
+      "member": {
+        "memberId": 5,
+        "nickname": "555",
+        "name": "55",
+        "email": "555"
+      },
+      "questionId": 5,
+      "title": "55",
+      "content": "asdfasdf",
+      "createdAt": "d-04-df:05:41.555",
+      "modifiedAt": "df-04-ad:05:41.555",
+      "id": 3
+    }
+  ]
+}
