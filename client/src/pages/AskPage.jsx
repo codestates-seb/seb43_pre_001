@@ -1,13 +1,8 @@
 import AskPageContents from '../components/Ask/AskPageContents';
 import styled from 'styled-components';
+import HeadLogin from '../components/StackHead/HeadLogin';
+import StackFoot from '../components/StackFoot/StackFoot';
 
-function Ask() {
-  return (
-    <Content>
-      <AskPageContents />
-    </Content>
-  );
-}
 const Content = styled.div`
   width: 100%;
   display: flex;
@@ -16,4 +11,16 @@ const Content = styled.div`
   overflow: visible;
   background-color: transparent;
 `;
-export default Ask;
+function AskPage() {
+  return (
+    <>
+      <HeadLogin />
+      <Content>
+        <AskPageContents />
+      </Content>
+      <StackFoot />
+    </>
+  );
+}
+
+export default AskPage;

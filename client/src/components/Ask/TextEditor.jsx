@@ -1,8 +1,10 @@
+import React, { useRef } from 'react';
 import '@toast-ui/editor/dist/toastui-editor.css';
-import { Editor } from '@toast-ui/react-editor';
+import { Editor, Viewer } from '@toast-ui/react-editor';
 import styled from 'styled-components';
-import { useRef } from 'react';
+
 import { AskBoxStyle } from './AskStyle';
+import axios from 'axios';
 
 const Div = styled(AskBoxStyle)``;
 const EditorBox = styled(Editor)`
@@ -13,7 +15,7 @@ function TextEditor({ title, desc }) {
   const editorRef = useRef(null);
 
   const showEditorData = () => {
-    console.log(editorRef.current?.getInstance().getHTML());
+    console.log(editorRef.current?.getInstance());
   };
 
   return (

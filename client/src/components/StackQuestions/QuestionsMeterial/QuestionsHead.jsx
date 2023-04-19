@@ -1,5 +1,6 @@
 import styled from 'styled-components';
-
+import SharedButton from '../../SharedButton';
+import { Link } from 'react-router-dom';
 const QuestionsHeadBox = styled.div`
   display: flex;
   flex-direction: column;
@@ -14,18 +15,6 @@ const Section1 = styled.div`
     font-size: 27px;
     line-height: 35.1px;
     color: rgb(35, 38, 41);
-  }
-  button {
-    width: 104px;
-    height: 38px;
-    text-shadow: 0 0 0 #fff;
-    border: 1px solid #fff;
-    color: #fff;
-    background-color: rgb(10, 149, 255);
-    border-radius: 4px;
-    :hover {
-      background-color: #3272c6;
-    }
   }
 `;
 const Section2 = styled.div`
@@ -74,7 +63,9 @@ const QuestionsHead = () => {
       <QuestionsHeadBox>
         <Section1>
           <h1>Top Questions</h1>
-          <button>Ask Question</button>
+          <Link to='/questions/ask'>
+            <SharedButton buttonText='Ask Question' />
+          </Link>
         </Section1>
         <Section2>
           <ul>
