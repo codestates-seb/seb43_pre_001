@@ -31,7 +31,8 @@ public class AnswerService {
     }
 
     public Answer updateAnswer(Answer answer){
-        Answer findAnswer = answerRepository.findById(answer.getAnswerId()).orElseThrow(() -> new RuntimeException());
+//        Answer findAnswer = answerRepository.findById(answer.getAnswerId()).orElseThrow(() -> new RuntimeException());
+        Answer findAnswer = findVerifiedAnswer(answer.getAnswerId()); // 요청된 답이 DB에 없으면 에러
         if(answer.getMember().getMemberId() != findAnswer.getMember().getMemberId()) new RuntimeException();
         Optional.ofNullable(answer.getContent()) //내용수정
                 .ifPresent(answerContent->findAnswer.setContent(answerContent));
