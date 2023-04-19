@@ -6,6 +6,7 @@ import AskPageMainNotice from './AskPageMainNotice';
 import { ask, tags, body } from '../../assets/askNoticeData';
 import { ReactComponent as Background } from '../../assets/robot-img.svg';
 import SharedButton from '../SharedButton';
+import axios from 'axios';
 
 const Main = styled.div`
   margin-top: 50px;
@@ -51,9 +52,37 @@ const PostOrDiscardButtons = styled.div`
   display: flex;
 `;
 
-const postAsk = () => {};
-
 function AskPageContents() {
+  const postAsk = async () => {
+    await axios
+      .post(' http://localhost:4000/data', {
+        member: {
+          memberId: 5,
+          nickname: '555',
+          name: '55',
+          email: '555',
+        },
+        questionId: 5,
+        title: '55',
+        content: 'asdfasdf',
+        createdAt: 'd-04-df:05:41.555',
+        modifiedAt: 'df-04-ad:05:41.555',
+      })
+      .then((response) => {
+        console.log(response);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
+  const getAsk = async () => {
+    await axios('http://localhost:4000/data/1').then((res) => {
+      const member = res.data;
+
+      console.log(member);
+    });
+  };
+
   return (
     <Main>
       <div>
@@ -96,8 +125,9 @@ function AskPageContents() {
       </InputSet> */}
 
       <PostOrDiscardButtons>
-        <SharedButton buttonText='Post your question' />
+        <SharedButton buttonText='Post your question' funcHandler={postAsk} />
         <Button>Discard draft</Button>
+        <Button onClick={getAsk}>getData</Button>
       </PostOrDiscardButtons>
     </Main>
   );
