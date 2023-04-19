@@ -31,17 +31,19 @@ public class AnswerService {
     }
 
     public Answer updateAnswer(Answer answer){
-//        Answer findAnswer = answerRepository.findById(answer.getAnswerId()).orElseThrow(() -> new RuntimeException());
         Answer findAnswer = findVerifiedAnswer(answer.getAnswerId()); // 요청된 답이 DB에 없으면 에러
-        if(answer.getMember().getMemberId() != findAnswer.getMember().getMemberId()) new RuntimeException();
-        Optional.ofNullable(answer.getContent()) //내용수정
-                .ifPresent(answerContent->findAnswer.setContent(answerContent));
-        Optional.ofNullable(answer.getQuestionId())
-                .ifPresent(answerQuestion->findAnswer.setQuestionId(answerQuestion));
-        findAnswer.setModifiedAt(LocalDateTime.now()); // 업데이트 날짜 수정
+        if(answer.getMember().getMemberId() != findAnswer.getMember().getMemberId()) {
+            throw new BusinessLogicException(ExceptionCode.ANSWER_AUTHOR_NOT_MATCH);
+        }else {
+            Optional.ofNullable(answer.getContent()) //내용수정
+                    .ifPresent(answerContent -> findAnswer.setContent(answerContent));
+            Optional.ofNullable(answer.getQuestionId())
+                    .ifPresent(answerQuestion -> findAnswer.setQuestionId(answerQuestion));
+            findAnswer.setModifiedAt(LocalDateTime.now()); // 업데이트 날짜 수정
 
 
-        return answerRepository.save(findAnswer);
+            return answerRepository.save(findAnswer);
+        }
     }
 
     public void deleteAnswer(long answerId){
