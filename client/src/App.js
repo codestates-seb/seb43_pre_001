@@ -6,6 +6,7 @@ import QuestionsPage from './pages/QuestionsPage';
 import DetailQuestionPage from './pages/DetailQuestion';
 import AskPageContents from './components/Ask/AskPageContents';
 import ProfilePage from './pages/ProfilePage';
+import AskPage from './pages/AskPage';
 import { useState, useCallback } from 'react';
 
 function App() {
@@ -22,6 +23,7 @@ function App() {
           <Route path='/login' element={<LoginPage />} />
           <Route path='/signup' element={<SignupPage />} />
           <Route path='/profile' element={<ProfilePage />} />
+          <Route path='/questions/ask' element={<AskPage />} />
         </Routes>
       </BrowserRouter>
     </>
