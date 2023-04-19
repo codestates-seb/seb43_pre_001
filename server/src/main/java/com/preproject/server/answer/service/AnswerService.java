@@ -39,7 +39,8 @@ public class AnswerService {
                     .ifPresent(answerContent -> findAnswer.setContent(answerContent));
             Optional.ofNullable(answer.getQuestionId())
                     .ifPresent(answerQuestion -> findAnswer.setQuestionId(answerQuestion));
-            findAnswer.setModifiedAt(LocalDateTime.now()); // 업데이트 날짜 수정
+            Optional.ofNullable(answer.getCreatedAt())
+                    .ifPresent(answerCreatedAt ->findAnswer.setCreatedAt(answerCreatedAt)); // 업데이트 날짜 수정
 
 
             return answerRepository.save(findAnswer);
