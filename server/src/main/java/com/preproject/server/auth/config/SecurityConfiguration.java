@@ -2,6 +2,7 @@ package com.preproject.server.auth.config;
 
 import com.preproject.server.auth.filter.JwtAuthenticationFilter;
 import com.preproject.server.auth.filter.JwtVerificationFilter;
+import com.preproject.server.auth.handler.MemberAuthenticationEntryPoint;
 import com.preproject.server.auth.handler.MemberAuthenticationFailureHandler;
 import com.preproject.server.auth.handler.MemberAuthenticationSuccessHandler;
 import com.preproject.server.auth.jwt.JwtTokenizer;
@@ -45,6 +46,9 @@ public class SecurityConfiguration {
                 .and()
                 .formLogin().disable()
                 .httpBasic().disable()
+                .exceptionHandling()
+                .authenticationEntryPoint(new MemberAuthenticationEntryPoint()) // MemberAuthenticationEntryPoint 추가
+                .and()
                 .apply(new CustomFilterConfigurer()) // CustomFilterConfigurer() 추가
                 .and()
                 .authorizeHttpRequests(authorize -> authorize
