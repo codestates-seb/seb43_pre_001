@@ -5,6 +5,7 @@ import com.preproject.server.answer.dto.AnswerPatchDto;
 import com.preproject.server.answer.dto.AnswerPostDto;
 import com.preproject.server.answer.dto.AnswerResponseDto;
 import com.preproject.server.answer.entity.Answer;
+import com.preproject.server.question.entity.Question;
 import org.mapstruct.Mapper;
 
 import java.util.List;
@@ -12,19 +13,19 @@ import java.util.List;
 @Mapper(componentModel = "Spring")
 public interface AnswerMapper {
     // AnswerPostDto -> Answer
-    default Answer answerPostDtoToAnswer(AnswerPostDto answerPostDto, Member member){
+    default Answer answerPostDtoToAnswer(AnswerPostDto answerPostDto, Member member, Question question){
         Answer answer = new Answer();
         answer.setMember(member);
         answer.setContent(answerPostDto.getContent());
-        answer.setQuestionId(answerPostDto.getQuestion_id());
+        answer.setQuestion(question);
 
         return answer;
     }
 
 
     // AnswerPatchDto -> Answer
-    default Answer answerPatchDtoToAnswer(AnswerPatchDto requestBody, Member member){
-        Answer answer = new Answer(requestBody.getMember_id(), requestBody.getContent(), member);
+    default Answer answerPatchDtoToAnswer(AnswerPatchDto requestBody, Member member, Question question){
+        Answer answer = new Answer(question, requestBody.getContent(), member);
         answer.setAnswerId(requestBody.getAnswer_id());
         return answer;
     }
@@ -33,7 +34,7 @@ public interface AnswerMapper {
     // Answer -> AnswerResponseDto
     default AnswerResponseDto answerToAnswerResponseDto(Answer answer){
         AnswerResponseDto answerResponseDto = new AnswerResponseDto();
-        answerResponseDto.setQuestion_id(answer.getQuestionId());
+        answerResponseDto.setQuestion_id(answer.getQuestion().getQuestionId());
         answerResponseDto.setAnswer_id(answer.getAnswerId());
         answerResponseDto.setContent(answer.getContent());
         answerResponseDto.setCreated_at(answer.getCreatedAt());

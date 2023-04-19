@@ -1,6 +1,9 @@
 package com.preproject.server.answer.controller;
 
+import com.preproject.server.answer.repository.AnswerRepository;
 import com.preproject.server.dto.SingleResponseDto;
+import com.preproject.server.exception.BusinessLogicException;
+import com.preproject.server.exception.ExceptionCode;
 import com.preproject.server.member.entity.Member;
 import com.preproject.server.answer.dto.AnswerPatchDto;
 import com.preproject.server.answer.dto.AnswerPostDto;
@@ -9,7 +12,8 @@ import com.preproject.server.answer.mapper.AnswerMapper;
 import com.preproject.server.answer.service.AnswerService;
 import com.preproject.server.member.mapper.MemberMapper;
 import com.preproject.server.member.repository.MemberRepository;
-import com.preproject.server.member.service.MemberService;
+import com.preproject.server.question.entity.Question;
+import com.preproject.server.question.repository.QuestionRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -30,14 +34,17 @@ public class AnswerController {
     private MemberRepository memberRepository;
     private MemberMapper memberMapper;
     private AnswerMapper mapper;
+    private QuestionRepository questionRepository;
+    private AnswerRepository answerRepository;
 
 
     // 답변 작성
     @PostMapping
     public ResponseEntity postAnswer(@Valid @RequestBody AnswerPostDto answerPostDto){
-        Member member = memberRepository.findById(answerPostDto.getMember_id()).orElseThrow(() -> new RuntimeException());
+        Member member = memberRepository.findById(answerPostDto.getMember_id()).orElseThrow(() -> new BusinessLogicException(ExceptionCode.MEMBER_NOT_FOUND));
+        Question findQuestion = questionRepository.findById(answerPostDto.getQuestion_id()).orElseThrow(() -> new BusinessLogicException(ExceptionCode.QUESTION_NOT_FOUND));
         Answer question = answerService.createAnswer(
-                mapper.answerPostDtoToAnswer(answerPostDto, member));
+                mapper.answerPostDtoToAnswer(answerPostDto, member, findQuestion));
 
         return new ResponseEntity<>(mapper.answerToAnswerResponseDto(question), HttpStatus.CREATED);
     }
@@ -58,8 +65,9 @@ public class AnswerController {
     public ResponseEntity patchAnswer(@PathVariable("answer_id") @Positive @NotNull long answerId,
                                       @Valid @RequestBody AnswerPatchDto requestBody){
         requestBody.setAnswer_id(answerId);
-        Member member = memberRepository.findById(requestBody.getMember_id()).orElseThrow(() -> new RuntimeException());
-        Answer answer = mapper.answerPatchDtoToAnswer(requestBody , member);
+        Member member = memberRepository.findById(requestBody.getMember_id()).orElseThrow(() -> new BusinessLogicException(ExceptionCode.MEMBER_NOT_FOUND));
+        Answer findAnswer = answerRepository.findById(requestBody.getAnswer_id()).orElseThrow(() -> new BusinessLogicException(ExceptionCode.ANSWER_NOT_FOUND));
+        Answer answer = mapper.answerPatchDtoToAnswer(requestBody , member, findAnswer.getQuestion());
         Answer updatedAnswer = answerService.updateAnswer(answer);
 
         return new ResponseEntity<>(new SingleResponseDto<>(mapper.answerToAnswerResponseDto(updatedAnswer)), HttpStatus.OK);

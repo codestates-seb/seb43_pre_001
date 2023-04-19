@@ -37,8 +37,8 @@ public class AnswerService {
         }else {
             Optional.ofNullable(answer.getContent()) //내용수정
                     .ifPresent(answerContent -> findAnswer.setContent(answerContent));
-            Optional.ofNullable(answer.getQuestionId())
-                    .ifPresent(answerQuestion -> findAnswer.setQuestionId(answerQuestion));
+            Optional.ofNullable(answer.getQuestion())
+                    .ifPresent(answerQuestion -> findAnswer.setQuestion(answerQuestion));
             Optional.ofNullable(answer.getCreatedAt())
                     .ifPresent(answerCreatedAt ->findAnswer.setCreatedAt(answerCreatedAt)); // 업데이트 날짜 수정
 
