@@ -44,6 +44,7 @@ const CustomLink = styled(Link)`
   text-decoration: none;
 `;
 
+
 const LeftSideBar = ({ curTab, onTabSelect }) => {
   return (
     <>
@@ -58,7 +59,6 @@ const LeftSideBar = ({ curTab, onTabSelect }) => {
             Home
           </TabMenu>
         </CustomLink>
-
         <TabMenu className='public'>PUBLIC</TabMenu>
         <TabMenu className={curTab === 'questions' ? 'active' : ''}>
           <img src={earthIcon} alt='earth-img'></img>
@@ -69,6 +69,7 @@ const LeftSideBar = ({ curTab, onTabSelect }) => {
         </TabMenu>
         <TabMenu className='inner'>Users</TabMenu>
         <TabMenu className='inner'>Companies</TabMenu>
+
       </LeftSideBarBox>
     </>
   );

@@ -39,12 +39,14 @@ const LoginSignupBtnBlock = styled.div`
 
       &:hover {
         background-color: #b9d2e8;
+        transition: 0.12s;
       }
     }
 
     &:hover {
       color: #375773;
       border: 1px solid #7aa7c7;
+      transition: 0.12s;
     }
   }
 
@@ -73,12 +75,14 @@ const LoginSignupBtnBlock = styled.div`
 
       &:hover {
         background-color: #3272c6;
+        transition: 0.12s;
       }
     }
 
     &:hover {
       border: 1px solid #3272c6;
       background-color: #83aade;
+      transition: 0.12s;
     }
   }
 `;
