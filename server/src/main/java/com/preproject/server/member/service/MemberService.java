@@ -1,6 +1,8 @@
 package com.preproject.server.member.service;
 
 import com.preproject.server.auth.utils.MemberAuthorityUtils;
+import com.preproject.server.exception.BusinessLogicException;
+import com.preproject.server.exception.ExceptionCode;
 import com.preproject.server.member.entity.Member;
 import com.preproject.server.member.repository.MemberRepository;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -51,7 +53,7 @@ public class MemberService {
     private void verifyExistsEmail(String email) throws Exception {
         Optional<Member> optionalMember = memberRepository.findByEmail(email);
         if (optionalMember.isPresent()) {
-            throw new Exception("중복된 이메일");
+            throw new BusinessLogicException(ExceptionCode.EMAIL_EXISTS);
         }
     }
 }
