@@ -8,6 +8,7 @@ import com.preproject.server.auth.jwt.JwtTokenizer;
 import com.preproject.server.auth.utils.MemberAuthorityUtils;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
@@ -47,6 +48,14 @@ public class SecurityConfiguration {
                 .apply(new CustomFilterConfigurer()) // CustomFilterConfigurer() 추가
                 .and()
                 .authorizeHttpRequests(authorize -> authorize
+                        .antMatchers(HttpMethod.POST, "/members").permitAll()
+                        .antMatchers(HttpMethod.POST, "/questions/**").hasRole("USER")
+                        .antMatchers(HttpMethod.PATCH, "/questions/**").hasRole("USER")
+                        .antMatchers(HttpMethod.DELETE, "/questions/**").hasRole("USER")
+                        .antMatchers(HttpMethod.GET, "/answers").permitAll()
+                        .antMatchers(HttpMethod.POST, "/answers").hasRole("USER")
+                        .antMatchers(HttpMethod.PATCH, "/answers/**").hasRole("USER")
+                        .antMatchers(HttpMethod.DELETE, "/answers/**").hasRole("USER")
                         .anyRequest().permitAll());
         return http.build();
     }
