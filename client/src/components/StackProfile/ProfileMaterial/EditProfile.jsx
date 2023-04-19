@@ -107,7 +107,6 @@ const EditProfile = () => {
 
       {open ? (
         <>
-          {/* <div className='edit-input-box'> */}
           <form className='edit-input-form' onSubmit={changeOpen}>
             <fieldset className='fieldset-name'>
               <label className='label-nickname' htmlFor='nickname'>
@@ -120,7 +119,6 @@ const EditProfile = () => {
               <div className='save-profile-bg'>Save profile</div>
             </button>
           </form>
-          {/* </div> */}
         </>
       ) : null}
     </EditProfileBlock>
