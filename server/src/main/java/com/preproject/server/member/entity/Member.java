@@ -2,13 +2,18 @@ package com.preproject.server.member.entity;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import javax.persistence.*;
+import java.security.Principal;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @NoArgsConstructor
 @Getter
-public class Member {
+@Setter
+public class Member implements Principal {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long memberId;
@@ -22,22 +27,10 @@ public class Member {
     @Column(nullable = false)
     private String email;
 
-    @Column(nullable = false)
+    @Column(length = 100, nullable = false)
     private String password;
 
-    public void setNickname(String nickname) {
-        this.nickname = nickname;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
+    // 사용자 권한 정보 테이블과 매핑
+    @ElementCollection(fetch = FetchType.EAGER)
+    private List<String> roles = new ArrayList<>();
 }
