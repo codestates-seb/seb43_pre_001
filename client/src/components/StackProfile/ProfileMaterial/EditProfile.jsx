@@ -15,7 +15,14 @@ const EditProfileBlock = styled.div`
     transition: 0.07s ease-in;
   }
 
-  .edit-input-box {
+  .edit-input-form {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+  }
+
+  .fieldset-name {
     width: 471px;
     height: 113px;
     margin-top: 21px;
@@ -32,7 +39,7 @@ const EditProfileBlock = styled.div`
       color: #0c0d0e;
       text-shadow: 0 0 0 #0c0d0e;
       font-size: 15px;
-      margin-left: -325px;
+      margin: 26px 0 0 -325px;
     }
 
     input {
@@ -55,7 +62,7 @@ const EditProfileBlock = styled.div`
     height: 38px;
     border: 1px solid #0a95ff;
     border-radius: 3px;
-    margin: 19px 0 0 11px;
+    margin: 19px 0 0 -355px;
     background-color: #6cbfff;
 
     color: #fff;
@@ -100,14 +107,20 @@ const EditProfile = () => {
 
       {open ? (
         <>
-          <form className='edit-input-box'>
-            <label htmlFor='nickname'>Display name</label>
-            <input type='text' id='nickname' name='nickname' autoComplete='nickname' required />
-          </form>
+          {/* <div className='edit-input-box'> */}
+          <form className='edit-input-form' onSubmit={changeOpen}>
+            <fieldset className='fieldset-name'>
+              <label className='label-nickname' htmlFor='nickname'>
+                Display name
+              </label>
+              <input type='text' id='nickname' name='nickname' autoComplete='nickname' required />
+            </fieldset>
 
-          <button className='save-profile' onClick={changeOpen}>
-            <div className='save-profile-bg'>Save profile</div>
-          </button>
+            <button className='save-profile'>
+              <div className='save-profile-bg'>Save profile</div>
+            </button>
+          </form>
+          {/* </div> */}
         </>
       ) : null}
     </EditProfileBlock>
