@@ -47,7 +47,7 @@ public class AnswerService {
     }
 
     public void deleteAnswer(long answerId){
-        Answer findAnswer = answerRepository.findById(answerId).orElseThrow(() -> new RuntimeException());
+        Answer findAnswer = findVerifiedAnswer(answerId);
         answerRepository.delete(findAnswer);
     }
 }
