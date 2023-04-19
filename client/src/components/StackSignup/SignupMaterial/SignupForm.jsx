@@ -133,20 +133,20 @@ const SignupFormBlock = styled.form`
 const SignupForm = () => {
   return (
     <SignupFormBlock>
-      <label className='label-name' htmlFor='username'>
+      <label className='label-name' htmlFor='nickname'>
         Display name
       </label>
-      <input type='text' id='username' name='username' autoComplete='username' required />
+      <input type='text' id='nickname' name='nickname' autoComplete='nickname' required />
 
       <label className='label-email' htmlFor='email'>
         Email
       </label>
-      <input type='email' id='email' name='email' autoComplete='username' required />
+      <input type='email' id='email' name='email' autoComplete='email' required />
 
       <label className='label-pwd' htmlFor='pwd'>
         Password
       </label>
-      <input type='password' id='pwd' name='pwd' autoComplete='current-password' required />
+      <input type='password' id='pwd' name='password' autoComplete='current-password' required />
 
       <div className='p-pwd-txt'>
         <p>Passwords must contain at least eight characters, including at least 1 letter and 1 number.</p>

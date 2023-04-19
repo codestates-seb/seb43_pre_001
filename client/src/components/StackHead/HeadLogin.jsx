@@ -188,6 +188,10 @@ const RightIcons = styled.div`
   }
 `;
 
+const StyledLink = styled(Link)`
+  text-decoration: none;
+`;
+
 const HeadLogin = () => {
   return (
     <HeadBlock>
@@ -204,10 +208,12 @@ const HeadLogin = () => {
           <RowReverseBlock>
             {/* 프로필 사진, 아이콘들 */}
             <RightIcons>
-              <button className='profile'>
-                <img src={profileImg} alt='profile-img' />
-                <span>1</span>
-              </button>
+              <StyledLink to='/profile'>
+                <button className='profile'>
+                  <img src={profileImg} alt='profile-img' />
+                  <span>1</span>
+                </button>
+              </StyledLink>
               <button className='inbox'>
                 <i className='i-inbox-icon' />
               </button>

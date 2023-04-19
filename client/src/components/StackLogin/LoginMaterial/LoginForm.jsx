@@ -113,7 +113,7 @@ const LoginForm = () => {
       <label className='label-email' htmlFor='email'>
         Email
       </label>
-      <input type='email' id='email' name='email' autoComplete='username' required />
+      <input type='email' id='email' name='email' autoComplete='email' required />
 
       <div className='pwd-label-span'>
         <label className='label-pwd' htmlFor='pwd'>
@@ -121,7 +121,7 @@ const LoginForm = () => {
         </label>
         <span>Forgot password?</span>
       </div>
-      <input type='password' id='pwd' name='pwd' autoComplete='current-password' required />
+      <input type='password' id='pwd' name='password' autoComplete='current-password' required />
 
       <button className='submit-btn' type='submit'>
         <div className='submit-bg'>
