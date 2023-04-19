@@ -1,11 +1,11 @@
 package com.preproject.server.question.entity;
 
+import com.preproject.server.member.entity.Member;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
-import com.preproject.server.tempmember.Member;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;

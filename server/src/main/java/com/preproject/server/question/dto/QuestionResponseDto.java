@@ -1,6 +1,6 @@
 package com.preproject.server.question.dto;
 
-import com.preproject.server.tempmember.Member;
+import com.preproject.server.member.entity.Member;
 import lombok.Getter;
 import lombok.Setter;
 

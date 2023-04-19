@@ -2,10 +2,10 @@ package com.preproject.server.question.controller;
 
 import com.preproject.server.exception.BusinessLogicException;
 import com.preproject.server.exception.ExceptionCode;
+import com.preproject.server.member.entity.Member;
+import com.preproject.server.member.repository.MemberRepository;
 import com.preproject.server.response.MultiResponseDto;
 import com.preproject.server.response.SingleResponseDto;
-import com.preproject.server.tempmember.Member;
-import com.preproject.server.tempmember.MemberRepository;
 import com.preproject.server.question.dto.QuestionDto;
 import com.preproject.server.question.entity.Question;
 import com.preproject.server.question.mapper.QuestionMapper;
