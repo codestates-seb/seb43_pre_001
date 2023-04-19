@@ -2,7 +2,11 @@ import styled from 'styled-components';
 import RightSideBar from '../../StackSidebar/RightSideBar';
 import upIcon from '../../../assets/up-icon.svg';
 import downIcon from '../../../assets/down-icon.svg';
-//좌측에 업다운 등 바 너비 36에 높이 뷰페이지 전체 + 마진 라이트 16 + 뷰 페이지 + 라이트 사이드바
+// toast ui Viewer 컴포넌트 사용
+import '@toast-ui/editor/dist/toastui-editor-viewer.css';
+import { Viewer } from '@toast-ui/react-editor';
+import CreateAnswer from '../../Answer/CreateAnswer';
+
 const DetailViewBox = styled.div`
   display: flex;
 `;
@@ -30,12 +34,29 @@ const DetailSideBar = styled.div`
 const DetailContentBox = styled.div`
   margin: 24px 24px 0 0;
   flex-grow: 1;
-  background-color: green;
   height: 500px;
 `;
 
+//Toast 뷰어 컴포넌트 생성
+const ToastViwer = () => {
+  const markdown = `
+  <p></p><p>소스코드입니다.</p><p>
+</p><p><br></p><p>안녕하세요 </p><p>&lt;/br&gt;</p><p>---</p><p><br></p>
+  `;
+
+  // HTML: span태그 글자색을 파란색으로 설정
+  const html = `<p></p><p>소스코드입니다.</p><p>
+  </p><p><br></p><p>안녕하세요 </p><p>&lt;/br&gt;</p><p>---</p><p><br></p>`;
+
+  return (
+    <div>
+      <Viewer initialValue={markdown} />
+      <Viewer initialValue={html} />
+    </div>
+  );
+};
+
 const DetailView = ({ question }) => {
-  console.log(question);
   return (
     <>
       <DetailViewBox>
@@ -48,9 +69,12 @@ const DetailView = ({ question }) => {
             <img src={downIcon} alt='down-icon'></img>
           </div>
         </DetailSideBar>
-        <DetailContentBox></DetailContentBox>
+        <DetailContentBox>
+          <ToastViwer></ToastViwer>
+        </DetailContentBox>
         <RightSideBar></RightSideBar>
       </DetailViewBox>
+      <CreateAnswer />
     </>
   );
 };
