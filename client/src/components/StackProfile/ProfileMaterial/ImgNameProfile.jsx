@@ -50,6 +50,11 @@ const ImgNameProfileBlock = styled.div`
         letter-spacing: 0.6px;
         border-radius: 35px;
         background-color: #b9b9b9;
+
+        &:hover {
+          background-color: #9e9e9e;
+          transition: 0.2s;
+        }
       }
     }
   }

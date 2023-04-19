@@ -72,6 +72,7 @@ const EditProfileBlock = styled.div`
     &:hover {
       border: 1px solid #3272c6;
       background-color: #83aade;
+      transition: 0.18s;
     }
 
     .save-profile-bg {
@@ -87,6 +88,7 @@ const EditProfileBlock = styled.div`
 
       &:hover {
         background-color: #3272c6;
+        transition: 0.18s;
       }
     }
   }
