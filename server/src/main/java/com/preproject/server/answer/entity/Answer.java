@@ -1,6 +1,7 @@
 package com.preproject.server.answer.entity;
 
 import com.preproject.server.member.entity.Member;
+import com.preproject.server.question.entity.Question;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -18,7 +19,6 @@ public class Answer {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long answerId;
-    private Long questionId;
     @Column(length = 1000, nullable = false)
     private String content;
 
@@ -30,12 +30,17 @@ public class Answer {
     @Column(name = "LAST_MODIFIED_AT")
     private LocalDateTime modifiedAt = LocalDateTime.now();
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "QUESTION_ID")
+    private Question question;
+
+
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "MEMBER_ID")
     private Member member;
 
-    public Answer(Long questionId, String content, Member member) {
-        this.questionId = questionId;
+    public Answer(Question question, String content, Member member) {
+        this.question = question;
         this.content = content;
         this.member = member;
     }
