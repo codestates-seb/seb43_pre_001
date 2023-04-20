@@ -51,6 +51,9 @@ const EditProfileBlock = styled.div`
     .maxLength {
       transform: translateX(-128.5px);
     }
+    .pattern {
+      transform: translateX(-72px);
+    }
 
     label {
       color: #0c0d0e;
@@ -154,7 +157,9 @@ const EditProfile = () => {
               />
               {errors.nickname && errors.nickname.type === 'required' && <p className='required'>필수 입력 항목입니다.</p>}
               {errors.nickname && errors.nickname.type === 'maxLength' && <p className='maxLength'>최대 10자 이하로 입력해주세요.</p>}
-              {errors.nickname && errors.nickname.type === 'pattern' && <p>2자 이상 10자 이하의 영문, 숫자, 한글로 작성해주세요.</p>}
+              {errors.nickname && errors.nickname.type === 'pattern' && (
+                <p className='pattern'>2자 이상 10자 이하의 영문, 숫자, 한글로 작성해주세요.</p>
+              )}
             </fieldset>
 
             <button className='save-profile'>

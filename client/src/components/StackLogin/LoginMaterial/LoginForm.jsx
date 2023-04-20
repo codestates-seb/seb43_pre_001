@@ -67,6 +67,7 @@ const LoginFormBlock = styled.form`
     &:hover {
       border: 1px solid #3272c6;
       background-color: #83aade;
+      transition: 0.13s;
     }
 
     .submit-bg {
@@ -86,6 +87,7 @@ const LoginFormBlock = styled.form`
 
       &:hover {
         background-color: #3272c6;
+        transition: 0.13s;
       }
     }
   }
