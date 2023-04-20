@@ -1,6 +1,8 @@
 import styled from 'styled-components';
 import profileBigImg from '../../../assets/profile-big-img.svg';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { logout } from '../../../reducer/userSlice';
+import { useNavigate } from 'react-router-dom';
 
 const ImgNameProfileBlock = styled.div`
   display: flex;
@@ -17,11 +19,34 @@ const ImgNameProfileBlock = styled.div`
     flex-direction: column;
     justify-content: space-between;
 
+    .gray-bg {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      width: 50px;
+      height: 18px;
+      color: #fff;
+      margin-right: 25.5px;
+      font-size: 10px;
+      text-shadow: 0 0 0 #fff;
+      letter-spacing: 0.6px;
+      border-radius: 35px;
+      background-color: #b9b9b9;
+
+      &:hover {
+        background-color: #9e9e9e;
+        transition: 0.2s;
+      }
+    }
+
     .gray-txt {
       color: #9099a1;
       font-size: 15px;
       font-weight: 400;
       margin-top: 2px;
+      display: flex;
+      justify-content: space-between;
     }
 
     .txt-tata-logout {
@@ -36,33 +61,19 @@ const ImgNameProfileBlock = styled.div`
         font-size: 33px;
         font-weight: 500;
       }
-
-      .gray-bg {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-
-        width: 50px;
-        height: 18px;
-        color: #fff;
-        margin: 10px 6px 0 0;
-        font-size: 10px;
-        text-shadow: 0 0 0 #fff;
-        letter-spacing: 0.6px;
-        border-radius: 35px;
-        background-color: #b9b9b9;
-
-        &:hover {
-          background-color: #9e9e9e;
-          transition: 0.2s;
-        }
-      }
     }
   }
 `;
 
 const ImgNameProfile = () => {
-  const name = useSelector((state) => state.user.name);
+  const { nickname } = useSelector((state) => state.user);
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+
+  const logoutFn = () => {
+    dispatch(logout());
+    navigate('/');
+  };
 
   return (
     <ImgNameProfileBlock>
@@ -72,11 +83,15 @@ const ImgNameProfile = () => {
         </div>
 
         <div className='name-txt'>
-          <div className='gray-txt'>user name</div>
+          <div className='gray-txt'>
+            <span>user name</span>
+            <button onClick={logoutFn} className='gray-bg'>
+              log out
+            </button>
+          </div>
 
           <div className='txt-tata-logout'>
-            <span className='bold-txt'>{name ? name : 'tata-v'}</span>
-            <button className='gray-bg'>log out</button>
+            <span className='bold-txt'>{nickname === null ? 'tata-v' : nickname}</span>
           </div>
         </div>
       </div>

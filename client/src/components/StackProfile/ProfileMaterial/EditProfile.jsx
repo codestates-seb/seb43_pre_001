@@ -1,5 +1,8 @@
 import styled from 'styled-components';
 import { useState } from 'react';
+import { useForm } from 'react-hook-form';
+import { useDispatch } from 'react-redux';
+import { changeName } from '../../../reducer/userSlice';
 
 const EditProfileBlock = styled.div`
   .edit-txt {
@@ -34,6 +37,23 @@ const EditProfileBlock = styled.div`
     justify-content: center;
     align-items: center;
     flex-direction: column;
+
+    p {
+      color: #f15a59;
+      text-shadow: 0 0 0 #f15a59;
+      font-size: 12.5px;
+      margin-top: 6.5px;
+    }
+
+    .required {
+      transform: translateX(-154px);
+    }
+    .maxLength {
+      transform: translateX(-128.5px);
+    }
+    .pattern {
+      transform: translateX(-72px);
+    }
 
     label {
       color: #0c0d0e;
@@ -96,8 +116,22 @@ const EditProfileBlock = styled.div`
 
 const EditProfile = () => {
   const [open, setOpen] = useState(false);
+  const dispatch = useDispatch();
+
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+    reset,
+  } = useForm();
 
   const changeOpen = () => {
+    setOpen(!open);
+  };
+
+  const onSubmitFn = (data) => {
+    dispatch(changeName({ nickname: data.nickname }));
+    reset({ nickname: '' });
     setOpen(!open);
   };
 
@@ -109,12 +143,23 @@ const EditProfile = () => {
 
       {open ? (
         <>
-          <form className='edit-input-form' onSubmit={changeOpen}>
+          <form className='edit-input-form' onSubmit={handleSubmit(onSubmitFn)}>
             <fieldset className='fieldset-name'>
               <label className='label-nickname' htmlFor='nickname'>
                 Display name
               </label>
-              <input type='text' id='nickname' name='nickname' autoComplete='nickname' required />
+              <input
+                type='text'
+                id='nickname'
+                name='nickname'
+                {...register('nickname', { required: true, maxLength: 10, pattern: /^(?=.*[a-zA-Z0-9가-힣])[a-zA-Z0-9가-힣]{2,10}$/ })}
+                autoComplete='nickname'
+              />
+              {errors.nickname && errors.nickname.type === 'required' && <p className='required'>필수 입력 항목입니다.</p>}
+              {errors.nickname && errors.nickname.type === 'maxLength' && <p className='maxLength'>최대 10자 이하로 입력해주세요.</p>}
+              {errors.nickname && errors.nickname.type === 'pattern' && (
+                <p className='pattern'>2자 이상 10자 이하의 영문, 숫자, 한글로 작성해주세요.</p>
+              )}
             </fieldset>
 
             <button className='save-profile'>

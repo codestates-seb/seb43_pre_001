@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+
 const AskBoxStyle = styled.div`
   width: 70%;
   height: min-content;
