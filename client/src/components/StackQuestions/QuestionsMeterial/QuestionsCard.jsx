@@ -100,7 +100,6 @@ const MetaUserCard = styled.div`
 
 const QuestionsCard = ({ question, onTabSelect }) => {
   const { nickname, score, created_at, title, question_id, tag } = question;
-  console.log(tag);
   return (
     <>
       <QuestionsCardBox>

@@ -3,28 +3,39 @@ import QuestionsCard from './QuestionsCard';
 import { useSelector, useDispatch } from 'react-redux';
 import { useState, useEffect } from 'react';
 import { setQuestions } from '../../../reducer/questionSlice';
+
 import axios from 'axios';
+// import usePromise from '../../../hooks/usePromise';
 
 const QuestionsListBox = styled.div`
   display: flex;
   flex-direction: column;
 `;
 const QuestionsList = ({ onTabSelect }) => {
-  // 로딩중 / 완료 / 실패에 대한 상태 관리
+  /*
+  usePromist이용해보기
+  API에서 응답값 들고오기
+  각 action명, axious메서드, 의존성배열 넘겨주기
+  const [loading, resolved, error] = usePromise(
+    () => {
+      return axios.get(`http://localhost:4000/questions`);
+    },
+    [],
+    setQuestions(),
+  );
+  */
+
   const [loading, setLoading] = useState(false);
-  const [resolved, setResolved] = useState(null);
   const [error, setError] = useState(null);
 
   // questions 전역 상태관리
   const questions = useSelector((state) => state.questions);
   const dispatch = useDispatch();
-
   useEffect(() => {
     const process = async () => {
       setLoading(true);
       try {
         const response = await axios.get(`http://localhost:4000/questions`);
-        // setResolved(response.data);
         // 데이터를 전역 store에 저장하기위함
         dispatch(setQuestions(response.data));
       } catch (e) {
