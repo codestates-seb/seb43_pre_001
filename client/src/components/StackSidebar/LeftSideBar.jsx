@@ -1,4 +1,4 @@
-import styled, { css } from 'styled-components';
+import styled from 'styled-components';
 import earthIcon from '../../assets/earth-icon.svg';
 import { Link } from 'react-router-dom';
 
@@ -66,7 +66,9 @@ const LeftSideBar = ({ curTab, onTabSelect }) => {
         <TabMenu className='inner' onClick={onTabSelect}>
           Tags
         </TabMenu>
-        <TabMenu className='inner'>Users</TabMenu>
+        <CustomLink to='/profile'>
+          <TabMenu className='inner'>Users</TabMenu>
+        </CustomLink>
         <TabMenu className='inner'>Companies</TabMenu>
       </LeftSideBarBox>
     </>
