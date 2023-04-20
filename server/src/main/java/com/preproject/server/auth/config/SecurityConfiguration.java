@@ -2,12 +2,15 @@ package com.preproject.server.auth.config;
 
 import com.preproject.server.auth.filter.JwtAuthenticationFilter;
 import com.preproject.server.auth.filter.JwtVerificationFilter;
+import com.preproject.server.auth.handler.MemberAccessDeniedHandler;
+import com.preproject.server.auth.handler.MemberAuthenticationEntryPoint;
 import com.preproject.server.auth.handler.MemberAuthenticationFailureHandler;
 import com.preproject.server.auth.handler.MemberAuthenticationSuccessHandler;
 import com.preproject.server.auth.jwt.JwtTokenizer;
 import com.preproject.server.auth.utils.MemberAuthorityUtils;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
@@ -44,9 +47,21 @@ public class SecurityConfiguration {
                 .and()
                 .formLogin().disable()
                 .httpBasic().disable()
+                .exceptionHandling()
+                .authenticationEntryPoint(new MemberAuthenticationEntryPoint()) // MemberAuthenticationEntryPoint 추가
+                .accessDeniedHandler(new MemberAccessDeniedHandler()) // MemberAccessDeniedHandler 추가
+                .and()
                 .apply(new CustomFilterConfigurer()) // CustomFilterConfigurer() 추가
                 .and()
                 .authorizeHttpRequests(authorize -> authorize
+                        .antMatchers(HttpMethod.POST, "/members").permitAll()
+                        .antMatchers(HttpMethod.POST, "/questions/**").hasRole("USER")
+                        .antMatchers(HttpMethod.PATCH, "/questions/**").hasRole("USER")
+                        .antMatchers(HttpMethod.DELETE, "/questions/**").hasRole("USER")
+                        .antMatchers(HttpMethod.GET, "/answers").permitAll()
+                        .antMatchers(HttpMethod.POST, "/answers").hasRole("USER")
+                        .antMatchers(HttpMethod.PATCH, "/answers/**").hasRole("USER")
+                        .antMatchers(HttpMethod.DELETE, "/answers/**").hasRole("USER")
                         .anyRequest().permitAll());
         return http.build();
     }
