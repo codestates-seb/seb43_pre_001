@@ -1,6 +1,5 @@
 import styled from 'styled-components';
 import { useForm } from 'react-hook-form';
-import { useState, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { login } from '../../../reducer/userSlice';
 import { useNavigate } from 'react-router-dom';
@@ -22,7 +21,7 @@ const LoginFormBlock = styled.form`
     color: #f15a59;
     text-shadow: 0 0 0 #f15a59;
     font-size: 12px;
-    margin: -8px 0 10px 0;
+    transform: translateY(-11px);
   }
 
   label {
@@ -68,6 +67,7 @@ const LoginFormBlock = styled.form`
     &:hover {
       border: 1px solid #3272c6;
       background-color: #83aade;
+      transition: 0.13s;
     }
 
     .submit-bg {
@@ -87,6 +87,7 @@ const LoginFormBlock = styled.form`
 
       &:hover {
         background-color: #3272c6;
+        transition: 0.13s;
       }
     }
   }
@@ -120,9 +121,6 @@ const LoginFormBlock = styled.form`
 `;
 
 const LoginForm = () => {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-
   const dispath = useDispatch();
   const navigate = useNavigate();
 
@@ -132,38 +130,21 @@ const LoginForm = () => {
     formState: { errors },
   } = useForm();
 
-  useEffect(() => {
-    console.log(email);
-  }, []);
-
-  // 이메일
-  const changeEmail = (e) => {
-    setEmail(e.target.value);
-    console.log(e.target.value);
-    console.log(email);
-  };
-  // 비밀번호
-  const changePassword = (e) => {
-    setPassword(e.target.value);
-  };
   // submit
-  const onSubmit = () => {
+  const onSubmitFn = (data) => {
     // 서버에 데이터가 있는지.. 일치하면 login쪽으로 dispatch하고 아니면 에러 메시지 띄워야 함
     // 일단 그냥 테스트용으로 작성해 봄
-    console.log(email, password);
-    const user = { name: 'tata', email: email, password: password, loggedIn: true };
-    dispath(login(user));
-    // 제출이 되면 메인페이지로 이동 됨
+    // data에는 이메일과 비밀번호가 객체형태로 있음
+    dispath(login({ email: data.email }));
     navigate('/');
   };
 
   return (
-    <LoginFormBlock onSubmit={handleSubmit(onSubmit)}>
+    <LoginFormBlock onSubmit={handleSubmit(onSubmitFn)}>
       <label className='label-email' htmlFor='email'>
         Email
       </label>
       <input
-        onChange={changeEmail}
         type='email'
         id='email'
         name='email'
@@ -185,15 +166,15 @@ const LoginForm = () => {
         <span>Forgot password?</span>
       </div>
       <input
-        onChange={changePassword}
         type='password'
         id='pwd'
         name='password'
-        {...register('password', { required: true, minLength: 8 })}
+        {...register('password', { required: true, minLength: 8, pattern: /^(?=.*[a-zA-Z])(?=.*[!@#$%^*+=-])(?=.*[0-9]).{8,25}$/ })}
         autoComplete='current-password'
       />
       {errors.password && errors.password.type === 'required' && <p>필수 입력 항목입니다.</p>}
       {errors.password && errors.password.type === 'minLength' && <p>최소 8자 이상으로 입력해주세요.</p>}
+      {errors.password && errors.password.type === 'pattern' && <p>영문, 숫자, 특수기호 조합으로 8자리 이상 입력해주세요.</p>}
 
       <button className='submit-btn' type='submit'>
         <div className='submit-bg'>
