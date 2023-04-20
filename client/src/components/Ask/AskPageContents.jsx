@@ -1,4 +1,5 @@
-import Input from './Input';
+import InputTitle from './InputTitle';
+import InputTags from './InputTags';
 import TextEditor from './TextEditor';
 import styled from 'styled-components';
 import AskPageSideNotice from './AskPageSideNotice';
@@ -94,7 +95,7 @@ function AskPageContents() {
       </div>
 
       <InputSet>
-        <Input title={ask.title} desc={ask.desc} />
+        <InputTitle title={ask.title} desc={ask.desc} />
         <AskPageSideNotice noticeTitle={ask.noticeTitle} noticeDesc={ask.noticeDesc} />
       </InputSet>
 
@@ -115,7 +116,7 @@ function AskPageContents() {
       </InputSet> */}
 
       <InputSet>
-        <Input title={tags.title} desc={tags.desc} />
+        <InputTags title={tags.title} desc={tags.desc} />
         <AskPageSideNotice noticeTitle={tags.noticeTitle} noticeDesc={tags.noticeDesc} />
       </InputSet>
       {/* 
