@@ -1,7 +1,7 @@
 package com.preproject.server.answer.controller;
 
 import com.preproject.server.answer.repository.AnswerRepository;
-import com.preproject.server.dto.SingleResponseDto;
+import com.preproject.server.response.SingleResponseDto;
 import com.preproject.server.exception.BusinessLogicException;
 import com.preproject.server.exception.ExceptionCode;
 import com.preproject.server.member.entity.Member;
