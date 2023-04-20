@@ -3,7 +3,6 @@ import DetailHead from './DetailMeterial/DetailHead';
 import DetailView from './DetailMeterial/DetailView';
 import LeftSideBar from '../StackSidebar/LeftSideBar';
 import RightSideBar from '../StackSidebar/RightSideBar';
-import initialData from '../initialData';
 
 import { useParams } from 'react-router-dom';
 import { useState, useEffect } from 'react';
@@ -39,11 +38,11 @@ const DetailQuestion = ({ curTab, onTabSelect }) => {
   console.log(question_id);
   const [question, setQuestion] = useState();
   console.log(question);
-  useEffect(() => {
-    const data = initialData.filter((el) => el.question_id === Number(question_id));
-    if (!data) console.log('error');
-    setQuestion(data);
-  }, []);
+  // useEffect(() => {
+  //   const data = initialData.filter((el) => el.question_id === Number(question_id));
+  //   if (!data) console.log('error');
+  //   setQuestion(data);
+  // }, []);
   return (
     <>
       {question && (

@@ -5,33 +5,45 @@ const QuestionsCardBox = styled.div`
   border-top: 1px solid #d6d9dc;
   padding: 16px;
   display: flex;
-  height: 98px;
+  flex-direction: column;
+  /* height: 98px; */
 `;
 
 const QuesionStatus = styled.div`
   display: flex;
-  gap: 9px;
-  flex-direction: column;
-  align-items: flex-end;
-  margin: 0 16px 4px 0;
+  gap: 12px;
+  margin: 3px 0 10px 0;
   font-size: 13px;
-  width: 108px;
-  height: 102px;
   color: rgb(106, 115, 124);
   .votes {
     color: rgb(12, 13, 14);
-  }
-  .bounty {
-    display: none;
+    font-weight: 500;
   }
 `;
 
 const QuesionContent = styled.div`
   flex-grow: 1;
-  height: 106px;
+  /* height: 125px; */
   display: flex;
   flex-direction: column;
-
+  //여기에 작성
+  .content {
+    height: 34px;
+    overflow: hidden;
+    font-size: 13px;
+    font-weight: 400;
+    line-height: 17px;
+    color: rgb(59, 64, 69);
+    margin: 6px 0;
+    p {
+      width: 100%;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+    }
+  }
   .meta {
     font-size: 12px;
     margin-top: 4px;
@@ -39,6 +51,7 @@ const QuesionContent = styled.div`
     justify-content: space-between;
     flex-wrap: wrap;
     align-items: center;
+    margin-bottom: 12px;
   }
 `;
 const CustomLink = styled(Link)`
@@ -99,7 +112,8 @@ const MetaUserCard = styled.div`
 `;
 
 const QuestionsCard = ({ question, onTabSelect }) => {
-  const { nickname, score, created_at, title, question_id, tag } = question;
+  const { nickname, content, score, created_at, title, question_id, tag } = question;
+  console.log(content);
   return (
     <>
       <QuestionsCardBox>
@@ -112,6 +126,9 @@ const QuestionsCard = ({ question, onTabSelect }) => {
           <CustomLink to={`/questions/${question_id}`}>
             <Content onClick={() => onTabSelect('questions')}>{title}</Content>
           </CustomLink>
+          <div className='content'>
+            <p>{content}</p>
+          </div>
           <div className='meta'>
             <MetaTags>
               {tag &&

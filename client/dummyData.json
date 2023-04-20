@@ -11,7 +11,7 @@
         {
           "question_id": 1,
           "title": "Object rotation matrix to always follow a surface normal",
-          "contents": "Despite searching and trying everything for days now, I have a (simple?) problem I can't solve... Say I have a car going up and down hills. How would I build a 4x4 rotation matrix based on the surface normal of the landscape where the car is? Y is up and I'm not using OpenGL. I just want to apply a rotation matrix to my car's transformation matrix so it looks proper but I can't seem to be able to make such rotation matrix from a surface normal. Any help is greatly appreciated, thank you.  I've tried the following pseudo code but I'm getting weird results.",
+          "content": "Despite searching and trying everything for days now, I have a (simple?) problem I can't solve... Say I have a car going up and down hills. How would I build a 4x4 rotation matrix based on the surface normal of the landscape where the car is? Y is up and I'm not using OpenGL. I just want to apply a rotation matrix to my car's transformation matrix so it looks proper but I can't seem to be able to make such rotation matrix from a surface normal. Any help is greatly appreciated, thank you.  I've tried the following pseudo code but I'm getting weird results.",
           "nickname": "user1",
           "answers": [],
           "view": 3,
@@ -33,7 +33,7 @@
         {
           "question_id": 2,
           "title": "How can i make this reset button function work?",
-          "contents": "I am a beginner programmer so please dont make fun of this code too much but this is a very simple weather api for practice and I just cant find a solution to make this resetFunc not be undefined/ not a function. I am loking for a way to make this function for the reset button not be undefined/ not a function. I am attempting to make this reset function resetFunc() for the resetbtn only work after the displayExecuted flag becomes true, it keeps making the newText text node undefined and ive tried with newText in global and local scope",
+          "content": "I am a beginner programmer so please dont make fun of this code too much but this is a very simple weather api for practice and I just cant find a solution to make this resetFunc not be undefined/ not a function. I am loking for a way to make this function for the reset button not be undefined/ not a function. I am attempting to make this reset function resetFunc() for the resetbtn only work after the displayExecuted flag becomes true, it keeps making the newText text node undefined and ive tried with newText in global and local scope",
           "nickname": "user2",
           "answers": [],
           "view": 10,
@@ -55,12 +55,12 @@
         {
           "question_id": 3,
           "title": "using table() with for loop",
-          "contents": "results in error 'all arguments must have the same length'. Also tried putting get(paste0('df$',i)) Is there a way to loop through these columns and tabulate?",
+          "content": "results in error 'all arguments must have the same length'. Also tried putting get(paste0('df$',i)) Is there a way to loop through these columns and tabulate?",
           "nickname": "user3",
           "answers": [
             {
               "nickname": "Effie Klimi",
-              "contents": "Not much info on what exactly your preferred output is other than it tabulates the columns, but here's a potential solution using dplyr:",
+              "content": "Not much info on what exactly your preferred output is other than it tabulates the columns, but here's a potential solution using dplyr:",
               "answered": "2023-02-19 오전 11:18:76"
             }
           ],
@@ -77,7 +77,7 @@
     {
       "question_id": 1,
       "title": "Object rotation matrix to always follow a surface normal",
-      "contents": "Despite searching and trying everything for days now, I have a (simple?) problem I can't solve... Say I have a car going up and down hills. How would I build a 4x4 rotation matrix based on the surface normal of the landscape where the car is? Y is up and I'm not using OpenGL. I just want to apply a rotation matrix to my car's transformation matrix so it looks proper but I can't seem to be able to make such rotation matrix from a surface normal. Any help is greatly appreciated, thank you.  I've tried the following pseudo code but I'm getting weird results.",
+      "content": "Despite searching and trying everything for days now, I have a (simple?) problem I can't solve... Say I have a car going up and down hills. How would I build a 4x4 rotation matrix based on the surface normal of the landscape where the car is? Y is up and I'm not using OpenGL. I just want to apply a rotation matrix to my car's transformation matrix so it looks proper but I can't seem to be able to make such rotation matrix from a surface normal. Any help is greatly appreciated, thank you.  I've tried the following pseudo code but I'm getting weird results.",
       "nickname": "user1",
       "answers": [],
       "view": 3,
@@ -88,8 +88,32 @@
     },
     {
       "question_id": 2,
+      "title": "Object rotation matrix to always follow a surface normal",
+      "content": "Despite searching and trying everything for days now, I have a (simple?) problem I can't solve... Say I have a car going up and down hills. How would I build a 4x4 rotation matrix based on the surface normal of the landscape where the car is? Y is up and I'm not using OpenGL. I just want to apply a rotation matrix to my car's transformation matrix so it looks proper but I can't seem to be able to make such rotation matrix from a surface normal. Any help is greatly appreciated, thank you.  I've tried the following pseudo code but I'm getting weird results.",
+      "nickname": "user1",
+      "answers": [],
+      "view": 3,
+      "created_at": "2023-02-18 오전 9:12:76",
+      "answered": "2023-02-19 오전 7:12:76",
+      "modifiedAt": "2023-02-19 오전 10:11:54",
+      "tag": ["rotation", "matrix"]
+    },
+    {
+      "question_id": 3,
+      "title": "Object rotation matrix to always follow a surface normal",
+      "content": "Despite searching and trying everything for days now, I have a (simple?) problem I can't solve... Say I have a car going up and down hills. How would I build a 4x4 rotation matrix based on the surface normal of the landscape where the car is? Y is up and I'm not using OpenGL. I just want to apply a rotation matrix to my car's transformation matrix so it looks proper but I can't seem to be able to make such rotation matrix from a surface normal. Any help is greatly appreciated, thank you.  I've tried the following pseudo code but I'm getting weird results.",
+      "nickname": "user1",
+      "answers": [],
+      "view": 3,
+      "created_at": "2023-02-18 오전 9:12:76",
+      "answered": "2023-02-19 오전 7:12:76",
+      "modifiedAt": "2023-02-19 오전 10:11:54",
+      "tag": ["rotation", "matrix"]
+    },
+    {
+      "question_id": 4,
       "title": "How can i make this reset button function work?",
-      "contents": "I am a beginner programmer so please dont make fun of this code too much but this is a very simple weather api for practice and I just cant find a solution to make this resetFunc not be undefined/ not a function. I am loking for a way to make this function for the reset button not be undefined/ not a function. I am attempting to make this reset function resetFunc() for the resetbtn only work after the displayExecuted flag becomes true, it keeps making the newText text node undefined and ive tried with newText in global and local scope",
+      "content": "I am a beginner programmer so please dont make fun of this code too much but this is a very simple weather api for practice and I just cant find a solution to make this resetFunc not be undefined/ not a function. I am loking for a way to make this function for the reset button not be undefined/ not a function. I am attempting to make this reset function resetFunc() for the resetbtn only work after the displayExecuted flag becomes true, it keeps making the newText text node undefined and ive tried with newText in global and local scope",
       "nickname": "user2",
       "answers": [],
       "view": 10,
@@ -99,14 +123,14 @@
       "tag": ["javascript", "dom", "event-handling"]
     },
     {
-      "question_id": 3,
+      "question_id": 5,
       "title": "using table() with for loop",
-      "contents": "results in error 'all arguments must have the same length'. Also tried putting get(paste0('df$',i)) Is there a way to loop through these columns and tabulate?",
+      "content": "results in error 'all arguments must have the same length'. Also tried putting get(paste0('df$',i)) Is there a way to loop through these columns and tabulate?",
       "nickname": "user3",
       "answers": [
         {
           "nickname": "Effie Klimi",
-          "contents": "Not much info on what exactly your preferred output is other than it tabulates the columns, but here's a potential solution using dplyr:",
+          "content": "Not much info on what exactly your preferred output is other than it tabulates the columns, but here's a potential solution using dplyr:",
           "answered": "2023-02-19 오전 11:18:76"
         }
       ],
