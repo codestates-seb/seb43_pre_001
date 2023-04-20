@@ -1,10 +1,10 @@
 import { createSlice } from '@reduxjs/toolkit';
 
 const initialStateUser = {
-  name: null,
+  member_id: null,
   email: null,
-  password: null,
-  loggedIn: null,
+  nickname: null,
+  loggedIn: false,
 };
 
 export const userSlice = createSlice({
@@ -12,14 +12,22 @@ export const userSlice = createSlice({
   initialState: initialStateUser,
   reducers: {
     login: (state, action) => {
-      state = action.payload;
-      console.log(state);
+      return { ...state, ...action.payload, member_id: '1', nickname: 'chimmy', loggedIn: true }; //  member_id, nickname 값은 임시임
     },
     logout: (state) => {
-      state = null;
+      return {
+        ...state,
+        member_id: null,
+        nickname: null,
+        email: null,
+        loggedIn: false,
+      };
+    },
+    changeName: (state, action) => {
+      return { ...state, ...action.payload };
     },
   },
 });
 
-export const { login, logout } = userSlice.actions;
+export const { login, logout, changeName } = userSlice.actions;
 export default userSlice.reducer;

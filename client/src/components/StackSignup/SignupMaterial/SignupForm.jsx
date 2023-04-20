@@ -1,6 +1,5 @@
 import styled from 'styled-components';
 import { useForm } from 'react-hook-form';
-import { useState } from 'react';
 
 const SignupFormBlock = styled.form`
   width: 317px;
@@ -19,7 +18,14 @@ const SignupFormBlock = styled.form`
     color: #f15a59;
     text-shadow: 0 0 0 #f15a59;
     font-size: 12px;
-    margin: 6px 0 -10px 0;
+    margin-bottom: -8px;
+    transform: translateY(4px);
+  }
+
+  .pwd-p-required,
+  .pwd-p-minLength,
+  .pwd-p-pattern {
+    margin-bottom: 1px;
   }
 
   label {
@@ -58,6 +64,7 @@ const SignupFormBlock = styled.form`
     &:hover {
       border: 1px solid #3272c6;
       background-color: #83aade;
+      transition: 0.13s;
     }
 
     .submit-bg {
@@ -77,6 +84,7 @@ const SignupFormBlock = styled.form`
 
       &:hover {
         background-color: #3272c6;
+        transition: 0.13s;
       }
     }
   }
@@ -111,7 +119,6 @@ const SignupFormBlock = styled.form`
   .p-by-txt {
     width: 268px;
     height: 30px;
-    /* margin: 4px 0 28px 0; */
     line-height: 15px;
 
     span {
@@ -146,30 +153,16 @@ const SignupFormBlock = styled.form`
 `;
 
 const SignupForm = () => {
-  const [name, setName] = useState('');
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm();
 
-  // 이름
-  const changeName = (e) => {
-    setEmail(e.target.value);
-  };
-  // 이메일
-  const changeEmail = (e) => {
-    setEmail(e.target.value);
-  };
-  // 비밀번호
-  const changePassword = (e) => {
-    setPassword(e.target.value);
-  };
   // submit
-  const onSubmit = () => {};
+  const onSubmit = () => {
+    // 서버에 해당 데이터가 없을 경우, 데이터를 보내야 한다.
+  };
 
   return (
     <SignupFormBlock onSubmit={handleSubmit(onSubmit)}>
@@ -177,24 +170,23 @@ const SignupForm = () => {
         Display name
       </label>
       <input
-        onChange={changeName}
         type='text'
         id='nickname'
         name='nickname'
         {...register('nickname', {
           required: true,
-          maxLength: 10,
+          pattern: /^(?=.*[a-zA-Z0-9가-힣])[a-zA-Z0-9가-힣]{2,10}$/,
         })}
         autoComplete='nickname'
       />
       {errors.nickname && errors.nickname.type === 'required' && <p>필수 입력 항목입니다.</p>}
       {errors.nickname && errors.nickname.type === 'maxLength' && <p>최대 10자 이하로 입력해주세요.</p>}
+      {errors.nickname && errors.nickname.type === 'pattern' && <p>2자 이상 10자 이하의 영문, 숫자, 한글로 작성해주세요.</p>}
 
       <label className='label-email' htmlFor='email'>
         Email
       </label>
       <input
-        onChange={changeEmail}
         type='email'
         id='email'
         name='email'
@@ -213,15 +205,17 @@ const SignupForm = () => {
         Password
       </label>
       <input
-        onChange={changePassword}
         type='password'
         id='pwd'
         name='password'
-        {...register('password', { required: true, minLength: 8 })}
+        {...register('password', { required: true, minLength: 8, pattern: /^(?=.*[a-zA-Z])(?=.*[!@#$%^*+=-])(?=.*[0-9]).{8,25}$/ })}
         autoComplete='current-password'
       />
-      {errors.password && errors.password.type === 'required' && <p>필수 입력 항목입니다.</p>}
-      {errors.password && errors.password.type === 'minLength' && <p>최소 8자 이상으로 입력해주세요.</p>}
+      {errors.password && errors.password.type === 'required' && <p className='pwd-p-required'>필수 입력 항목입니다.</p>}
+      {errors.password && errors.password.type === 'minLength' && <p className='pwd-p-minLength'>최소 8자 이상으로 입력해주세요.</p>}
+      {errors.password && errors.password.type === 'pattern' && (
+        <p className='pwd-p-pattern'>영문, 숫자, 특수기호 조합으로 8자리 이상 입력해주세요.</p>
+      )}
 
       <div className='p-pwd-txt'>
         <p className='p-txt'>Passwords must contain at least eight characters, including at least 1 letter and 1 number.</p>
