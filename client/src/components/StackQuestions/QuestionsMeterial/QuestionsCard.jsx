@@ -98,8 +98,8 @@ const MetaUserCard = styled.div`
   }
 `;
 
-const QuestionsCard = ({ questions, onTabSelect }) => {
-  const { nickname, score, created_at, title, question_id } = questions;
+const QuestionsCard = ({ question, onTabSelect }) => {
+  const { nickname, score, created_at, title, question_id, tag } = question;
   return (
     <>
       <QuestionsCardBox>
@@ -107,7 +107,6 @@ const QuestionsCard = ({ questions, onTabSelect }) => {
           <div className='votes'>0 votes</div>
           <div className='answers'>0 answer</div>
           <div className='views'>0 views</div>
-          {/* <div className='bounty'>+50</div> */}
         </QuesionStatus>
         <QuesionContent>
           <CustomLink to={`/questions/${question_id}`}>
@@ -115,10 +114,14 @@ const QuestionsCard = ({ questions, onTabSelect }) => {
           </CustomLink>
           <div className='meta'>
             <MetaTags>
-              <div className='tag'>java</div>
-              <div className='tag'>swift</div>
-              <div className='tag'>node</div>
-              <div className='tag'>spring-boot</div>
+              {tag &&
+                tag.map((el, idx) => {
+                  return (
+                    <div className='tag' key={idx}>
+                      {el}
+                    </div>
+                  );
+                })}
             </MetaTags>
             <MetaUserCard>
               <div className='nickname'>{nickname}</div>

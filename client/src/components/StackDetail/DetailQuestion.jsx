@@ -36,9 +36,9 @@ const MainBox = styled.div`
 
 const DetailQuestion = ({ curTab, onTabSelect }) => {
   const { question_id } = useParams();
-
+  console.log(question_id);
   const [question, setQuestion] = useState();
-
+  console.log(question);
   useEffect(() => {
     const data = initialData.filter((el) => el.question_id === Number(question_id));
     if (!data) console.log('error');

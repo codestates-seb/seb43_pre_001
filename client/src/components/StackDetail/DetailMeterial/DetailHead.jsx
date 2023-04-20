@@ -24,10 +24,11 @@ const DetailInfo = styled.div`
 `;
 
 const DetailHead = ({ question }) => {
+  console.log(question);
   return (
     <>
       <DetailHeadBox>
-        <div>{question[0].title}</div>
+        <div>{}</div>
         <SharedButton buttonText='Ask Question' />
       </DetailHeadBox>
       <DetailInfo>
