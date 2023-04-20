@@ -36,7 +36,7 @@ const MainBox = styled.div`
 
 const DetailQuestion = ({ curTab, onTabSelect }) => {
   const { question_id } = useParams();
-
+  console.log(question_id);
   const [question, setQuestion] = useState();
   console.log(question);
   useEffect(() => {
