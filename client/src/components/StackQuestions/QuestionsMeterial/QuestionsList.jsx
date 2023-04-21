@@ -34,9 +34,9 @@ const QuestionsList = ({ onTabSelect }) => {
     const process = async () => {
       setLoading(true);
       try {
-        const response = await axios.get(`http://localhost:4000/questions`);
+        const response = await axios.get(`/questions?page=1&size=10`);
         // 데이터를 전역 store에 저장하기위함
-        dispatch(setQuestions(response.data));
+        dispatch(setQuestions(response.data.data));
       } catch (e) {
         setError(e);
       }

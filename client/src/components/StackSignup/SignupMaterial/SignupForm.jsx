@@ -1,5 +1,7 @@
 import styled from 'styled-components';
 import { useForm } from 'react-hook-form';
+import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 
 const SignupFormBlock = styled.form`
   width: 317px;
@@ -160,8 +162,17 @@ const SignupForm = () => {
   } = useForm();
 
   // submit
-  const onSubmit = () => {
-    // 서버에 해당 데이터가 없을 경우, 데이터를 보내야 한다.
+  const onSubmit = async (data) => {
+    const navigate = useNavigate();
+    const { nickname, email, password } = data;
+    try {
+      const resData = await axios.post('/members/signup', { nickname, name: nickname, email, password });
+
+      console.log(resData);
+      // await navigate('./login');
+    } catch (err) {
+      console.log(err);
+    }
   };
 
   return (

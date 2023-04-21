@@ -52,7 +52,7 @@ const DetailQuestion = ({ curTab, onTabSelect }) => {
     const process = async () => {
       setLoading(true);
       try {
-        const response = await axios.get(`http://localhost:4000/questions/?question_id=${question_id}`);
+        const response = await axios.get(`http://localhost:8080/questions/?question_id=${question_id}`);
         // 데이터를 전역 store에 저장하기위함
         dispatch(setDetailQuestion(response.data[0]));
       } catch (e) {

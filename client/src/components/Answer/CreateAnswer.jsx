@@ -54,7 +54,7 @@ function CreateAnswer({ question }) {
   const handleClick = () => {
     setText(editorRef.current?.getInstance().getMarkdown());
     axios
-      .post('  http://localhost:4000/questions', {
+      .post('/questions', {
         // question_id,
         nickname: '',
         content: text,

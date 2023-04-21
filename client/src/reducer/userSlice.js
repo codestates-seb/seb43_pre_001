@@ -30,4 +30,5 @@ export const userSlice = createSlice({
 });
 
 export const { login, logout, changeName } = userSlice.actions;
+export const member_id = userSlice.member_id;
 export default userSlice.reducer;
