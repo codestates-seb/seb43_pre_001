@@ -26,10 +26,12 @@ public class MemberAuthenticationSuccessHandler implements AuthenticationSuccess
 
         String email = authentication.getName();
         String accessToken = response.getHeader("Authorization");
+        String memberId = response.getHeader("memberId");
 
         System.out.println("User " + email + " successfully authenticated");
         try(PrintWriter writer = response.getWriter()){
             JsonObject json = new JsonObject();
+            json.addProperty("memberId", memberId);
             json.addProperty("AccessToken", accessToken);
 
             response.setStatus(HttpStatus.ACCEPTED.value());
@@ -40,6 +42,4 @@ public class MemberAuthenticationSuccessHandler implements AuthenticationSuccess
         }
         log.info("# Authenticated successfully!");
     }
-
-
 }

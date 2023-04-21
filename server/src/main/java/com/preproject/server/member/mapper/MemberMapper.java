@@ -1,5 +1,6 @@
 package com.preproject.server.member.mapper;
 
+import com.preproject.server.auth.dto.LoginDto;
 import com.preproject.server.member.dto.MemberDto;
 import com.preproject.server.member.entity.Member;
 import org.mapstruct.Mapper;
@@ -11,4 +12,5 @@ public interface MemberMapper {
 
     // Member -> MemberDto.Response
     MemberDto.Response memberToMemberResponseDto(Member member);
+
 }
