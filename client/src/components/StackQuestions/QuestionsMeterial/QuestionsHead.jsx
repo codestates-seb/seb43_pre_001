@@ -57,15 +57,19 @@ const Section2 = styled.div`
     }
   }
 `;
+const StyledLink = styled(Link)`
+  text-decoration: none;
+`;
+
 const QuestionsHead = () => {
   return (
     <>
       <QuestionsHeadBox>
         <Section1>
           <h1>Top Questions</h1>
-          <Link to='/questions/ask'>
+          <StyledLink to='/questions/ask'>
             <SharedButton buttonText='Ask Question' />
-          </Link>
+          </StyledLink>
         </Section1>
         <Section2>
           <ul>
