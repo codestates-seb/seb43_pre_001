@@ -15,6 +15,9 @@ export function BackgroundColor() {
     case '/signup':
       backgroundColor = '#F1F2F3';
       break;
+    case '/questions/ask':
+      backgroundColor = '#fafafa';
+      break;
     default:
       backgroundColor = '#FFF';
   }

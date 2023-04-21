@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 import earthIcon from '../../assets/earth-icon.svg';
 import { Link } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 
 const LeftSideBarBox = styled.nav`
   margin-top: 24px;
@@ -44,6 +45,8 @@ const CustomLink = styled(Link)`
 `;
 
 const LeftSideBar = ({ curTab, onTabSelect }) => {
+  const { loggedIn } = useSelector((state) => state.user);
+
   return (
     <>
       <LeftSideBarBox>
@@ -65,9 +68,15 @@ const LeftSideBar = ({ curTab, onTabSelect }) => {
         <TabMenu className='inner' onClick={onTabSelect}>
           Tags
         </TabMenu>
-        <CustomLink to='/profile'>
-          <TabMenu className='inner'>Users</TabMenu>
-        </CustomLink>
+        {loggedIn ? (
+          <CustomLink to='/profile'>
+            <TabMenu className='inner'>Users</TabMenu>
+          </CustomLink>
+        ) : (
+          <CustomLink to='/login'>
+            <TabMenu className='inner'>Users</TabMenu>
+          </CustomLink>
+        )}
         <TabMenu className='inner'>Companies</TabMenu>
       </LeftSideBarBox>
     </>

@@ -1,16 +1,18 @@
-import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
-
+import { createSlice } from '@reduxjs/toolkit';
 const askSlice = createSlice({
   name: 'askSlice',
   initialState: {
     id: null,
     name: null,
     title: null,
-    titleErrorMsg: null,
+    titleFocus: false,
     content: null,
-    contentErrorMsg: null,
-    tags: [],
-    tagsErrorMsg: null,
+    contentFocus: false,
+    allTags: [],
+    tagsFocus: false,
+    discardTitle: false,
+    discardEditor: false,
+    discardTags: false,
   },
   reducers: {
     setName: (state, action) => {
@@ -18,25 +20,49 @@ const askSlice = createSlice({
     },
     setTitle: (state, action) => {
       state.title = action.payload;
-      console.log(state.title);
     },
-    setTitleErrorMsg: (state, action) => {
-      state.titleErrorMsg = action.payload;
+    setTitleFocus: (state, action) => {
+      state.titleFocus = action.payload;
     },
     setContent: (state, action) => {
       state.content = action.payload;
     },
-    setContentErrorMsg: (state, action) => {
-      state.contentErrorMsg = action.payload;
+    setContentFocus: (state, action) => {
+      state.contentFocus = action.payload;
     },
-    setTags: (state, action) => {
-      state.tags = action.payload;
+    setAllTags: (state, action) => {
+      state.allTags = action.payload;
     },
-    setTagsErrorMsg: (state, action) => {
-      state.tagsErrorMsg = action.payload;
+    setDeleteTag: (state, action) => {
+      state.allTags = state.allTags.filter((el) => {
+        return el !== action.payload;
+      });
+    },
+    setTagsFocus: (state, action) => {
+      state.tagsFocus = action.payload;
+    },
+    setDiscardTitle: (state, action) => {
+      state.discardTitle = action.payload;
+    },
+    setDiscardEditor: (state, action) => {
+      state.discardEditor = action.payload;
+    },
+    setDiscardTags: (state, action) => {
+      state.discardTags = action.payload;
     },
   },
 });
-
 export default askSlice;
-export const { setName, setTitle, setTitleErrorMsg, setContent, setContentErrorMsg, setTags, setTagsErrorMsg } = askSlice.actions;
+export const {
+  setName,
+  setTitle,
+  setTitleFocus,
+  setContent,
+  setContentFocus,
+  setAllTags,
+  setDeleteTag,
+  setTagsFocus,
+  setDiscardTitle,
+  setDiscardEditor,
+  setDiscardTags,
+} = askSlice.actions;

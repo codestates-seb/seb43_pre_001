@@ -174,7 +174,7 @@ const LoginForm = () => {
       />
       {errors.password && errors.password.type === 'required' && <p>필수 입력 항목입니다.</p>}
       {errors.password && errors.password.type === 'minLength' && <p>최소 8자 이상으로 입력해주세요.</p>}
-      {errors.password && errors.password.type === 'pattern' && <p>영문, 숫자, 특수기호 조합으로 8자리 이상 입력해주세요.</p>}
+      {errors.password && errors.password.type === 'pattern' && <p>영문, 숫자, 특수문자 조합으로 8자리 이상 입력해주세요.</p>}
 
       <button className='submit-btn' type='submit'>
         <div className='submit-bg'>
