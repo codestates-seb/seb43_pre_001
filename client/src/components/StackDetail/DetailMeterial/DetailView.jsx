@@ -74,7 +74,7 @@ const DetailView = ({ question }) => {
         </DetailContentBox>
         <RightSideBar></RightSideBar>
       </DetailViewBox>
-      <CreateAnswer />
+      {/* <CreateAnswer /> */}
     </>
   );
 };
