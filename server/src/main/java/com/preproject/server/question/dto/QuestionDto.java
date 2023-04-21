@@ -1,14 +1,14 @@
 package com.preproject.server.question.dto;
 
-import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotNull;
 
 public class QuestionDto {
-    @AllArgsConstructor
+    @NoArgsConstructor
     @Getter
     @Setter
     public static class Post {
@@ -20,8 +20,14 @@ public class QuestionDto {
 
         @NotNull
         private String content;
+
+        public Post(long member_id, String title, String content) {
+            this.member_id = member_id;
+            this.title = title;
+            this.content = content;
+        }
     }
-    @AllArgsConstructor
+    @NoArgsConstructor
     @Getter
     @Setter
     public static class Patch {
@@ -33,5 +39,12 @@ public class QuestionDto {
         private String content;
 
         private long questionId;
+
+        public Patch(long member_id, String title, String content, long questionId) {
+            this.member_id = member_id;
+            this.title = title;
+            this.content = content;
+            this.questionId = questionId;
+        }
     }
 }
