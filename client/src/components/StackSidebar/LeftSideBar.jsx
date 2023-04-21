@@ -4,15 +4,14 @@ import { Link } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 
 const LeftSideBarBox = styled.nav`
-  padding-top: 24px;
-  border-right: 1px solid #d6d9dc;
-  width: 164px;
-  height: 100vh;
+  margin-top: 24px;
+  width: 150px;
   font-size: 13px;
   position: fixed;
   display: flex;
   flex-direction: column;
   gap: 2px;
+  overflow: hidden;
 `;
 
 const TabMenu = styled.div`
