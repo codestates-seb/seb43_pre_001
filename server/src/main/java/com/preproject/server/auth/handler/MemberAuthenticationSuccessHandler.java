@@ -30,7 +30,6 @@ public class MemberAuthenticationSuccessHandler implements AuthenticationSuccess
         System.out.println("User " + email + " successfully authenticated");
         try(PrintWriter writer = response.getWriter()){
             JsonObject json = new JsonObject();
-            json.addProperty("email", email);
             json.addProperty("AccessToken", accessToken);
 
             response.setStatus(HttpStatus.ACCEPTED.value());
