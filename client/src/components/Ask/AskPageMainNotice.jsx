@@ -8,7 +8,7 @@ const Div = styled.div`
   padding: 24px;
   margin: 16px 0;
   color: hsl(210deg 8% 25%);
-  width: 70%;
+  width: 90%;
   > h2 {
     font-weight: 500;
     font-size: 1.3rem;

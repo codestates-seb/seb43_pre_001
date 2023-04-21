@@ -1,63 +1,110 @@
-import { Editor, Viewer } from '@toast-ui/react-editor';
 import '@toast-ui/editor/dist/toastui-editor.css';
-import React, { useRef, useEffect } from 'react';
+import { Editor } from '@toast-ui/react-editor';
 import styled from 'styled-components';
-import { useDispatch, useSelector } from 'react-redux';
-import { setContent, setContentErrorMsg } from '../../reducer/askSlice';
-import axios from 'axios';
-
+import { useRef, useEffect, useState } from 'react';
 import { AskBoxStyle } from './AskStyle';
+import { useDispatch, useSelector } from 'react-redux';
+import { setContent, setContentFocus, setDiscardEditor } from '../../reducer/askSlice';
+import { setContent as setAnswerContent } from '../../reducer/answerSlice';
 import SharedButton from '../SharedButton';
 
-const Div = styled(AskBoxStyle)``;
-const EditorBox = styled(Editor)`
-  height: 255px;
+const Div = styled(AskBoxStyle)`
+  ${(props) => (props.desc ? '.toastui-editor-defaultUI' : '.toastui-editor-main-container')} {
+    border-width: 1px;
+    border-style: solid;
+    border-color: ${(props) => {
+      if (props.contentFocus) {
+        return props.contentErrorMsg ? 'hsl(358deg 68% 59%)' : 'hsl(206deg 90% 70%)';
+      }
+    }};
+    box-shadow: ${(props) => {
+      if (props.contentFocus) {
+        return props.contentErrorMsg ? '0 0 0 4px hsl(0deg 46% 92%)' : '0 0 0 4px hsl(206deg 65% 91%)';
+      }
+    }};
+  }
+
+  .toastui-editor-main-container {
+    border: ${(props) => {
+      if (!props.contentFocus) return 'none';
+    }};
+  }
 `;
 
-function TextEditor({ title, desc }) {
+const EditorBox = styled(Editor)`
+  height: 254.664px;
+`;
+
+function TextEditor({ title, desc = null, initialValue = '' }) {
+  const [contentErrorMsg, setContentErrorMsg] = useState(null);
+  const { contentFocus, discardEditor } = useSelector((state) => state.ask);
   const editorRef = useRef(null);
   const dispatch = useDispatch();
-  const state = useSelector((state) => state);
+  const { content } = desc ? useSelector((state) => state.ask) : useSelector((state) => state.answer);
 
   const setContentText = () => {
-    dispatch(setContent(editorRef.current?.getInstance().getMarkdown()));
-    console.log(state.ask.content);
-    editorRef.current?.getInstance().isViewer();
-    //  console.log(editorRef.current?.getInstance().getHTML());
+    desc
+      ? dispatch(setContent(editorRef.current?.getInstance().getMarkdown()))
+      : dispatch(setAnswerContent(editorRef.current?.getInstance().getMarkdown()));
   };
 
-  const showEditorData = () => {
-    console.log(editorRef.current?.getInstance().getHTML());
-  };
+  // const showEditorData = () => {
+  //   console.log(editorRef.current?.getInstance().getHTML());
+  // };
 
+  //유효성 검사
   let isContentValid = false;
-  const validationContent = () => {
-    if (!state.ask.content?.length) {
+  let validationContent = () => {
+    if (!content?.length) {
       isContentValid = false;
-      dispatch(setContentErrorMsg('Body is missing'));
+      setContentErrorMsg('Body is missing.');
     } else {
       isContentValid = true;
-      dispatch(setContentErrorMsg(''));
+      setContentErrorMsg('');
     }
   };
+
   useEffect(() => {
     validationContent();
-    if (state.ask.titleErrorMsg) {
-      console.log(state.ask.titleErrorMsg);
-      editorRef.current.getInstance().blur();
-    } else {
-      editorRef.current.getInstance().focus();
+  }, [content]);
+
+  // focus 상태 변경
+  const onEditorFocus = () => {
+    dispatch(setContentFocus(true));
+  };
+  const onEditorBlur = () => {
+    dispatch(setContentFocus(false));
+  };
+  const resetEditor = () => {
+    editorRef.current?.getInstance().reset();
+    dispatch(setDiscardEditor(false));
+  };
+  useEffect(() => {
+    if (discardEditor) {
+      resetEditor();
     }
-  }, [state]);
+  }, [discardEditor]);
+
   return (
-    <Div>
+    <Div contentErrorMsg={contentErrorMsg} contentFocus={contentFocus} desc={desc}>
       <div>
         <label>{title}</label>
         <p>{desc}</p>
-        <EditorBox previewStyle='vertical' initialEditType='wysiwyg' useCommandShortcut={true} ref={editorRef} onKeydown={setContentText} />
+
+        <EditorBox
+          previewStyle='tab'
+          initialEditType='markdown'
+          hideModeSwitch={true}
+          useCommandShortcut={true}
+          ref={editorRef}
+          onKeyup={setContentText}
+          onFocus={onEditorFocus}
+          onBlur={onEditorBlur}
+          initialValue={initialValue}
+        />
       </div>
-      <SharedButton buttonText='Next' onClick={showEditorData}></SharedButton>
-      {isContentValid ? null : <div>{state.ask.contentErrorMsg}</div>}
+      {/* <MainButton buttonText="Next" /> */}
+      {isContentValid ? null : <div>{contentErrorMsg}</div>}
     </Div>
   );
 }

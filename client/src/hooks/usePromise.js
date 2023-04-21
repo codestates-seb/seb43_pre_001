@@ -27,7 +27,7 @@ const usePromise = (promiseCreator, deps, action) => {
       setLoading(false);
     };
     process();
-  }, deps);
+  }, [deps]);
 
   return [loading, resolved, error];
 };
