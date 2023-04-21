@@ -4,7 +4,7 @@ const DetailHeadBox = styled.div`
   /* min-width: 750px; */
   display: flex;
   justify-content: space-between;
-  > div {
+  div.title {
     font-size: 27px;
     font-weight: 400;
     line-height: 36.45px;
@@ -24,11 +24,10 @@ const DetailInfo = styled.div`
 `;
 
 const DetailHead = ({ question }) => {
-  console.log(question);
   return (
     <>
       <DetailHeadBox>
-        <div>{}</div>
+        <div className='title'>{question.title}</div>
         <SharedButton buttonText='Ask Question' />
       </DetailHeadBox>
       <DetailInfo>

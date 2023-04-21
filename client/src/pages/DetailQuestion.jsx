@@ -1,6 +1,6 @@
 import HeadLogin from '../components/StackHead/HeadLogin';
 import DetailQuestion from '../components/StackDetail/DetailQuestion';
-import { useParams } from 'react-router-dom';
+import StackFoot from '../components/StackFoot/StackFoot';
 
 const DetailQuestionPage = ({ curTab, onTabSelect }) => {
   return (

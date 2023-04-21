@@ -3,7 +3,6 @@ import QuestionsCard from './QuestionsCard';
 import { useSelector, useDispatch } from 'react-redux';
 import { useState, useEffect } from 'react';
 import { setQuestions } from '../../../reducer/questionSlice';
-
 import axios from 'axios';
 // import usePromise from '../../../hooks/usePromise';
 

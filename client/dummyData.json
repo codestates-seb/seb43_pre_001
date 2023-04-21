@@ -76,10 +76,16 @@
   "questions": [
     {
       "question_id": 1,
-      "title": "Object rotation matrix to always follow a surface normal",
+      "title": "Python 3.10: I cannot extract text from an element with Selenium 4.8.0",
       "content": "Despite searching and trying everything for days now, I have a (simple?) problem I can't solve... Say I have a car going up and down hills. How would I build a 4x4 rotation matrix based on the surface normal of the landscape where the car is? Y is up and I'm not using OpenGL. I just want to apply a rotation matrix to my car's transformation matrix so it looks proper but I can't seem to be able to make such rotation matrix from a surface normal. Any help is greatly appreciated, thank you.  I've tried the following pseudo code but I'm getting weird results.",
       "nickname": "user1",
-      "answers": [],
+      "answers": [
+        {
+          "nickname": "Effie Klimi",
+          "content": "Not much info on what exactly your preferred output is other than it tabulates the columns, but here's a potential solution using dplyr:",
+          "answered": "2023-02-19 오전 11:18:76"
+        }
+      ],
       "view": 3,
       "created_at": "2023-02-18 오전 9:12:76",
       "answered": "2023-02-19 오전 7:12:76",
@@ -88,7 +94,7 @@
     },
     {
       "question_id": 2,
-      "title": "Object rotation matrix to always follow a surface normal",
+      "title": "Do using expo packages in a react native cli project will increase my app size?",
       "content": "Despite searching and trying everything for days now, I have a (simple?) problem I can't solve... Say I have a car going up and down hills. How would I build a 4x4 rotation matrix based on the surface normal of the landscape where the car is? Y is up and I'm not using OpenGL. I just want to apply a rotation matrix to my car's transformation matrix so it looks proper but I can't seem to be able to make such rotation matrix from a surface normal. Any help is greatly appreciated, thank you.  I've tried the following pseudo code but I'm getting weird results.",
       "nickname": "user1",
       "answers": [],

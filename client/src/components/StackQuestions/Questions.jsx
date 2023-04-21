@@ -3,6 +3,7 @@ import QuestionsHead from './QuestionsMeterial/QuestionsHead';
 import QuestionsList from './QuestionsMeterial/QuestionsList';
 import LeftSideBar from '../StackSidebar/LeftSideBar';
 import RightSideBar from '../StackSidebar/RightSideBar';
+import StackFoot from '../StackFoot/StackFoot';
 
 const Container = styled.div`
   position: relative;
@@ -10,7 +11,7 @@ const Container = styled.div`
   width: 100vw;
   height: 100vh;
   .wrapper {
-    margin: 0 auto;
+    margin: 0 auto 50px;
     max-width: 1246px;
     height: 100%;
     display: flex;
@@ -20,7 +21,8 @@ const Container = styled.div`
 const MainBox = styled.div`
   flex-grow: 1;
   display: flex;
-  padding-left: 164px;
+  margin-left: 164px;
+  border-left: 1px solid #d6d9dc;
 `;
 
 const QuestionsBox = styled.div`
@@ -46,6 +48,7 @@ const Questions = ({ curTab, onTabSelect }) => {
             <RightSideBar />
           </MainBox>
         </div>
+        <StackFoot />
       </Container>
     </>
   );
