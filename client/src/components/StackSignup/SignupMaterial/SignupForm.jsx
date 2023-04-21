@@ -214,7 +214,7 @@ const SignupForm = () => {
       {errors.password && errors.password.type === 'required' && <p className='pwd-p-required'>필수 입력 항목입니다.</p>}
       {errors.password && errors.password.type === 'minLength' && <p className='pwd-p-minLength'>최소 8자 이상으로 입력해주세요.</p>}
       {errors.password && errors.password.type === 'pattern' && (
-        <p className='pwd-p-pattern'>영문, 숫자, 특수기호 조합으로 8자리 이상 입력해주세요.</p>
+        <p className='pwd-p-pattern'>영문, 숫자, 특수문자 조합으로 8자리 이상 입력해주세요.</p>
       )}
 
       <div className='p-pwd-txt'>

@@ -9,6 +9,7 @@ const ImgNameProfileBlock = styled.div`
 
   .profile-img {
     width: 128px;
+    margin-left: 1.5px;
   }
 
   .name-txt {

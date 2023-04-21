@@ -1,7 +1,9 @@
 import AskPageContents from '../components/Ask/AskPageContents';
 import styled from 'styled-components';
 import HeadLogin from '../components/StackHead/HeadLogin';
+import HeadNotLoginMain from '../components/StackHead/HeadNotLoginMain';
 import StackFoot from '../components/StackFoot/StackFoot';
+import { useSelector } from 'react-redux';
 
 const Content = styled.div`
   width: 100%;
@@ -12,9 +14,11 @@ const Content = styled.div`
   background-color: transparent;
 `;
 function AskPage() {
+  const { loggedIn } = useSelector((state) => state.user);
+
   return (
     <>
-      <HeadLogin />
+      {loggedIn ? <HeadLogin /> : <HeadNotLoginMain />}
       <Content>
         <AskPageContents />
       </Content>
