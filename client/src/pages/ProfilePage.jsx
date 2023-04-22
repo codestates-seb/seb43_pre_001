@@ -13,7 +13,7 @@ const ProfilePage = () => {
       <HeadLogin />
       <ProfilePageBlock>
         <StackProfile />
-        <StackFoot />
+        <StackFoot num={500} />
       </ProfilePageBlock>
     </>
   );

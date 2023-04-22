@@ -3,6 +3,7 @@ import profileBigImg from '../../../assets/profile-big-img.svg';
 import { useDispatch, useSelector } from 'react-redux';
 import { logout } from '../../../reducer/userSlice';
 import { useNavigate } from 'react-router-dom';
+import { removeToken } from '../../../reducer/authSlice';
 
 const ImgNameProfileBlock = styled.div`
   display: flex;
@@ -73,6 +74,7 @@ const ImgNameProfile = () => {
 
   const logoutFn = () => {
     dispatch(logout());
+    dispatch(removeToken());
     navigate('/');
   };
 

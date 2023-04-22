@@ -1,8 +1,10 @@
 import styled from 'styled-components';
 import { useForm } from 'react-hook-form';
 import { useDispatch } from 'react-redux';
-import { login } from '../../../reducer/userSlice';
+import { setAccessToken } from '../../../reducer/authSlice';
 import { useNavigate } from 'react-router-dom';
+import { login } from '../../../reducer/userSlice';
+import axios from 'axios';
 
 const LoginFormBlock = styled.form`
   width: 288px;
@@ -132,11 +134,21 @@ const LoginForm = () => {
 
   // submit
   const onSubmitFn = (data) => {
-    // 서버에 데이터가 있는지.. 일치하면 login쪽으로 dispatch하고 아니면 에러 메시지 띄워야 함
-    // 일단 그냥 테스트용으로 작성해 봄
-    // data에는 이메일과 비밀번호가 객체형태로 있음
-    dispath(login({ email: data.email }));
-    navigate('/');
+    const { email, password } = data;
+
+    axios
+      .post('/members/login', { email, password })
+      .then((res) => {
+        dispath(setAccessToken({ accessToken: res.data.AccessToken }));
+        dispath(login());
+      })
+      .then(() => {
+        navigate('/');
+      })
+      .catch((err) => {
+        console.log(err);
+        alert('가입되지 않은 이메일이거나, 잘못된 비밀번호입니다.');
+      });
   };
 
   return (

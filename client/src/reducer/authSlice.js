@@ -2,7 +2,6 @@ import { createSlice } from '@reduxjs/toolkit';
 
 const initialStateAuth = {
   accessToken: null,
-  refreshToken: null,
   isAuthenticated: false,
 };
 
@@ -13,14 +12,12 @@ export const authSlice = createSlice({
     setAccessToken: (state, action) => {
       return { ...state, ...action.payload, isAuthenticated: true };
     },
-    setRefreshToken: (state, action) => {
-      return { ...state, ...action.payload, isAuthenticated: true };
-    },
     removeToken: (state) => {
-      return { ...state, accessToken: null, refreshToken: null, isAuthenticated: false };
+      return { ...state, accessToken: null, isAuthenticated: false };
     },
   },
 });
 
-export const { setAccessToken, setRefreshToken, removeToken } = authSlice.actions;
+export const { setAccessToken, removeToken } = authSlice.actions;
+export const selectAccessToken = (state) => state.auth.accessToken;
 export default authSlice.reducer;
