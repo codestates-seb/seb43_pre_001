@@ -18,6 +18,7 @@ import store from '../../store/store';
 import persistStore from 'redux-persist/es/persistStore';
 
 const Main = styled.div`
+  margin-top: 50px;
   padding: 0 24px 50px 24px;
   max-width: 1264px;
   flex-grow: 1;
@@ -78,7 +79,8 @@ const PostOrDiscardButtons = styled.div`
 
 function AskPageContents() {
   const localData = localStorage.getItem('persist:root');
-  console.log('localData : ', localData);
+  const parseData = JSON.parse(localData);
+  console.log('localData : ', parseData.user.member_id);
   const { content, title, allTags, titleFocus, contentFocus, tagsFocus } = useSelector((state) => state.ask);
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -90,21 +92,22 @@ function AskPageContents() {
   };
 
   const postAsk = async () => {
-    const content22 = await axios.post('/questions/ask', requestBody, {
-      headers: {
-        'ngrok-skip-browser-warning': '69420',
-        'Content-Type': 'application/json',
-        Authorization: `Bearer eyJhbGciOiJIUzI1NiJ9.eyJyb2xlcyI6WyJVU0VSIl0sInVzZXJuYW1lIjoiMTIzQDEyMyIsInN1YiI6IjEyM0AxMjMiLCJpYXQiOjE2ODIwODc4MjYsImV4cCI6MTY4MjA4OTYyNn0.MuuACxI6Lh6OHJuTLUJozVqyVpEQohm024VQoZKXUcw`,
-      },
-    });
-
-    console.log('requestBody : ', requestBody);
-    console.log('content22: ', content22);
+    if (isValidHandler()) {
+      const content = await axios.post(`/questions/ask`, requestBody, {
+        headers: {
+          'ngrok-skip-browser-warning': '69420',
+          'Content-Type': 'application/json',
+          Authorization: `Bearer eyJhbGciOiJIUzI1NiJ9.eyJyb2xlcyI6WyJVU0VSIl0sInVzZXJuYW1lIjoiMTIzQDEyMyIsInN1YiI6IjEyM0AxMjMiLCJpYXQiOjE2ODIxNDYwMDQsImV4cCI6MTY4MjE0NzgwNH0.D272_GJr2N6hXFqz42dQ9RZs_drI2OGXp0LLPMSew4k`,
+        },
+      });
+      console.log('requestBody : ', requestBody);
+      console.log('content: ', content);
+    }
   };
 
   const isValidHandler = () => {
     return title?.length >= 15 && content?.length;
-    // && allTags?.length && allTags?.length <= 5;
+    //  allTags?.length && allTags?.length <= 5;
   };
 
   const discardHandler = () => {
