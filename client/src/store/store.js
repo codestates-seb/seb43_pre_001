@@ -25,7 +25,7 @@ const persistConfig = {
   whitelist: ['user', 'auth'],
   blacklist: ['ask', 'questions'],
   transforms: [
-    expireReducer(['auth', 'user'], {
+    expireReducer('auth', {
       expireSeconds: (state) => {
         const exp = jwt_decode(state.auth.accessToken).exp;
         const now = Date.now() / 1000;
@@ -34,6 +34,21 @@ const persistConfig = {
       expiredState: {
         accessToken: null,
         isAuthenticated: false,
+      },
+      autoExpire: true,
+      stateExpireKey: 'auth.accessToken.exp',
+    }),
+    expireReducer('user', {
+      expireSeconds: (state) => {
+        const exp = jwt_decode(state.auth.accessToken).exp;
+        const now = Date.now() / 1000;
+        return exp - now;
+      },
+      expiredState: {
+        memberId: null,
+        member_id: null,
+        nickname: null,
+        loggedIn: false,
       },
       autoExpire: true,
       stateExpireKey: 'auth.accessToken.exp',
