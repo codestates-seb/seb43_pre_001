@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import { useForm } from 'react-hook-form';
-import { useSelector, useDispatch } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { setAccessToken } from '../../../reducer/authSlice';
 import { useNavigate } from 'react-router-dom';
 import { login } from '../../../reducer/userSlice';
@@ -140,11 +140,9 @@ const LoginForm = () => {
       .post('/members/login', { email, password })
       .then((res) => {
         dispath(setAccessToken({ accessToken: res.data.AccessToken }));
-        dispath(login());
+        dispath(login({ memberId: res.data.memberId, member_id: res.data.memberId }));
       })
       .then(() => {
-        //여기서 확인해보자
-        console.log();
         navigate('/');
       })
       .catch((err) => {

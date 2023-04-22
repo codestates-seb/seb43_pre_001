@@ -3,7 +3,7 @@ import { useForm } from 'react-hook-form';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
-import { signup } from '../../../reducer/userSlice';
+import { changeName } from '../../../reducer/userSlice';
 
 const SignupFormBlock = styled.form`
   width: 317px;
@@ -176,7 +176,7 @@ const SignupForm = () => {
         email,
         password,
       });
-      await dispatch(signup({ ...resData.data, member_id: resData.data.memberId }));
+      await dispatch(changeName({ nickname: resData.data.nickname }));
       await navigate('/login');
     } catch (err) {
       console.log(err);

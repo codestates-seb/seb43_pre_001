@@ -4,8 +4,6 @@ const initialStateUser = {
   memberId: null,
   member_id: null,
   nickname: null,
-  name: null,
-  email: null,
   loggedIn: false,
 };
 
@@ -13,11 +11,8 @@ export const userSlice = createSlice({
   name: 'user',
   initialState: initialStateUser,
   reducers: {
-    signup: (state, action) => {
-      return { ...state, ...action.payload };
-    },
-    login: (state) => {
-      return { ...state, loggedIn: true };
+    login: (state, action) => {
+      return { ...state, ...action.payload, loggedIn: true };
     },
     logout: (state) => {
       return {
@@ -25,16 +20,16 @@ export const userSlice = createSlice({
         memberId: null,
         member_id: null,
         nickname: null,
-        name: null,
-        email: null,
         loggedIn: false,
       };
     },
     changeName: (state, action) => {
       return { ...state, ...action.payload };
+      // state = { ...state, ...action.payload };
+      // console.log(state);
     },
   },
 });
 
-export const { signup, login, logout, changeName } = userSlice.actions;
+export const { login, logout, changeName } = userSlice.actions;
 export default userSlice.reducer;
