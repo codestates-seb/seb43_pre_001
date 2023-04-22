@@ -55,9 +55,7 @@ const LeftSideBar = () => {
   return (
     <>
       <LeftSideBarBox>
-        <TabMenu className={sideBarState.menu === 'Home' ? 'active' : ''} onClick={handelClick}>
-          Home
-        </TabMenu>
+        <TabMenu>Home</TabMenu>
         <TabMenu className='public'>PUBLIC</TabMenu>
         <CustomLink to='/' onClick={handelClick}>
           <TabMenu className={sideBarState.menu === 'Questions' ? 'active' : ''}>
