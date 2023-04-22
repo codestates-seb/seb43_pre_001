@@ -78,6 +78,9 @@ const DetailQuestion = () => {
     return <Container>에러 발생...</Container>;
   }
 
+  const stackFoot = <StackFoot num={980} />;
+  console.log(stackFoot);
+
   return (
     <>
       {questions.question && (

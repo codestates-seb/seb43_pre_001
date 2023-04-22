@@ -1,5 +1,9 @@
 import styled from 'styled-components';
 import { useForm } from 'react-hook-form';
+import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { signup } from '../../../reducer/userSlice';
 
 const SignupFormBlock = styled.form`
   width: 317px;
@@ -153,15 +157,31 @@ const SignupFormBlock = styled.form`
 `;
 
 const SignupForm = () => {
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm();
 
-  // submit
-  const onSubmit = () => {
-    // 서버에 해당 데이터가 없을 경우, 데이터를 보내야 한다.
+  const onSubmit = async (data) => {
+    const { nickname, email, password } = data;
+
+    try {
+      const resData = await axios.post('/members/signup', {
+        nickname,
+        name: nickname,
+        email,
+        password,
+      });
+      await dispatch(signup({ ...resData.data, member_id: resData.data.memberId }));
+      await navigate('/login');
+    } catch (err) {
+      console.log(err);
+      alert('이미 존재하는 회원입니다.');
+    }
   };
 
   return (

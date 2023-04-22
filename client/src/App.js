@@ -1,6 +1,5 @@
 import React, { useState, useCallback } from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import { Provider } from 'react-redux';
 import { BackgroundColor } from './GlobalStyle';
 
 import LoginPage from './pages/LoginPage';
