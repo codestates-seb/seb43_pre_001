@@ -3,9 +3,10 @@ import storage from 'redux-persist/lib/storage';
 import { combineReducers } from 'redux';
 import { persistReducer } from 'redux-persist';
 import expireReducer from 'redux-persist-expire';
+import jwt_decode from 'jwt-decode';
 
 import { userSlice } from '../reducer/userSlice';
-import { authSlice } from '../reducer/authSlice';
+import { authSlice, selectAccessToken } from '../reducer/authSlice';
 import askSlice from '../reducer/askSlice';
 import questionSlice from '../reducer/questionSlice';
 
@@ -16,17 +17,42 @@ const reducers = combineReducers({
   questions: questionSlice.reducer,
 });
 
-const persistConfig = {
-  key: 'root',
-  storage,
-  whitelist: ['user', 'auth'],
-  blacklist: ['ask', 'questions'],
+const createPersistConfig = (accessToken) => {
+  const persistConfig = {
+    key: 'createPersistConfig',
+    storage,
+    whitelist: ['user', 'auth'],
+    blacklist: ['ask', 'questions'],
+    transforms: [],
+  };
+
+  if (accessToken !== null || undefined) {
+    try {
+      const decodedToken = jwt_decode(accessToken);
+      const expireSeconds = decodedToken.exp - Date.now() / 1000;
+
+      persistConfig.transforms.push(
+        expireReducer('auth', {
+          expireSeconds,
+          expiredState: { token: null, isAuthenticated: false },
+          autoExpire: true,
+        }),
+        expireReducer('user', {
+          expireSeconds,
+          expiredState: null,
+          autoExpire: true,
+        }),
+      );
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
+  return persistConfig;
 };
 
-const persist = persistReducer(persistConfig, reducers);
-
 const store = configureStore({
-  reducer: persist,
+  reducer: persistReducer(createPersistConfig(selectAccessToken), reducers),
   middleware: (getDefaultMiddleware) => getDefaultMiddleware({ serializableCheck: false }),
 });
 

@@ -10,7 +10,6 @@ import axios from 'axios';
 import SharedButton from '../SharedButton';
 import { useSelector, useDispatch } from 'react-redux';
 import { useEffect } from 'react';
-import { useCookie } from 'react-cookie';
 import { useNavigate } from 'react-router-dom';
 import { setDiscardEditor, setDiscardTitle, setDiscardTags } from '../../reducer/askSlice';
 
