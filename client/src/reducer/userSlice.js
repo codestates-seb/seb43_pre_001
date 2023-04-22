@@ -25,8 +25,6 @@ export const userSlice = createSlice({
     },
     changeName: (state, action) => {
       return { ...state, ...action.payload };
-      // state = { ...state, ...action.payload };
-      // console.log(state);
     },
   },
 });
