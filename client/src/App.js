@@ -19,7 +19,7 @@ function App() {
       <BackgroundColor />
       <Routes>
         <Route path='/' element={<QuestionsPage curTab={curTab} onTabSelect={onTabSelect} />} />
-        <Route path='/questions/:question_id' element={<DetailQuestionPage curTab={curTab} onTabSelect={onTabSelect} />} />
+        <Route path='/questions/:questionId' element={<DetailQuestionPage curTab={curTab} onTabSelect={onTabSelect} />} />
         <Route path='/login' element={<LoginPage />} />
         <Route path='/signup' element={<SignupPage />} />
         <Route path='/profile' element={<ProfilePage />} />

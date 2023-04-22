@@ -39,7 +39,7 @@ const MainBox = styled.div`
 
 const DetailQuestion = ({ curTab, onTabSelect }) => {
   //요청할 API 주소를 위함
-  const { question_id } = useParams();
+  const { questionId } = useParams();
   //로딩 및 에러 처리
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
@@ -47,14 +47,18 @@ const DetailQuestion = ({ curTab, onTabSelect }) => {
   // questions 전역 상태관리
   const questions = useSelector((state) => state.questions);
   const dispatch = useDispatch();
-
   useEffect(() => {
     const process = async () => {
       setLoading(true);
       try {
-        const response = await axios.get(`http://localhost:4000/questions/?question_id=${question_id}`);
+        const response = await axios.get(`/questions/${questionId}`, {
+          headers: {
+            Authorization:
+              'Bearer eyJhbGciOiJIUzI1NiJ9.eyJyb2xlcyI6WyJVU0VSIl0sInVzZXJuYW1lIjoidzFAbmF2ZXIuY29tIiwic3ViIjoidzFAbmF2ZXIuY29tIiwiaWF0IjoxNjgyMDU3MDYwLCJleHAiOjE2ODIwNTg4NjB9.X94BTkTPpDEMfAjIOmzGWq6ungtCJGrN4W-cs5qbAYo',
+          },
+        });
         // 데이터를 전역 store에 저장하기위함
-        dispatch(setDetailQuestion(response.data[0]));
+        dispatch(setDetailQuestion(response.data.data));
       } catch (e) {
         setError(e);
       }

@@ -4,7 +4,6 @@ import DetailQuestion from '../components/StackDetail/DetailQuestion';
 import StackFoot from '../components/StackFoot/StackFoot';
 import { useSelector } from 'react-redux';
 
-
 const DetailQuestionPage = ({ curTab, onTabSelect }) => {
   const { loggedIn } = useSelector((state) => state.user);
 
