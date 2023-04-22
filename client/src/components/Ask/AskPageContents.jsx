@@ -12,8 +12,13 @@ import { useSelector, useDispatch } from 'react-redux';
 import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { setDiscardEditor, setDiscardTitle, setDiscardTags } from '../../reducer/askSlice';
+import storage from 'redux-persist/lib/storage';
+import { member_id } from '../../reducer/userSlice';
+import store from '../../store/store';
+import persistStore from 'redux-persist/es/persistStore';
 
 const Main = styled.div`
+  margin-top: 50px;
   padding: 0 24px 50px 24px;
   max-width: 1264px;
   flex-grow: 1;
@@ -73,46 +78,36 @@ const PostOrDiscardButtons = styled.div`
 `;
 
 function AskPageContents() {
+  const localData = localStorage.getItem('persist:root');
+  const parseData = JSON.parse(localData);
+  console.log('localData : ', parseData.user.member_id);
   const { content, title, allTags, titleFocus, contentFocus, tagsFocus } = useSelector((state) => state.ask);
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
+  const requestBody = {
+    member_id: 1,
+    title,
+    content,
+  };
+
   const postAsk = async () => {
-    if (!isValidHandler()) {
-      await axios
-        .post('http://localhost:8080/questions/ask', {
-          member: {
-            memberId: 1,
-            nickname: '555',
-            name: '55',
-            email: '555',
-          },
-          questionId: 5,
-          title: '55',
-          content: 'asdfasdf',
-          createdAt: 'd-04-df:05:41.555',
-          modifiedAt: 'df-04-ad:05:41.555',
-        })
-        .then((response) => {
-          console.log(response);
-          // navigate('/');
-        })
-        .catch((error) => {
-          console.log(error);
-        });
+    if (isValidHandler()) {
+      const content = await axios.post(`/questions/ask`, requestBody, {
+        headers: {
+          'ngrok-skip-browser-warning': '69420',
+          'Content-Type': 'application/json',
+          Authorization: `Bearer eyJhbGciOiJIUzI1NiJ9.eyJyb2xlcyI6WyJVU0VSIl0sInVzZXJuYW1lIjoiMTIzQDEyMyIsInN1YiI6IjEyM0AxMjMiLCJpYXQiOjE2ODIxNDYwMDQsImV4cCI6MTY4MjE0NzgwNH0.D272_GJr2N6hXFqz42dQ9RZs_drI2OGXp0LLPMSew4k`,
+        },
+      });
+      console.log('requestBody : ', requestBody);
+      console.log('content: ', content);
     }
   };
 
-  const getAsk = async () => {
-    await axios('http://localhost:4000/data').then((res) => {
-      const member = res;
-
-      console.log(member);
-    });
-  };
-
   const isValidHandler = () => {
-    return title?.length >= 15 && content?.length && allTags?.length && allTags?.length <= 5;
+    return title?.length >= 15 && content?.length;
+    //  allTags?.length && allTags?.length <= 5;
   };
 
   const discardHandler = () => {
@@ -146,10 +141,10 @@ function AskPageContents() {
           <TextEditor title={body.title} desc={body.desc} />
           {contentFocus ? <AskPageSideNotice noticeTitle={body.noticeTitle} noticeDesc={body.noticeDesc} /> : null}
         </InputSet>
-        <InputSet>
+        {/* <InputSet>
           <InputTags title={tags.title} desc={tags.desc} />
           {tagsFocus ? <AskPageSideNotice noticeTitle={tags.noticeTitle} noticeDesc={tags.noticeDesc} /> : null}
-        </InputSet>
+        </InputSet> */}
         <PostOrDiscardButtons>
           <SharedButton buttonText='Post your question' functionHandler={postAsk}></SharedButton>
           <Button onClick={discardHandler}>Discard draft</Button>

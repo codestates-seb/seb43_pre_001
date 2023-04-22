@@ -30,9 +30,9 @@ const Button = styled.button`
   }}
 `;
 
-function SharedButton({ buttonText, funcHandler = (value) => value }) {
+function SharedButton({ buttonText, functionHandler = (value) => value }) {
   return (
-    <Button text={buttonText} onClick={funcHandler}>
+    <Button text={buttonText} onClick={functionHandler}>
       <div>{buttonText}</div>
     </Button>
   );

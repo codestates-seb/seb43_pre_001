@@ -1,7 +1,7 @@
 import '@toast-ui/editor/dist/toastui-editor.css';
 import { Editor } from '@toast-ui/react-editor';
 import styled from 'styled-components';
-import { useRef, useEffect, useState } from 'react';
+import { useRef, useEffect, useState, useLayoutEffect } from 'react';
 import { AskBoxStyle } from './AskStyle';
 import { useDispatch, useSelector } from 'react-redux';
 import { setContent, setContentFocus, setDiscardEditor } from '../../reducer/askSlice';
@@ -40,10 +40,10 @@ function TextEditor({ title, desc = null, initialValue = '' }) {
   const { contentFocus, discardEditor } = useSelector((state) => state.ask);
   const editorRef = useRef(null);
   const dispatch = useDispatch();
-  const { content } = desc ? useSelector((state) => state.ask) : useSelector((state) => state.answer);
+  const { content } = title === 'Body' ? useSelector((state) => state.ask) : useSelector((state) => state.answer);
 
   const setContentText = () => {
-    desc
+    title === 'Body'
       ? dispatch(setContent(editorRef.current?.getInstance().getMarkdown()))
       : dispatch(setAnswerContent(editorRef.current?.getInstance().getMarkdown()));
   };
@@ -58,6 +58,9 @@ function TextEditor({ title, desc = null, initialValue = '' }) {
     if (!content?.length) {
       isContentValid = false;
       setContentErrorMsg('Body is missing.');
+    } else if (content?.length < 30) {
+      isContentValid = false;
+      setContentErrorMsg('Body must be at least 30 characters.');
     } else {
       isContentValid = true;
       setContentErrorMsg('');
@@ -84,6 +87,11 @@ function TextEditor({ title, desc = null, initialValue = '' }) {
       resetEditor();
     }
   }, [discardEditor]);
+
+  //에디터 초기값 초기화되지 않는 문제 해결
+  useLayoutEffect(() => {
+    resetEditor();
+  }, [initialValue]);
 
   return (
     <Div contentErrorMsg={contentErrorMsg} contentFocus={contentFocus} desc={desc}>

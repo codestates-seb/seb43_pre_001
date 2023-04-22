@@ -11,9 +11,23 @@ import askSlice from '../reducer/askSlice';
 import questionSlice from '../reducer/questionSlice';
 import sidebarSlice from '../reducer/sidebarSlice';
 
+const userPersistConfig = {
+  key: 'user',
+  storage,
+  transforms: [expireReducer('loggedIn', { expireSeconds: 3600 })],
+  whitelist: ['member_id', 'email', 'nickname', 'loggedIn'],
+};
+
+const authPersistConfig = {
+  key: 'auth',
+  storage,
+  transforms: [expireReducer('accessToken', { expireSeconds: 1800 })],
+  whitelist: ['accessToken'],
+};
+
 const reducers = combineReducers({
   user: userSlice.reducer,
-  auth: authSlice.reducer,
+  auth: persistReducer(authPersistConfig, authSlice.reducer),
   ask: askSlice.reducer,
   questions: questionSlice.reducer,
   sidebar: sidebarSlice.reducer,
