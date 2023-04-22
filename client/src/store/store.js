@@ -34,12 +34,22 @@ const createPersistConfig = (accessToken) => {
       persistConfig.transforms.push(
         expireReducer('auth', {
           expireSeconds,
-          expiredState: { token: null, isAuthenticated: false },
+          expiredState: {
+            accessToken: null,
+            isAuthenticated: false,
+          },
           autoExpire: true,
         }),
         expireReducer('user', {
           expireSeconds,
-          expiredState: null,
+          expiredState: {
+            memberId: null,
+            member_id: null,
+            nickname: null,
+            name: null,
+            email: null,
+            loggedIn: false,
+          },
           autoExpire: true,
         }),
       );
