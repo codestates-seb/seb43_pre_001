@@ -13,7 +13,6 @@ import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { setDiscardEditor, setDiscardTitle, setDiscardTags } from '../../reducer/askSlice';
 import storage from 'redux-persist/lib/storage';
-import { member_id } from '../../reducer/userSlice';
 import store from '../../store/store';
 import persistStore from 'redux-persist/es/persistStore';
 

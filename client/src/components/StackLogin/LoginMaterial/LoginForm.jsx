@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import { useForm } from 'react-hook-form';
-import { useDispatch } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import { setAccessToken } from '../../../reducer/authSlice';
 import { useNavigate } from 'react-router-dom';
 import { login } from '../../../reducer/userSlice';
@@ -143,6 +143,8 @@ const LoginForm = () => {
         dispath(login());
       })
       .then(() => {
+        //여기서 확인해보자
+        console.log();
         navigate('/');
       })
       .catch((err) => {
