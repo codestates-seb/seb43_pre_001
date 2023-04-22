@@ -157,7 +157,7 @@ const QuestionsCard = ({ question, onTabSelect }) => {
             </MetaTags>
             <MetaUserCard>
               <div className='nickname'>{member.nickname}</div>
-              <span className='create-at'>asked {showDate(createdAt)} secs ago</span>
+              <span className='create-at'>asked {showDate(createdAt)}</span>
             </MetaUserCard>
           </div>
         </QuesionContent>
