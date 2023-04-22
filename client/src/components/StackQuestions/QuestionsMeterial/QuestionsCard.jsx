@@ -5,14 +5,17 @@ const QuestionsCardBox = styled.div`
   border-top: 1px solid #d6d9dc;
   padding: 16px;
   display: flex;
-  flex-direction: column;
+  /* flex-direction: column; */
   /* height: 98px; */
 `;
 
 const QuesionStatus = styled.div`
+  width: 108px;
   display: flex;
+  flex-direction: column;
+  align-items: flex-end;
   gap: 12px;
-  margin: 3px 0 10px 0;
+  margin: 3px 16px 10px 0;
   font-size: 13px;
   color: rgb(106, 115, 124);
   .votes {
@@ -107,7 +110,7 @@ const MetaUserCard = styled.div`
   }
 `;
 
-const QuestionsCard = ({ question, onTabSelect }) => {
+const QuestionsCard = ({ question }) => {
   const { content, createdAt, title, questionId, tag, member } = question;
 
   const showDate = (a) => {
@@ -128,7 +131,6 @@ const QuestionsCard = ({ question, onTabSelect }) => {
     return `${Math.floor(years)} years ago`;
   };
 
-  console.log(showDate(createdAt));
   return (
     <>
       <QuestionsCardBox>
@@ -139,21 +141,16 @@ const QuestionsCard = ({ question, onTabSelect }) => {
         </QuesionStatus>
         <QuesionContent>
           <CustomLink to={`/questions/${questionId}`}>
-            <Content onClick={() => onTabSelect('questions')}>{title}</Content>
+            <Content>{title}</Content>
           </CustomLink>
           <div className='content'>
             <p>{content}</p>
           </div>
           <div className='meta'>
             <MetaTags>
-              {tag &&
-                tag.map((el, idx) => {
-                  return (
-                    <div className='tag' key={idx}>
-                      {el}
-                    </div>
-                  );
-                })}
+              <div className='tag'>tag1</div>
+              <div className='tag'>tag2</div>
+              <div className='tag'>tag3</div>
             </MetaTags>
             <MetaUserCard>
               <div className='nickname'>{member.nickname}</div>

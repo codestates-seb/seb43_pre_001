@@ -10,20 +10,7 @@ const QuestionsListBox = styled.div`
   display: flex;
   flex-direction: column;
 `;
-const QuestionsList = ({ onTabSelect }) => {
-  /*
-  usePromist이용해보기
-  API에서 응답값 들고오기
-  각 action명, axious메서드, 의존성배열 넘겨주기
-  const [loading, resolved, error] = usePromise(
-    () => {
-      return axios.get(`http://localhost:4000/questions`);
-    },
-    [],
-    setQuestions(),
-  );
-  */
-
+const QuestionsList = () => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
 
@@ -65,7 +52,7 @@ const QuestionsList = ({ onTabSelect }) => {
       <QuestionsListBox>
         {questions.questionsList &&
           questions.questionsList.map((el) => {
-            return <QuestionsCard key={el.questionId} question={el} onTabSelect={onTabSelect} />;
+            return <QuestionsCard key={el.questionId} question={el} />;
           })}
       </QuestionsListBox>
     </>

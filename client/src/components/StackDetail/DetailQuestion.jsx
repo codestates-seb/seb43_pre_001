@@ -16,7 +16,7 @@ const Container = styled.div`
   height: 100vh;
   .wrapper {
     margin: 0 auto 50px;
-    max-width: 1246px;
+    max-width: 1264px;
     height: 100%;
     display: flex;
   }
@@ -28,7 +28,7 @@ const MainBox = styled.div`
   flex-grow: 1;
   display: flex;
   flex-direction: column;
-  margin-left: 164px;
+  margin-left: 150px;
   padding: 24px;
   min-width: 800px;
   div.hr-line {
@@ -37,7 +37,7 @@ const MainBox = styled.div`
   }
 `;
 
-const DetailQuestion = ({ curTab, onTabSelect }) => {
+const DetailQuestion = () => {
   //요청할 API 주소를 위함
   const { questionId } = useParams();
   //로딩 및 에러 처리
@@ -83,7 +83,7 @@ const DetailQuestion = ({ curTab, onTabSelect }) => {
       {questions.question && (
         <Container>
           <div className='wrapper'>
-            <LeftSideBar curTab={curTab} onTabSelect={onTabSelect} />
+            <LeftSideBar />
             <MainBox>
               <DetailHead question={questions.question} />
               <DetailView question={questions.question}></DetailView>

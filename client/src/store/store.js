@@ -8,19 +8,21 @@ import { userSlice } from '../reducer/userSlice';
 import { authSlice } from '../reducer/authSlice';
 import askSlice from '../reducer/askSlice';
 import questionSlice from '../reducer/questionSlice';
+import sidebarSlice from '../reducer/sidebarSlice';
 
 const reducers = combineReducers({
   user: userSlice.reducer,
   auth: authSlice.reducer,
   ask: askSlice.reducer,
   questions: questionSlice.reducer,
+  sidebar: sidebarSlice.reducer,
 });
 
 const persistConfig = {
   key: 'root',
   storage,
   whitelist: ['user', 'auth'],
-  blacklist: ['ask', 'questions'],
+  blacklist: ['ask', 'questions', 'sidebar'],
 };
 
 const persist = persistReducer(persistConfig, reducers);
