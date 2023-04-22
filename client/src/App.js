@@ -24,7 +24,7 @@ function App() {
         <Route path='/questions/ask' element={<AskPage />} />
         <Route path='/questions/ask' element={<EditPage />} />
 
-        <Route path='*' element={<QuestionsPage curTab={curTab} onTabSelect={onTabSelect} />} />
+        <Route path='*' element={<QuestionsPage />} />
       </Routes>
     </BrowserRouter>
   );
