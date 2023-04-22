@@ -1,5 +1,7 @@
 import styled from 'styled-components';
-import LeftSideBarProfile from './ProfileMaterial/LeftSideBarProfile';
+// import LeftSideBarProfile from './ProfileMaterial/LeftSideBarProfile';
+//사이드바 변경 (현아님것)
+import LeftSideBar from '../StackSidebar/LeftSideBar';
 import ImgNameProfile from './ProfileMaterial/ImgNameProfile';
 import EditProfile from './ProfileMaterial/EditProfile';
 
@@ -24,7 +26,8 @@ const RealProfileBlock = styled.div`
     width: 496px;
     height: 741px;
     border-left: 1px solid #d6d9dc;
-    margin-left: 163px;
+    // 여기만 수정
+    margin-left: 150px;
   }
 
   .fixed {
@@ -49,7 +52,7 @@ const StackProfile = () => {
         <RealProfileBlock>
           {/* nav 내비게이션 바 구역 */}
           <div className='fixed'>
-            <LeftSideBarProfile />
+            <LeftSideBar />
           </div>
 
           {/* 프로필 구역 */}

@@ -10,20 +10,7 @@ const QuestionsListBox = styled.div`
   display: flex;
   flex-direction: column;
 `;
-const QuestionsList = ({ onTabSelect }) => {
-  /*
-  usePromist이용해보기
-  API에서 응답값 들고오기
-  각 action명, axious메서드, 의존성배열 넘겨주기
-  const [loading, resolved, error] = usePromise(
-    () => {
-      return axios.get(`http://localhost:4000/questions`);
-    },
-    [],
-    setQuestions(),
-  );
-  */
-
+const QuestionsList = () => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
 
@@ -34,7 +21,12 @@ const QuestionsList = ({ onTabSelect }) => {
     const process = async () => {
       setLoading(true);
       try {
-        const response = await axios.get(`/questions?page=1&size=10`);
+        const response = await axios.get(`/questions?page=1&size=10`, {
+          headers: {
+            Authorization:
+              'Bearer eyJhbGciOiJIUzI1NiJ9.eyJyb2xlcyI6WyJVU0VSIl0sInVzZXJuYW1lIjoidzFAbmF2ZXIuY29tIiwic3ViIjoidzFAbmF2ZXIuY29tIiwiaWF0IjoxNjgyMDU3MDYwLCJleHAiOjE2ODIwNTg4NjB9.X94BTkTPpDEMfAjIOmzGWq6ungtCJGrN4W-cs5qbAYo',
+          },
+        });
         // 데이터를 전역 store에 저장하기위함
         dispatch(setQuestions(response.data.data));
       } catch (e) {
@@ -60,7 +52,7 @@ const QuestionsList = ({ onTabSelect }) => {
       <QuestionsListBox>
         {questions.questionsList &&
           questions.questionsList.map((el) => {
-            return <QuestionsCard key={el.question_id} question={el} onTabSelect={onTabSelect} />;
+            return <QuestionsCard key={el.questionId} question={el} />;
           })}
       </QuestionsListBox>
     </>

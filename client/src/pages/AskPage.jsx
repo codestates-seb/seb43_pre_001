@@ -12,6 +12,7 @@ const Content = styled.div`
   min-height: 750px;
   overflow: visible;
   background-color: transparent;
+  padding-top: 50px;
 `;
 function AskPage() {
   const { loggedIn } = useSelector((state) => state.user);

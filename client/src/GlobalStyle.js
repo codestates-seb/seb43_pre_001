@@ -3,7 +3,11 @@ import { useLocation } from 'react-router-dom';
 
 const GlobalStyled = createGlobalStyle`
   body {
+    margin: 0;
+		padding: 0;
+    height: 100vh;
     background-color: ${({ backgroundColor }) => backgroundColor || '#FFF'};
+
   }
 `;
 
@@ -21,6 +25,5 @@ export function BackgroundColor() {
     default:
       backgroundColor = '#FFF';
   }
-
   return <GlobalStyled backgroundColor={backgroundColor} />;
 }

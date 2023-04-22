@@ -15,7 +15,7 @@ const Container = styled.div`
   flex-direction: column;
   .wrapper {
     margin: 0 auto;
-    max-width: 1246px;
+    min-width: 1264px;
     display: flex;
   }
 `;
@@ -23,7 +23,7 @@ const Container = styled.div`
 const MainBox = styled.div`
   flex-grow: 1;
   display: flex;
-  margin-left: 164px;
+  margin-left: 150px;
   border-left: 1px solid #d6d9dc;
 `;
 
@@ -36,16 +36,16 @@ const QuestionsBox = styled.div`
   padding: 0 24px 24px 0;
 `;
 
-const Questions = ({ curTab, onTabSelect }) => {
+const Questions = () => {
   return (
     <>
       <Container>
         <div className='wrapper'>
-          <LeftSideBar curTab={curTab} onTabSelect={onTabSelect} />
+          <LeftSideBar />
           <MainBox>
             <QuestionsBox>
               <QuestionsHead />
-              <QuestionsList onTabSelect={onTabSelect} />
+              <QuestionsList />
               <PageBtn />
             </QuestionsBox>
             <RightSideBar />

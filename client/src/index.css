@@ -12,3 +12,7 @@ body {
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace;
 }
+
+:root {
+  --footer-height-profile: (calc(100vh - (390px + 321px)));
+}

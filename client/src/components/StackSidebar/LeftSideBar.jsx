@@ -1,8 +1,8 @@
 import styled from 'styled-components';
 import earthIcon from '../../assets/earth-icon.svg';
 import { Link } from 'react-router-dom';
-import { useSelector } from 'react-redux';
-
+import { useSelector, useDispatch } from 'react-redux';
+import { setSidebar } from '../../reducer/sidebarSlice';
 const LeftSideBarBox = styled.nav`
   margin-top: 24px;
   width: 150px;
@@ -44,33 +44,30 @@ const CustomLink = styled(Link)`
   text-decoration: none;
 `;
 
-const LeftSideBar = ({ curTab, onTabSelect }) => {
+const LeftSideBar = () => {
   const { loggedIn } = useSelector((state) => state.user);
-
+  const sideBarState = useSelector((state) => state.sidebar);
+  const dispatch = useDispatch();
+  //sidebar 색상 주기 위한 클릭함수
+  const handelClick = (e) => {
+    dispatch(setSidebar(e.target.textContent));
+  };
   return (
     <>
       <LeftSideBarBox>
-        <CustomLink to='/'>
-          <TabMenu
-            className={curTab === 'home' ? 'active' : ''}
-            onClick={() => {
-              onTabSelect('home');
-            }}
-          >
-            Home
+        <TabMenu>Home</TabMenu>
+        <TabMenu className='public'>PUBLIC</TabMenu>
+        <CustomLink to='/' onClick={handelClick}>
+          <TabMenu className={sideBarState.menu === 'Questions' ? 'active' : ''}>
+            <img src={earthIcon} alt='earth-img'></img>
+            Questions
           </TabMenu>
         </CustomLink>
-        <TabMenu className='public'>PUBLIC</TabMenu>
-        <TabMenu className={curTab === 'questions' ? 'active' : ''}>
-          <img src={earthIcon} alt='earth-img'></img>
-          Questions
-        </TabMenu>
-        <TabMenu className='inner' onClick={onTabSelect}>
-          Tags
-        </TabMenu>
+
+        <TabMenu className='inner'>Tags</TabMenu>
         {loggedIn ? (
-          <CustomLink to='/profile'>
-            <TabMenu className='inner'>Users</TabMenu>
+          <CustomLink to='/profile' onClick={handelClick}>
+            <TabMenu className={sideBarState.menu === 'Users' ? 'inner active' : 'inner'}>Users</TabMenu>
           </CustomLink>
         ) : (
           <CustomLink to='/login'>

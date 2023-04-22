@@ -8,6 +8,17 @@ const StackFootBlock = styled.footer`
   justify-content: center;
   align-items: center;
   background-color: #232629;
+
+  &::before {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: ${({ num }) => (num ? `calc(100vh - (${num}px + 321px))` : 'null')};
+    background-color: #232629;
+    z-index: -1;
+  }
 `;
 
 const RealFootBlock = styled.div`
@@ -112,11 +123,10 @@ const RealFootBlock = styled.div`
   }
 `;
 
-const StackFoot = () => {
+const StackFoot = ({ num }) => {
   return (
-    <StackFootBlock>
+    <StackFootBlock num={num}>
       <RealFootBlock>
-        {/* 로고 누르면 메인 페이지로 이동하도록 라우터 설정해 줘야 함 */}
         <Link to='/'>
           <div className='stack-logo'>
             <img src={stackLogo} alt='logo' />
