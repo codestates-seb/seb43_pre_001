@@ -12,9 +12,6 @@ import { useSelector, useDispatch } from 'react-redux';
 import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { setDiscardEditor, setDiscardTitle, setDiscardTags } from '../../reducer/askSlice';
-import storage from 'redux-persist/lib/storage';
-import store from '../../store/store';
-import persistStore from 'redux-persist/es/persistStore';
 
 const Main = styled.div`
   margin-top: 50px;
