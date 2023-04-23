@@ -1,5 +1,7 @@
 package com.preproject.server.member.entity;
 
+import com.preproject.server.answer.entity.Answer;
+import com.preproject.server.question.entity.Question;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -33,4 +35,10 @@ public class Member implements Principal {
     // 사용자 권한 정보 테이블과 매핑
     @ElementCollection(fetch = FetchType.EAGER)
     private List<String> roles = new ArrayList<>();
+
+    @OneToMany(mappedBy = "member")
+    private List<Question> questions = new ArrayList<>();
+
+    @OneToMany(mappedBy = "member")
+    private List<Answer> answers = new ArrayList<>();
 }
