@@ -1,7 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit';
 
 const initialState = {
-  menu: 'Home',
+  menu: 'Questions',
 };
 
 const sidebarSlice = createSlice({
