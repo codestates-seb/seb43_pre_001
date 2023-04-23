@@ -44,11 +44,9 @@ const PageBtn = ({ totalPage, page, clickPageNum }) => {
           {Number(page) !== 1 ? <BtnBox onClick={clickPageNum}>prev</BtnBox> : null}
           {arr.map((el, idx) => {
             return (
-              <>
-                <BtnBox className={el === Number(page) ? 'active' : ''} key={idx} onClick={clickPageNum}>
-                  {el}
-                </BtnBox>
-              </>
+              <BtnBox key={page + idx} className={el === Number(page) ? 'active' : ''} onClick={clickPageNum}>
+                {el}
+              </BtnBox>
             );
           })}
           {Number(page) !== arr.length ? <BtnBox onClick={clickPageNum}>next</BtnBox> : null}
