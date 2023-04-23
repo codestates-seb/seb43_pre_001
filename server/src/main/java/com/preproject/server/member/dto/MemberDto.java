@@ -37,6 +37,20 @@ public class MemberDto {
     }
 
     @Getter
+    @Setter
+    @AllArgsConstructor
+    @NoArgsConstructor
+    public static class Patch{
+        @Positive
+        private long memberId;
+        @Valid
+        private String nickname;
+
+        @Valid
+        private String password;
+    }
+
+    @Getter
     @AllArgsConstructor
     public static class Response{
         @Positive
