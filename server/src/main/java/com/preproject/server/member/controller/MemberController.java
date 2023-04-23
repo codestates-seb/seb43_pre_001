@@ -13,6 +13,7 @@ import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import javax.validation.constraints.Positive;
 
 @RestController
 @Validated
@@ -35,13 +36,20 @@ public class MemberController {
 
     // 회원 정보 수정
     @PatchMapping("/update/{member-id}")
-    public ResponseEntity patchMember(@PathVariable("member-id") long memberId,
+    public ResponseEntity patchMember(@PathVariable("member-id") @Positive long memberId,
                                       @Valid @RequestBody MemberDto.Patch memberPatchDto) {
         memberPatchDto.setMemberId(memberId);
         Member member = mapper.memberPatchDtoToMember(memberPatchDto);
         Member updatedMember = memberService.updateMember(member);
 
         return new ResponseEntity<>(mapper.memberToMemberResponseDto(updatedMember), HttpStatus.OK);
+    }
+
+    // 회원 삭제
+    @DeleteMapping("/delete/{member-id}")
+    public ResponseEntity deleteMember(@PathVariable("member-id") @Positive long memberId) {
+        memberService.removeMember(memberId);
+        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 
 }

@@ -9,11 +9,14 @@ import com.preproject.server.member.entity.Member;
 import com.preproject.server.member.repository.MemberRepository;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
+import io.jsonwebtoken.io.Decoders;
+import org.apache.tomcat.util.buf.UDecoder;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 
@@ -61,11 +64,11 @@ public class MemberService {
         return memberRepository.save(member);
     }
 
-    /**
-     * <회원 정보 수정>
-     * 회원 정보는 닉네임, 비밀번호만 변경 가능
-     * 1. 수정
-     * 2. 저장
+    /*
+      <회원 정보 수정>
+      회원 정보는 닉네임, 비밀번호만 변경 가능
+      1. 회원 검증(존재O or 존재X)
+      2. 수정
      */
     public Member updateMember(Member member) {
         // 회원 검증
@@ -81,6 +84,19 @@ public class MemberService {
 
     }
 
+    /*
+    <회원 정보 삭제>
+    1. 회원 검증(존재O or 존재X)
+    2. 삭제
+     */
+    public void removeMember(long memberId) {
+        // 회원 검증(존재O or 존재X)
+        Member findMember = checkMember(memberId);
+
+        memberRepository.delete(findMember);
+    }
+
+
     private void verifyExistsEmail(String email) throws Exception {
         Optional<Member> optionalMember = memberRepository.findByEmail(email);
         if (optionalMember.isPresent()) {
@@ -95,6 +111,7 @@ public class MemberService {
         }
     }
 
+    // 회원 검증 메서드
     private Member checkMember(long memberId) {
         return memberRepository.findById(memberId).orElseThrow(() ->
                 new BusinessLogicException(ExceptionCode.MEMBER_NOT_FOUND));
