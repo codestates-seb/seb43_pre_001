@@ -13,6 +13,7 @@ const StackProfileBlock = styled.div`
   .wrapper {
     width: 1266px;
     height: 741px;
+    min-height: 264px;
   }
 `;
 
