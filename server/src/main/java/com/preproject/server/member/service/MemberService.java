@@ -46,6 +46,9 @@ public class MemberService {
         // 중복 이메일 검증
         verifyExistsEmail(member.getEmail());
 
+        // 중복 닉네임 검증
+        verifyExistsNickname(member.getNickname());
+
         // 패스워드 암호화
         String encryptedPassword = passwordEncoder.encode(member.getPassword());
         member.setPassword(encryptedPassword);
@@ -95,6 +98,14 @@ public class MemberService {
     private Member checkMember(long memberId) {
         return memberRepository.findById(memberId).orElseThrow(() ->
                 new BusinessLogicException(ExceptionCode.MEMBER_NOT_FOUND));
+    }
+
+    // 중복 닉네임 검증 메서드
+    private void verifyExistsNickname(String nickname) {
+        Optional<Member> optionalMember = memberRepository.findByNickname(nickname);
+        if (optionalMember.isPresent()) {
+            throw new BusinessLogicException(ExceptionCode.NICKNAME_EXISTS);
+        }
     }
 
 }
