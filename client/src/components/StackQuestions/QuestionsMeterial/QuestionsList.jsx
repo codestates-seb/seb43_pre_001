@@ -13,6 +13,8 @@ const QuestionsListBox = styled.div`
 const QuestionsList = () => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
+  //token 받아오기
+  const { accessToken } = useSelector((state) => state.auth);
 
   // questions 전역 상태관리
   const questions = useSelector((state) => state.questions);
@@ -23,8 +25,7 @@ const QuestionsList = () => {
       try {
         const response = await axios.get(`/questions?page=1&size=10`, {
           headers: {
-            Authorization:
-              'Bearer eyJhbGciOiJIUzI1NiJ9.eyJyb2xlcyI6WyJVU0VSIl0sInVzZXJuYW1lIjoidzFAbmF2ZXIuY29tIiwic3ViIjoidzFAbmF2ZXIuY29tIiwiaWF0IjoxNjgyMDU3MDYwLCJleHAiOjE2ODIwNTg4NjB9.X94BTkTPpDEMfAjIOmzGWq6ungtCJGrN4W-cs5qbAYo',
+            Authorization: accessToken,
           },
         });
         // 데이터를 전역 store에 저장하기위함
