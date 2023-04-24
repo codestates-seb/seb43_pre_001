@@ -55,6 +55,31 @@ const SignupFormBlock = styled.form`
     }
   }
 
+  #nickname {
+    border: ${({ errorsNickname }) => (errorsNickname ? '1px solid #eb2c32' : 'border: 1px solid #bcbfc3')};
+
+    &:focus {
+      border: ${({ errorsNickname }) => (errorsNickname ? '1px solid #eb2c32' : '1px solid #7eb9f2')};
+      outline: ${({ errorsNickname }) => (errorsNickname ? '4px solid #f8e1e0' : '4px solid #dae5f1')};
+    }
+  }
+  #email {
+    border: ${({ errorsEmail }) => (errorsEmail ? '1px solid #eb2c32' : 'border: 1px solid #bcbfc3')};
+
+    &:focus {
+      border: ${({ errorsEmail }) => (errorsEmail ? '1px solid #eb2c32' : '1px solid #7eb9f2')};
+      outline: ${({ errorsEmail }) => (errorsEmail ? '4px solid #f8e1e0' : '4px solid #dae5f1')};
+    }
+  }
+  #pwd {
+    border: ${({ errorsPwd }) => (errorsPwd ? '1px solid #eb2c32' : 'border: 1px solid #bcbfc3')};
+
+    &:focus {
+      border: ${({ errorsPwd }) => (errorsPwd ? '1px solid #eb2c32' : '1px solid #7eb9f2')};
+      outline: ${({ errorsPwd }) => (errorsPwd ? '4px solid #f8e1e0' : '4px solid #dae5f1')};
+    }
+  }
+
   .submit-btn {
     width: 268px;
     height: 38px;
@@ -185,7 +210,7 @@ const SignupForm = () => {
   };
 
   return (
-    <SignupFormBlock onSubmit={handleSubmit(onSubmit)}>
+    <SignupFormBlock errorsPwd={errors.password} errorsEmail={errors.email} errorsNickname={errors.nickname} onSubmit={handleSubmit(onSubmit)}>
       <label className='label-name' htmlFor='nickname'>
         Display name
       </label>

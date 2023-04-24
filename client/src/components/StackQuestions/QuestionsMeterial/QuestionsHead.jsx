@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 import SharedButton from '../../SharedButton';
 import { Link } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 const QuestionsHeadBox = styled.div`
   display: flex;
   flex-direction: column;
@@ -62,14 +63,22 @@ const StyledLink = styled(Link)`
 `;
 
 const QuestionsHead = () => {
+  const { loggedIn } = useSelector((state) => state.user);
+
   return (
     <>
       <QuestionsHeadBox>
         <Section1>
           <h1>Top Questions</h1>
-          <StyledLink to='/questions/ask'>
-            <SharedButton buttonText='Ask Question' />
-          </StyledLink>
+          {loggedIn ? (
+            <StyledLink to='/questions/ask'>
+              <SharedButton buttonText='Ask Question' />
+            </StyledLink>
+          ) : (
+            <StyledLink to='/login'>
+              <SharedButton buttonText='Ask Question' />
+            </StyledLink>
+          )}
         </Section1>
         <Section2>
           <ul>

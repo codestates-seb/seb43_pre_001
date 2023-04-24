@@ -1,10 +1,19 @@
 import styled from 'styled-components';
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { useDispatch } from 'react-redux';
 import { changeName } from '../../../reducer/userSlice';
 
 const EditProfileBlock = styled.div`
+  #nickname {
+    border: ${({ errorsNickname }) => (errorsNickname ? '1px solid #eb2c32' : 'border: 1px solid #bcbfc3')};
+
+    &:focus {
+      border: ${({ errorsNickname }) => (errorsNickname ? '1px solid #eb2c32' : '1px solid #7eb9f2')};
+      outline: ${({ errorsNickname }) => (errorsNickname ? '4px solid #f8e1e0' : '4px solid #dae5f1')};
+    }
+  }
+
   .edit-txt {
     width: 133px;
     height: 27px;
@@ -136,7 +145,7 @@ const EditProfile = () => {
   };
 
   return (
-    <EditProfileBlock open={open}>
+    <EditProfileBlock errorsNickname={errors.nickname} open={open}>
       <button className='edit-txt' onClick={changeOpen}>
         <span>Edit your profile</span>
       </button>
