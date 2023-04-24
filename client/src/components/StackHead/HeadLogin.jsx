@@ -3,6 +3,9 @@ import stackoverflowLogo from '../../assets/stackoverflow-logo.svg';
 import searchIcon from '../../assets/search-icon.svg';
 import profileImg from '../../assets/profile-img.svg';
 import { Link } from 'react-router-dom';
+//헤더 로고 클릭시 sidebar 위치를 Users로 옮김
+import { useDispatch } from 'react-redux';
+import { setSidebar } from '../../reducer/sidebarSlice';
 
 const HeadBlock = styled.header`
   height: 50px;
@@ -193,6 +196,11 @@ const StyledLink = styled(Link)`
 `;
 
 const HeadLogin = () => {
+  //헤더 로고 클릭시 sidebar 위치를 Users로 옮기기 위한 dispatch 적용
+  const dispatch = useDispatch();
+  const handleClick = () => {
+    dispatch(setSidebar('Users'));
+  };
   return (
     <HeadBlock>
       <div className='orange-line'></div>
@@ -208,7 +216,7 @@ const HeadLogin = () => {
           <RowReverseBlock>
             {/* 프로필 사진, 아이콘들 */}
             <RightIcons>
-              <StyledLink to='/profile'>
+              <StyledLink to='/profile' onClick={handleClick}>
                 <button className='profile'>
                   <img src={profileImg} alt='profile-img' />
                   <span>1</span>

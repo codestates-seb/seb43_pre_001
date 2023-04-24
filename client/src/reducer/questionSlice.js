@@ -3,6 +3,7 @@ import { createSlice } from '@reduxjs/toolkit';
 const initialQuestions = {
   questionsList: [],
   question: {},
+  pageInfo: {},
 };
 
 const questionsSlice = createSlice({
@@ -15,7 +16,10 @@ const questionsSlice = createSlice({
     setDetailQuestion(state, action) {
       state.question = action.payload;
     },
+    setPageInfo(state, action) {
+      state.pageInfo = action.payload;
+    },
   },
 });
-export const { setQuestions, setDetailQuestion } = questionsSlice.actions;
+export const { setQuestions, setDetailQuestion, setPageInfo } = questionsSlice.actions;
 export default questionsSlice;

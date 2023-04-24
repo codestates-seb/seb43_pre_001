@@ -111,7 +111,7 @@ const MetaUserCard = styled.div`
 `;
 
 const QuestionsCard = ({ question }) => {
-  const { content, createdAt, title, questionId, tag, member } = question;
+  const { content, createdAt, title, questionId, member } = question;
 
   const showDate = (a) => {
     const milliSeconds = new Date() - new Date(a);
