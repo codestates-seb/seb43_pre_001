@@ -10,6 +10,7 @@ const DetailHeadBox = styled.div`
     font-weight: 400;
     line-height: 36.45px;
     color: rgb(59, 64, 69);
+    padding-right: 15px;
   }
 `;
 const DetailInfo = styled.div`

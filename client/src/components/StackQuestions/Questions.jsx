@@ -50,7 +50,6 @@ const Questions = () => {
     if (e.target.textContent === 'prev') {
       setPage(String(page - 1));
     } else if (e.target.textContent === 'next') {
-      // console.log(typeof (Number(page) + 1));
       setPage(String(Number(page) + 1));
     } else {
       setPage(e.target.textContent);
