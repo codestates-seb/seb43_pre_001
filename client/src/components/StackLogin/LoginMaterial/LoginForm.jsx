@@ -157,7 +157,7 @@ const LoginForm = () => {
       .post('/members/login', { email, password })
       .then((res) => {
         dispatch(setAccessToken({ accessToken: res.data.AccessToken }));
-        dispatch(login({ memberId: Number(res.data.memberId), nickname: res.data.nickname, name: res.data.nickname }));
+        dispatch(login({ memberId: Number(res.data.memberId), nickname: res.data.nickname }));
       })
       .then(() => {
         navigate('/');

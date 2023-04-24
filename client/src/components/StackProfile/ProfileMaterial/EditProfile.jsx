@@ -151,7 +151,7 @@ const EditProfile = () => {
     axios
       .patch(`members/update/${memberId}`, reqBody, { headers: { Authorization: accessToken } })
       .then((res) => {
-        dispatch(changeName({ nickname: res.data.nickname, name: res.data.name }));
+        dispatch(changeName({ nickname: res.data.nickname }));
       })
       .then(() => {
         setOpen(!open);
