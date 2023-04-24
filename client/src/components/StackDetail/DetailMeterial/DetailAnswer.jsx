@@ -14,22 +14,6 @@ const AnswerBox = styled.div`
   margin-top: 40px;
   display: flex;
   flex-direction: column;
-  .answer-desc {
-    font-size: 17px;
-    font-weight: 450;
-    line-height: 23.8px;
-    color: rgb(35, 38, 41);
-    span {
-      color: rgb(0, 116, 204);
-    }
-  }
-  .answer-title {
-    font-size: 19px;
-    font-weight: 450;
-    line-height: 24.7px;
-    color: rgb(35, 38, 41);
-    margin: 20px 0;
-  }
 `;
 const AnswerHead = styled.div`
   font-size: 19px;
@@ -157,11 +141,6 @@ const AnswerAnswer = ({ questionId }) => {
       )}
       <HrTag />
       {/* Answer작성하는 폼 부분 */}
-      <div className='answer-desc'>
-        Know someone who can answer? Share a link to this <span>question</span> via <span>email</span>, <span>Twitter</span>, or <span>Facebook</span>
-      </div>
-      <div className='answer-title'>Your Answer</div>
-      <TextEditor></TextEditor>
       <CreateAnswer questionId={questionId} />
     </AnswerBox>
   );
