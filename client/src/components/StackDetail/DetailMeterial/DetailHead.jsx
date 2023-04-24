@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import SharedButton from '../../SharedButton';
+import { Link } from 'react-router-dom';
 const DetailHeadBox = styled.div`
   /* min-width: 750px; */
   display: flex;
@@ -22,13 +23,17 @@ const DetailInfo = styled.div`
     margin-right: 10px;
   }
 `;
-
+const StyledLink = styled(Link)`
+  text-decoration: none;
+`;
 const DetailHead = ({ question }) => {
   return (
     <>
       <DetailHeadBox>
         <div className='title'>{question.title}</div>
-        <SharedButton buttonText='Ask Question' />
+        <StyledLink to='/questions/ask'>
+          <SharedButton buttonText='Ask Question' />
+        </StyledLink>
       </DetailHeadBox>
       <DetailInfo>
         Asked <span>today</span> Modified <span>today</span> Viewed <span>3 times</span>
