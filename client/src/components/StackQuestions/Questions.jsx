@@ -12,7 +12,7 @@ const Container = styled.div`
   position: relative;
   top: 50px;
   width: 100vw;
-  height: 100vh;
+  margin-bottom: 50px;
   display: flex;
   flex-direction: column;
   .wrapper {
@@ -37,6 +37,8 @@ const QuestionsBox = styled.div`
   flex-direction: column;
   padding: 0 24px 24px 0;
 `;
+
+const Box = styled.div``;
 
 const Questions = () => {
   //페이지 네이션 버튼관리
@@ -72,8 +74,10 @@ const Questions = () => {
             <RightSideBar />
           </MainBox>
         </div>
-        <StackFoot num={500} />
       </Container>
+      <Box>
+        <StackFoot />
+      </Box>
     </>
   );
 };
