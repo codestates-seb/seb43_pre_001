@@ -35,7 +35,7 @@ const DetailSideBar = styled.div`
 const DetailContentBox = styled.div`
   margin: 24px 24px 0 0;
   flex-grow: 1;
-  height: 500px;
+  min-height: 300px;
 `;
 
 const DetailView = ({ question }) => {

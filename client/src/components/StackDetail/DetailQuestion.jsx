@@ -2,6 +2,7 @@ import styled from 'styled-components';
 import DetailHead from './DetailMeterial/DetailHead';
 import DetailView from './DetailMeterial/DetailView';
 import LeftSideBar from '../StackSidebar/LeftSideBar';
+import DetailAnswer from './DetailMeterial/DetailAnswer';
 import StackFoot from '../StackFoot/StackFoot';
 import { useSelector, useDispatch } from 'react-redux';
 import { useState, useEffect } from 'react';
@@ -11,8 +12,6 @@ import axios from 'axios';
 import TextEditor from '../Ask/TextEditor';
 import DetailButton from './DetailMeterial/DetailButton';
 import { setContent } from '../../reducer/askSlice';
-import AnswerContent from '../Answer/AnswerContent';
-import SharedButton from '../SharedButton';
 
 const Container = styled.div`
   position: relative;
@@ -22,14 +21,12 @@ const Container = styled.div`
   .wrapper {
     margin: 0 auto 50px;
     max-width: 1264px;
-    height: 100%;
     display: flex;
   }
 `;
 
 const MainBox = styled.div`
   border-left: 1px solid #d6d9dc;
-
   flex-grow: 1;
   display: flex;
   flex-direction: column;
@@ -56,18 +53,29 @@ const DetailQuestion = () => {
   // questions 전역 상태관리
   const questions = useSelector((state) => state.questions);
   const dispatch = useDispatch();
+
+  //answer 조회를 위한 상태
+  const [answerList, setAnswerList] = useState([]);
+
   useEffect(() => {
     const process = async () => {
       setLoading(true);
       try {
-        const response = await axios.get(`/questions/${questionId}`, {
+        const responseQuestion = await axios.get(`/questions/${questionId}`, {
+          headers: {
+            Authorization: accessToken,
+          },
+        });
+        const responseAnswer = await axios.get(`/answers/${questionId}`, {
           headers: {
             Authorization: accessToken,
           },
         });
         // 데이터를 전역 store에 저장하기위함
-        dispatch(setDetailQuestion(response.data.data));
-        console.log(response);
+        dispatch(setDetailQuestion(responseQuestion.data.data));
+        // console.log(responseQuestion.data);
+        setAnswerList([responseAnswer.data]);
+        console.log(responseAnswer.data);
       } catch (e) {
         setError(e);
       }
@@ -88,7 +96,6 @@ const DetailQuestion = () => {
   }
 
   const stackFoot = <StackFoot num={980} />;
-  console.log(stackFoot);
 
   // 질문 수정 페이지 이동
   const navigateToEditPage = () => {
@@ -128,9 +135,7 @@ const DetailQuestion = () => {
               <DetailHead question={questions.question} />
               <DetailView question={questions.question} />
               <DetailButton editFunction={navigateToEditPage} deleteFunction={deletePost} qMemberId={1} />
-              <TextEditor title={questions.title} />
-              {/* <AnswerContent /> */}
-              <SharedButton />
+              <DetailAnswer answerList={answerList}></DetailAnswer>
             </MainBox>
           </div>
           <StackFoot />
