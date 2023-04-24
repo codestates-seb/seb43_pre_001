@@ -68,7 +68,7 @@ const HrTag = styled.div`
   margin-top: 40px;
 `;
 
-const AnswerAnswer = ({ answerList }) => {
+const AnswerAnswer = ({ questionId, answerList }) => {
   console.log(answerList);
   return (
     <AnswerBox>

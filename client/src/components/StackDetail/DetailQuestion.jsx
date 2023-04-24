@@ -135,7 +135,7 @@ const DetailQuestion = () => {
               <DetailHead question={questions.question} />
               <DetailView question={questions.question} />
               <DetailButton editFunction={navigateToEditPage} deleteFunction={deletePost} qMemberId={1} />
-              <DetailAnswer answerList={answerList}></DetailAnswer>
+              <DetailAnswer questionId={questionId} answerList={answerList}></DetailAnswer>
             </MainBox>
           </div>
           <StackFoot />
