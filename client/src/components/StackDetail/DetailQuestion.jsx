@@ -5,9 +5,14 @@ import LeftSideBar from '../StackSidebar/LeftSideBar';
 import StackFoot from '../StackFoot/StackFoot';
 import { useSelector, useDispatch } from 'react-redux';
 import { useState, useEffect } from 'react';
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import { setDetailQuestion } from '../../reducer/questionSlice';
 import axios from 'axios';
+import TextEditor from '../Ask/TextEditor';
+import DetailButton from './DetailMeterial/DetailButton';
+import { setContent } from '../../reducer/askSlice';
+import AnswerContent from '../Answer/AnswerContent';
+import SharedButton from '../SharedButton';
 
 const Container = styled.div`
   position: relative;
@@ -43,8 +48,10 @@ const DetailQuestion = () => {
   //로딩 및 에러 처리
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
-
+  const { memberId } = useSelector((state) => state.user);
   const { accessToken } = useSelector((state) => state.auth);
+
+  const navigate = useNavigate();
 
   // questions 전역 상태관리
   const questions = useSelector((state) => state.questions);
@@ -60,6 +67,7 @@ const DetailQuestion = () => {
         });
         // 데이터를 전역 store에 저장하기위함
         dispatch(setDetailQuestion(response.data.data));
+        console.log(response);
       } catch (e) {
         setError(e);
       }
@@ -82,6 +90,34 @@ const DetailQuestion = () => {
   const stackFoot = <StackFoot num={980} />;
   console.log(stackFoot);
 
+  // 질문 수정 페이지 이동
+  const navigateToEditPage = () => {
+    navigate(`/questions/${questionId}/edit`, {
+      state: { questions },
+    });
+    dispatch(setContent(questions.content));
+  };
+
+  // 질문 삭제
+  const deletePost = async () => {
+    if (confirm(`Delete this post?`)) {
+      await axios.delete(`/questions/${questionId}`, {
+        data: {
+          memberId,
+          questionId: questionId,
+        },
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: accessToken,
+        },
+        withCredentials: true,
+      });
+      navigate('/');
+    } else {
+      return false;
+    }
+  };
+
   return (
     <>
       {questions.question && (
@@ -90,7 +126,11 @@ const DetailQuestion = () => {
             <LeftSideBar />
             <MainBox>
               <DetailHead question={questions.question} />
-              <DetailView question={questions.question}></DetailView>
+              <DetailView question={questions.question} />
+              <DetailButton editFunction={navigateToEditPage} deleteFunction={deletePost} qMemberId={1} />
+              <TextEditor title={questions.title} />
+              {/* <AnswerContent /> */}
+              <SharedButton />
             </MainBox>
           </div>
           <StackFoot />

@@ -6,6 +6,7 @@ import downIcon from '../../../assets/down-icon.svg';
 import '@toast-ui/editor/dist/toastui-editor-viewer.css';
 import { Viewer } from '@toast-ui/react-editor';
 import CreateAnswer from '../../Answer/CreateAnswer';
+import Markdwon from '../../Markdown';
 
 const DetailViewBox = styled.div`
   display: flex;
@@ -37,25 +38,6 @@ const DetailContentBox = styled.div`
   height: 500px;
 `;
 
-//Toast 뷰어 컴포넌트 생성
-const ToastViwer = () => {
-  const markdown = `
-  <p></p><p>소스코드입니다.</p><p>
-</p><p><br></p><p>안녕하세요 </p><p>&lt;/br&gt;</p><p>---</p><p><br></p>
-  `;
-
-  // HTML: span태그 글자색을 파란색으로 설정
-  const html = `<p></p><p>소스코드입니다.</p><p>
-  </p><p><br></p><p>안녕하세요 </p><p>&lt;/br&gt;</p><p>---</p><p><br></p>`;
-
-  return (
-    <div>
-      <Viewer initialValue={markdown} />
-      <Viewer initialValue={html} />
-    </div>
-  );
-};
-
 const DetailView = ({ question }) => {
   return (
     <>
@@ -70,7 +52,7 @@ const DetailView = ({ question }) => {
           </div>
         </DetailSideBar>
         <DetailContentBox>
-          <ToastViwer></ToastViwer>
+          <Markdwon content={question.content} />
         </DetailContentBox>
         <RightSideBar></RightSideBar>
       </DetailViewBox>

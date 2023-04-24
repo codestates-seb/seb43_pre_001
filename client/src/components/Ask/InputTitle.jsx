@@ -42,7 +42,7 @@ function InputTitle({ questionTitle, desc = null, defaultValue }) {
     }
   };
   const resetInputTitle = () => {
-    inputTitleRef.current.textContent = '';
+    inputTitleRef.current.value = '';
     dispatch(setDiscardTitle(false));
   };
 

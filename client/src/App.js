@@ -22,7 +22,8 @@ function App() {
         <Route path='/signup' element={<SignupPage />} />
         <Route path='/profile' element={<ProfilePage />} />
         <Route path='/questions/ask' element={<AskPage />} />
-        <Route path='/questions/ask' element={<EditPage />} />
+        <Route path='/questions/:id/edit' element={<EditPage />} />
+        <Route path='/answers/:id/edit' element={<EditPage />} />
 
         <Route path='*' element={<QuestionsPage />} />
       </Routes>

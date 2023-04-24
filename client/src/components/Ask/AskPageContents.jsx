@@ -74,30 +74,37 @@ const PostOrDiscardButtons = styled.div`
 `;
 
 function AskPageContents() {
-  const localData = localStorage.getItem('persist:root');
-  const parseData = JSON.parse(localData);
-  console.log('localData : ', parseData.user.member_id);
+  const { memberId } = useSelector((state) => state.user);
+  const { accessToken } = useSelector((state) => state.auth);
   const { content, title, allTags, titleFocus, contentFocus, tagsFocus } = useSelector((state) => state.ask);
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
   const requestBody = {
-    member_id: 1,
+    member_id: memberId,
+    // question_id: 1,
     title,
     content,
   };
 
   const postAsk = async () => {
     if (isValidHandler()) {
-      const content = await axios.post(`/questions/ask`, requestBody, {
-        headers: {
-          'ngrok-skip-browser-warning': '69420',
-          'Content-Type': 'application/json',
-          Authorization: `Bearer eyJhbGciOiJIUzI1NiJ9.eyJyb2xlcyI6WyJVU0VSIl0sInVzZXJuYW1lIjoiMTIzQDEyMyIsInN1YiI6IjEyM0AxMjMiLCJpYXQiOjE2ODIxNDYwMDQsImV4cCI6MTY4MjE0NzgwNH0.D272_GJr2N6hXFqz42dQ9RZs_drI2OGXp0LLPMSew4k`,
-        },
-      });
-      console.log('requestBody : ', requestBody);
-      console.log('content: ', content);
+      const content = await axios
+        .post(`/questions/ask`, requestBody, {
+          // .post(`/answers`, requestBody, {
+          headers: {
+            'ngrok-skip-browser-warning': '69420',
+            'Content-Type': 'application/json',
+            Authorization: accessToken,
+          },
+        })
+        .then(function (response) {
+          console.log(response.data);
+          // navigate('/');
+        })
+        .catch(function (error) {
+          console.log(error);
+        });
     }
   };
 

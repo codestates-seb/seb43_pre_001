@@ -60,7 +60,7 @@ function EditAsk() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const { state } = useLocation();
-  const { answer, question } = state;
+  const { answer, ask } = state;
   console.log(answer);
   let { title, allTags } = useSelector((state) => state.ask);
   let Qcontent = useSelector((state) => state.ask.content);
@@ -69,7 +69,6 @@ function EditAsk() {
   let requestBody = answer
     ? {
         content: Acontent,
-        title,
         memberId: 1,
       }
     : {
@@ -79,7 +78,7 @@ function EditAsk() {
       };
 
   // 질문/답변 수정
-  const url = answer ? `/answers.{answer_id}` : `/questions/{question_id}`;
+  const url = answer ? `/answers/{answer_id}` : `/questions/{question_id}`;
   console.log(url);
   const patchHandler = async () => {
     await axios
@@ -92,7 +91,7 @@ function EditAsk() {
       })
       .then(function (response) {
         console.log(response);
-        navigate(`/questions/${question.question_id}`);
+        navigate(`/questions/${ask.question_id}`);
         dispatch(setContent(null), setTitle(null), setAllTags(null));
       })
       .catch(function (error) {
@@ -101,26 +100,26 @@ function EditAsk() {
   };
 
   const handleCancel = () => {
-    navigate(`/questions/${question.question_id}`);
+    navigate(`/questions/${ask.question_id}`);
     dispatch(setContent(null), setTitle(null), setAllTags(null));
   };
 
   return (
     <EditContentWrapper>
-      {answer ? null : <EditTitle quseiontTitle='Title' defaultValue={question.title} />}
+      {answer ? null : <EditTitle quseiontTitle='Title' defaultValue={ask.title} />}
       {answer ? (
         <>
           <QuestionTitle
             onClick={() => {
-              navigate(`/questions/${question.question_id}`);
+              navigate(`/questions/${ask.question_id}`);
             }}
           >
-            {question.title}
+            {ask.title}
           </QuestionTitle>
-          <Preview content={question.content} />
+          <Preview content={ask.content} />
         </>
       ) : null}
-      <EditorBox title={answer ? 'Answer' : 'Body'} initialValue={answer ? answer.content : question.content} />
+      <EditorBox title={answer ? 'Answer' : 'Body'} initialValue={answer ? answer.content : ask.content} />
       <Preview content={answer ? Acontent : Qcontent} />
       {/* {answer ? null : <InputTags defaultValue={question.tags} />} */}
       <SaveEditsOrCancel>

@@ -10,11 +10,13 @@ import { authSlice } from '../reducer/authSlice';
 import askSlice from '../reducer/askSlice';
 import questionSlice from '../reducer/questionSlice';
 import sidebarSlice from '../reducer/sidebarSlice';
+import answerSlice from '../reducer/answerSlice';
 
 const reducers = combineReducers({
   user: userSlice.reducer,
   auth: authSlice.reducer,
   ask: askSlice.reducer,
+  answer: answerSlice.reducer,
   questions: questionSlice.reducer,
   sidebar: sidebarSlice.reducer,
 });
