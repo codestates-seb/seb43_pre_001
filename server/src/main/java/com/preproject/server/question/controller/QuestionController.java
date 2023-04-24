@@ -34,7 +34,7 @@ public class QuestionController {
 
     @PostMapping("/ask")
     public ResponseEntity postQuestion(@Valid @RequestBody QuestionDto.Post requestBody) {
-        Member member = memberRepository.findById(requestBody.getMember_id())
+        Member member = memberRepository.findById(requestBody.getMemberId())
                         .orElseThrow(() -> new BusinessLogicException(ExceptionCode.MEMBER_NOT_FOUND));
         Question question = mapper.questionDtoPostToQuestion(requestBody,member);
         Question saveQuestion = service.createQuestion(question);
@@ -55,7 +55,7 @@ public class QuestionController {
             @PathVariable("question_id") @Positive long questionId,
             @Valid @RequestBody QuestionDto.Patch requestBody) {
         requestBody.setQuestionId(questionId);
-        Member member = memberRepository.findById(requestBody.getMember_id())
+        Member member = memberRepository.findById(requestBody.getMemberId())
                 .orElseThrow(() -> new BusinessLogicException(ExceptionCode.MEMBER_NOT_FOUND));
         Question question = mapper.questionDtoPatchToQuestion(requestBody, member);
         Question updateQuestion = service.updateQuestion(question);
