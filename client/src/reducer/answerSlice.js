@@ -3,7 +3,7 @@ import { createSlice } from '@reduxjs/toolkit';
 const answerSlice = createSlice({
   name: 'answerSlice',
   initialState: {
-    content: null,
+    answerContent: null,
   },
   reducers: {
     setContent: (state, action) => {
@@ -13,4 +13,4 @@ const answerSlice = createSlice({
 });
 
 export default answerSlice;
-export const { setContent } = answerSlice.actions;
+export const { setContent, answerContent } = answerSlice.actions;

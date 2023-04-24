@@ -5,7 +5,10 @@ import upIcon from '../../../assets/up-icon.svg';
 import downIcon from '../../../assets/down-icon.svg';
 import SharedButton from '../../SharedButton';
 import TextEditor from '../../Ask/TextEditor';
+import CreateAnswer from '../../Answer/CreateAnswer';
 import axios from 'axios';
+
+
 const AnswerBox = styled.div`
   margin-top: 40px;
   display: flex;
@@ -104,6 +107,8 @@ const AnswerAnswer = ({ questionId }) => {
   }
   return (
     <AnswerBox>
+
+
       {answerList.length === 0 ? null : (
         <>
           <AnswerHead>{answerList.length} Answer</AnswerHead>
@@ -134,7 +139,8 @@ const AnswerAnswer = ({ questionId }) => {
       )}
       <HrTag />
       {/* Answer작성하는 폼 부분 */}
-      <TextEditor></TextEditor>
+       <CreateAnswer questionId={questionId} />
+
     </AnswerBox>
   );
 };
