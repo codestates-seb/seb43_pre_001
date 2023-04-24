@@ -1,10 +1,11 @@
+import React, { useState, useEffect } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
 import styled from 'styled-components';
 import upIcon from '../../../assets/up-icon.svg';
 import downIcon from '../../../assets/down-icon.svg';
 import SharedButton from '../../SharedButton';
-import { setContent } from '../../../reducer/askSlice';
 import TextEditor from '../../Ask/TextEditor';
-
+import axios from 'axios';
 const AnswerBox = styled.div`
   margin-top: 40px;
   display: flex;
@@ -68,30 +69,71 @@ const HrTag = styled.div`
   margin-top: 40px;
 `;
 
-const AnswerAnswer = ({ questionId, answerList }) => {
-  console.log(answerList);
+const AnswerAnswer = ({ questionId }) => {
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(null);
+  const { accessToken } = useSelector((state) => state.auth);
+  //answer 조회를 위한 상태
+  const [answerList, setAnswerList] = useState([]);
+
+  useEffect(() => {
+    const process = async () => {
+      setLoading(true);
+      try {
+        const response = await axios.get(`/answers/${questionId}`, {
+          headers: {
+            Authorization: accessToken,
+          },
+        });
+        // 데이터를 전역 store에 저장하기위함
+        setAnswerList([response.data]);
+        // console.log(response.data);
+        // if(response.data)
+      } catch (e) {
+        setError(e);
+      }
+      setLoading(false);
+    };
+    process();
+  }, []);
+  if (loading) {
+    return <>로딩중...</>;
+  }
+  if (error) {
+    return <>에러 발생...</>;
+  }
   return (
     <AnswerBox>
-      {answerList.length === 0 ? <AnswerHead> Answer</AnswerHead> : <AnswerHead>{answerList.length} Answer</AnswerHead>}
-      {/* 엔서아이템 맵처리해야함 */}
-      <AnswerItem>
-        <AnswerViewBox>
-          <AnswerSideBar>
-            <div className='arrow-img'>
-              <img src={upIcon} alt='up-icon'></img>
-            </div>
-            <div className='score'> 0</div>
-            <div className='arrow-img'>
-              <img src={downIcon} alt='down-icon'></img>
-            </div>
-          </AnswerSideBar>
-          <AnswerContentBox>asd</AnswerContentBox>
-          <RightArea></RightArea>
-        </AnswerViewBox>
-        {/* 호승님 버튼 */}
-        <SharedButton></SharedButton>
-      </AnswerItem>
+      {answerList.length === 0 ? null : (
+        <>
+          <AnswerHead>{answerList.length} Answer</AnswerHead>
+          {answerList.map((el) => {
+            return (
+              <React.Fragment key={el.data.answer_id}>
+                <AnswerItem>
+                  <AnswerViewBox>
+                    <AnswerSideBar>
+                      <div className='arrow-img'>
+                        <img src={upIcon} alt='up-icon'></img>
+                      </div>
+                      <div className='score'> 0</div>
+                      <div className='arrow-img'>
+                        <img src={downIcon} alt='down-icon'></img>
+                      </div>
+                    </AnswerSideBar>
+                    {/* Answer의 content 내용이 담기는 부분 */}
+                    <AnswerContentBox>{el.data.content}</AnswerContentBox>
+                    <RightArea />
+                  </AnswerViewBox>
+                  <SharedButton></SharedButton>
+                </AnswerItem>
+              </React.Fragment>
+            );
+          })}
+        </>
+      )}
       <HrTag />
+      {/* Answer작성하는 폼 부분 */}
       <TextEditor></TextEditor>
     </AnswerBox>
   );
