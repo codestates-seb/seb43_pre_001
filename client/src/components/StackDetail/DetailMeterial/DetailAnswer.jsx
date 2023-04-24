@@ -63,7 +63,7 @@ const AnswerSideBar = styled.div`
 const AnswerContentBox = styled.div`
   margin: 24px 24px 0 0;
   flex-grow: 1;
-  max-width: 700px;
+  max-width: 710px;
   min-height: 300px;
   font-size: 15px;
   font-weight: 400;
