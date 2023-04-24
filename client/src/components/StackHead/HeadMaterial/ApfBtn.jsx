@@ -40,6 +40,21 @@ const ApfBtnBlock = styled.div`
     width: 85px;
     height: 29px;
   }
+
+  @media screen and (max-width: 768px) {
+    width: 65px;
+    transition: 0.3s linear;
+    .products {
+      display: block;
+      transition: 0.3s linear;
+    }
+
+    .about,
+    .for-teams {
+      display: none;
+      transition: 0.3s linear;
+    }
+  }
 `;
 
 const ApfBtn = () => {
