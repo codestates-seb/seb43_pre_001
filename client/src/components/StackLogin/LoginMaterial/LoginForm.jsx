@@ -3,7 +3,7 @@ import { useForm } from 'react-hook-form';
 import { useDispatch } from 'react-redux';
 import { setAccessToken } from '../../../reducer/authSlice';
 import { useNavigate } from 'react-router-dom';
-import { login } from '../../../reducer/userSlice';
+import { login, changeName } from '../../../reducer/userSlice';
 import axios from 'axios';
 
 const LoginFormBlock = styled.form`
@@ -140,7 +140,7 @@ const LoginFormBlock = styled.form`
 `;
 
 const LoginForm = () => {
-  const dispath = useDispatch();
+  const dispatch = useDispatch();
   const navigate = useNavigate();
 
   const {
@@ -156,8 +156,8 @@ const LoginForm = () => {
     axios
       .post('/members/login', { email, password })
       .then((res) => {
-        dispath(setAccessToken({ accessToken: res.data.AccessToken }));
-        dispath(login({ memberId: res.data.memberId, member_id: res.data.memberId }));
+        dispatch(setAccessToken({ accessToken: res.data.AccessToken }));
+        dispatch(login({ memberId: Number(res.data.memberId), nickname: res.data.nickname, name: res.data.nickname }));
       })
       .then(() => {
         navigate('/');

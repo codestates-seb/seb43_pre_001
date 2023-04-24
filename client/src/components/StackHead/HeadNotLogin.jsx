@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import stackoverflowLogo from '../../assets/stackoverflow-logo.svg';
+import stacLogoNoTxt from '../../assets/stack-logo.svg';
 import searchIcon from '../../assets/search-icon.svg';
 import ApfBtn from './HeadMaterial/ApfBtn';
 import LoginSignupBtn from './HeadMaterial/LoginSignupBtn';
@@ -24,7 +25,7 @@ const RealHeadBlock = styled.div`
 `;
 
 const HeadBg = styled.div`
-  width: 1264px;
+  /* width: 1264px; */
   height: 47px;
   display: flex;
 
@@ -42,6 +43,11 @@ const HeadBg = styled.div`
     }
   }
 
+  .logo-no-txt {
+    display: none;
+    margin: 0 0 0 8px;
+  }
+
   .logo {
     width: 163px;
     height: 47px;
@@ -53,6 +59,89 @@ const HeadBg = styled.div`
 
     &:hover {
       background-color: #e3e5e7;
+    }
+  }
+
+  @media screen and (max-width: 550px) {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    .logo {
+      display: none;
+    }
+
+    .logo-no-txt {
+      width: 26px;
+      display: block;
+    }
+
+    .search-from {
+      width: 190px;
+      transition: 0.07s linear;
+
+      input {
+        margin-left: 15px;
+        width: 100%;
+      }
+    }
+  }
+
+  @media screen and (min-width: 551px) and (max-width: 768px) {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    .logo {
+      display: none;
+    }
+
+    .logo-no-txt {
+      width: 26px;
+      display: block;
+    }
+
+    .search-from {
+      width: 400px;
+      transition: 0.3s linear;
+
+      input {
+        margin-left: 15px;
+        width: 100%;
+        transition: 0.3s linear;
+      }
+    }
+  }
+
+  @media screen and (min-width: 769px) and (max-width: 1024px) {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    .search-from {
+      width: 300px;
+      transition: 0.3s linear;
+
+      input {
+        width: 100%;
+        transition: 0.3s linear;
+      }
+    }
+  }
+
+  @media screen and (min-width: 1025px) {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    .search-from {
+      width: 656px;
+      transition: 0.3s linear;
+
+      input {
+        width: 100%;
+        transition: 0.3s linear;
+      }
     }
   }
 `;
@@ -69,13 +158,13 @@ const ReverseSearchApfBtn = styled.div`
 
   .search-from {
     display: flex;
-    width: 656px;
+    /* width: 656px; */
     height: 33px;
     justify-content: center;
     align-items: center;
 
     .search-input {
-      width: 656px;
+      /* width: 656px; */
       height: 33px;
       border: 1px solid #bbc0c5;
       border-radius: 3.5px;
@@ -110,6 +199,11 @@ const HeadNotLogin = () => {
           <Link to='/'>
             <div className='logo'>
               <img src={stackoverflowLogo} alt='logo' />
+            </div>
+          </Link>
+          <Link to='/'>
+            <div className='logo-no-txt'>
+              <img src={stacLogoNoTxt} alt='logo' />
             </div>
           </Link>
 

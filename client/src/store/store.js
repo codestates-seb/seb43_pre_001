@@ -48,7 +48,6 @@ const persistConfig = {
       },
       expiredState: {
         memberId: null,
-        member_id: null,
         nickname: null,
         loggedIn: false,
       },
