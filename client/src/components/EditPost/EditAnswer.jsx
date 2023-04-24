@@ -9,8 +9,10 @@ import TextEditor from '../Ask/TextEditor';
 import { setContent, setTitle, setAllTags } from '../../reducer/askSlice';
 import SharedButton from '../SharedButton';
 import { ask } from '../../assets/askNoticeData';
+import { useState } from 'react';
 
 const EditContentWrapper = styled.div`
+  margin-top: 50px;
   background-color: white;
   width: 662px;
   > div {
@@ -58,42 +60,50 @@ const CancelButton = styled.button`
 // 질문 수정: 질문 title, 질문 content, 질문 tags
 // 답변 수정: 질문 title, 질문 content, 답변 content
 function EditAsk() {
+  const questionsEdit = useSelector((state) => state.questions);
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const { state } = useLocation();
-  const { answer, ask } = state;
-  const { title, allTags } = useSelector((state) => state.ask);
-  console.log('title:', title);
-  let Qcontent = useSelector((state) => state.ask);
-  console.log('Qcontent:', Qcontent);
-  let Acontent = useSelector((state) => state.answer.content);
-  console.log('Acontent:', Acontent);
+  const { answer, question } = state;
+  console.log(answer, question);
+  const { memberId } = questionsEdit.question.member;
+  const { questionId } = questionsEdit.question;
+  const { title } = useSelector((state) => state.questions);
+  const { answerId } = '1';
+  const { accessToken } = useSelector((state) => state.auth);
+  console.log('questionsEdit:', questionsEdit);
 
-  let requestBody = answer
+  const Qcontent = useSelector((state) => questionsEdit.question.content);
+  const [qText, setQtext] = useState(Qcontent);
+  const Acontent = useSelector((state) => state.answer.content);
+
+  const requestBody = answer
     ? {
         content: Acontent,
-        memberId: 1,
+        memberId,
       }
     : {
         content: Qcontent,
         title,
-        memberId: 1,
+        memberId,
       };
 
   // 질문/답변 수정
-  const url = answer ? `/answers/{answer_id}` : `/questions/{question_id}`;
+  const url = answer ? `/answers/${answerId}` : `/questions/${questionId}`;
+  console.log(Qcontent);
+  console.log(url);
   const patchHandler = async () => {
     await axios
       .patch(url, requestBody, {
         headers: {
           'Content-Type': 'application/json',
-          Authorization: ``,
+          Authorization: accessToken,
         },
         withCredentials: true,
       })
       .then(function (response) {
         console.log('response:', response);
-        navigate(`/questions/${ask.question_id}`);
+        // navigate(`/questions/${questionId}`);
         dispatch(setContent(null), setTitle(null), setAllTags(null));
       })
       .catch(function (error) {
@@ -102,13 +112,13 @@ function EditAsk() {
   };
 
   const handleCancel = () => {
-    navigate(`/questions/${ask.question_id}`);
+    navigate(`/questions/${questionId}`);
     dispatch(setContent(null), setTitle(null), setAllTags(null));
   };
 
   return (
     <EditContentWrapper>
-      {answer ? null : <EditTitle quseiontTitle='Title' defaultValue={ask.title} />}
+      {answer ? null : <EditTitle quseiontTitle='Title' defaultValue={questionsEdit.question.title} />}
       {answer ? (
         <>
           <QuestionTitle
@@ -121,13 +131,13 @@ function EditAsk() {
           <Preview content={ask.content} />
         </>
       ) : null}
-      <EditorBox title={answer ? 'Answer' : 'Body'} initialValue={answer ? answer.content : ask.content} />
+      <EditorBox title={answer ? 'Answer' : 'Body'} initialValue={answer ? answer.content : questionsEdit.question.content} />
       <Preview content={answer ? Acontent : Qcontent} />
       {/* {answer ? null : <InputTags defaultValue={question.tags} />} */}
       <SaveEditsOrCancel>
         <SharedButton buttonText='Save edits' functionHandler={patchHandler} />
         <CancelButton onClick={handleCancel}>Cancel</CancelButton>
-      </SaveEditsOrCancel>
+      </SaveEditsOrCancel>{' '}
     </EditContentWrapper>
   );
 }

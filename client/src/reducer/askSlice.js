@@ -54,6 +54,7 @@ const askSlice = createSlice({
 });
 export default askSlice;
 export const {
+  title,
   setName,
   setTitle,
   setTitleFocus,
