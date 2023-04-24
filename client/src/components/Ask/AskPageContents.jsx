@@ -81,7 +81,7 @@ function AskPageContents() {
   const navigate = useNavigate();
 
   const requestBody = {
-    member_id: memberId,
+    memberId,
     // question_id: 1,
     title,
     content,
