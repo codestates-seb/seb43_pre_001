@@ -77,7 +77,7 @@ function CreateAnswer({ questionId, initialValue = '' }) {
 
   const postAnswer = async () => {
     // if (isValidHandler()) {
-    console.log(requestBody);
+    // console.log(requestBody);
     if (text.length < 30) {
       setIsValid(false);
     } else {
@@ -89,7 +89,7 @@ function CreateAnswer({ questionId, initialValue = '' }) {
         },
         withCredentials: true,
       });
-      console.log(response);
+      // console.log(response);
       setText('');
       setIsValid(true);
       window.scrollTo(0, 0);

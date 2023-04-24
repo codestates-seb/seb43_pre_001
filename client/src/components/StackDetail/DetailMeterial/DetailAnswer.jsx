@@ -5,6 +5,8 @@ import SharedButton from '../../SharedButton';
 import { setContent } from '../../../reducer/askSlice';
 import TextEditor from '../../Ask/TextEditor';
 import CreateAnswer from '../../Answer/CreateAnswer';
+import { useDispatch } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 
 const AnswerBox = styled.div`
   margin-top: 40px;
@@ -70,7 +72,16 @@ const HrTag = styled.div`
 `;
 
 const AnswerAnswer = ({ questionId, answerList }) => {
-  console.log(answerList);
+  // let dispatch = useDispatch();
+  // const navigate = useNavigate();
+  // // 답변 수정 페이지 이동
+  // const navigateToEditPage = () => {
+  //   navigate(`/answers/${answer.answerId}/edit`, {
+  //     state: { answer, question },
+  //   });
+  //   dispatch(setContent(answer.content));
+  // };
+
   return (
     <AnswerBox>
       {answerList.length === 0 ? <AnswerHead> Answer</AnswerHead> : <AnswerHead>{answerList.length} Answer</AnswerHead>}

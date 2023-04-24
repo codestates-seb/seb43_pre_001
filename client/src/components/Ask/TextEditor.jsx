@@ -32,15 +32,16 @@ const Div = styled(AskBoxStyle)`
 `;
 
 const EditorBox = styled(Editor)`
-  height: 254.664px;
+  height: 255px;
 `;
 
-function TextEditor({ title, desc = null, initialValue = '' }) {
+function TextEditor({ title, desc = null, initialValue = '', onChange, ref }) {
   const [contentErrorMsg, setContentErrorMsg] = useState(null);
   const { contentFocus, discardEditor } = useSelector((state) => state.ask);
   const editorRef = useRef(null);
   const dispatch = useDispatch();
   const content = title === 'Body' ? useSelector((state) => state.ask) : useSelector((state) => state.answerContent);
+
   const setContentText = () => {
     title === 'Body'
       ? dispatch(setContent(editorRef.current?.getInstance().getMarkdown()))
@@ -108,6 +109,7 @@ function TextEditor({ title, desc = null, initialValue = '' }) {
           onFocus={onEditorFocus}
           onBlur={onEditorBlur}
           initialValue={initialValue}
+          onChange={onChange}
         />
       </div>
       {/* <MainButton buttonText="Next" /> */}
