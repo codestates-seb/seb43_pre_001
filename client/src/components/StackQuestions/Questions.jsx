@@ -12,7 +12,7 @@ const Container = styled.div`
   position: relative;
   top: 50px;
   width: 100vw;
-  height: 100vh;
+  margin-bottom: 50px;
   display: flex;
   flex-direction: column;
   .wrapper {
@@ -38,6 +38,8 @@ const QuestionsBox = styled.div`
   padding: 0 24px 24px 0;
 `;
 
+const Box = styled.div``;
+
 const Questions = () => {
   //페이지 네이션 버튼관리
   const { accessToken } = useSelector((state) => state.auth);
@@ -48,7 +50,6 @@ const Questions = () => {
     if (e.target.textContent === 'prev') {
       setPage(String(page - 1));
     } else if (e.target.textContent === 'next') {
-      // console.log(typeof (Number(page) + 1));
       setPage(String(Number(page) + 1));
     } else {
       setPage(e.target.textContent);
@@ -72,8 +73,10 @@ const Questions = () => {
             <RightSideBar />
           </MainBox>
         </div>
-        <StackFoot num={500} />
       </Container>
+      <Box>
+        <StackFoot />
+      </Box>
     </>
   );
 };

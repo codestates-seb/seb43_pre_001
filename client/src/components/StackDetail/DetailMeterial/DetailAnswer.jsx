@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
 import styled from 'styled-components';
 import upIcon from '../../../assets/up-icon.svg';
 import downIcon from '../../../assets/down-icon.svg';
@@ -7,11 +6,30 @@ import SharedButton from '../../SharedButton';
 import TextEditor from '../../Ask/TextEditor';
 import CreateAnswer from '../../Answer/CreateAnswer';
 import axios from 'axios';
+import Loading from '../../StackQuestions/QuestionsMeterial/Loading';
+import { useSelector, useDispatch } from 'react-redux';
+import { setAnswers } from '../../../reducer/questionSlice';
 
 const AnswerBox = styled.div`
   margin-top: 40px;
   display: flex;
   flex-direction: column;
+  .answer-desc {
+    font-size: 17px;
+    font-weight: 450;
+    line-height: 23.8px;
+    color: rgb(35, 38, 41);
+    span {
+      color: rgb(0, 116, 204);
+    }
+  }
+  .answer-title {
+    font-size: 19px;
+    font-weight: 450;
+    line-height: 24.7px;
+    color: rgb(35, 38, 41);
+    margin: 20px 0;
+  }
 `;
 const AnswerHead = styled.div`
   font-size: 19px;
@@ -75,8 +93,9 @@ const AnswerAnswer = ({ questionId }) => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
   const { accessToken } = useSelector((state) => state.auth);
-  //answer 조회를 위한 상태
-  const [answerList, setAnswerList] = useState([]);
+
+  const answerList = useSelector((state) => state.questions);
+  const dispatch = useDispatch();
 
   useEffect(() => {
     const process = async () => {
@@ -87,10 +106,7 @@ const AnswerAnswer = ({ questionId }) => {
             Authorization: accessToken,
           },
         });
-        // 데이터를 전역 store에 저장하기위함
-        setAnswerList([response.data]);
-        // console.log(response.data);
-        // if(response.data)
+        dispatch(setAnswers(response.data.data));
       } catch (e) {
         setError(e);
       }
@@ -98,20 +114,25 @@ const AnswerAnswer = ({ questionId }) => {
     };
     process();
   }, []);
+
   if (loading) {
-    return <>로딩중...</>;
+    return (
+      <AnswerItem>
+        <Loading />
+      </AnswerItem>
+    );
   }
   if (error) {
-    return <>에러 발생...</>;
+    return <AnswerItem>에러 발생...</AnswerItem>;
   }
   return (
     <AnswerBox>
-      {answerList.length === 0 ? null : (
+      {answerList.answers.length === 0 ? null : (
         <>
-          <AnswerHead>{answerList.length} Answer</AnswerHead>
-          {answerList.map((el) => {
+          <AnswerHead>{answerList.answers.length} Answer</AnswerHead>
+          {answerList.answers.map((el) => {
             return (
-              <React.Fragment key={el.data.answer_id}>
+              <React.Fragment key={el.answerId}>
                 <AnswerItem>
                   <AnswerViewBox>
                     <AnswerSideBar>
@@ -124,7 +145,7 @@ const AnswerAnswer = ({ questionId }) => {
                       </div>
                     </AnswerSideBar>
                     {/* Answer의 content 내용이 담기는 부분 */}
-                    <AnswerContentBox>{el.data.content}</AnswerContentBox>
+                    <AnswerContentBox>{el.content}</AnswerContentBox>
                     <RightArea />
                   </AnswerViewBox>
                   <SharedButton></SharedButton>
@@ -136,6 +157,11 @@ const AnswerAnswer = ({ questionId }) => {
       )}
       <HrTag />
       {/* Answer작성하는 폼 부분 */}
+      <div className='answer-desc'>
+        Know someone who can answer? Share a link to this <span>question</span> via <span>email</span>, <span>Twitter</span>, or <span>Facebook</span>
+      </div>
+      <div className='answer-title'>Your Answer</div>
+      <TextEditor></TextEditor>
       <CreateAnswer questionId={questionId} />
     </AnswerBox>
   );

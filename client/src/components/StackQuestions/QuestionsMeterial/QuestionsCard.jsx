@@ -5,12 +5,11 @@ const QuestionsCardBox = styled.div`
   border-top: 1px solid #d6d9dc;
   padding: 16px;
   display: flex;
-  /* flex-direction: column; */
-  /* height: 98px; */
 `;
 
 const QuesionStatus = styled.div`
-  width: 108px;
+  flex-basis: 108px;
+  flex-shrink: 0;
   display: flex;
   flex-direction: column;
   align-items: flex-end;
@@ -29,23 +28,21 @@ const QuesionContent = styled.div`
   /* height: 125px; */
   display: flex;
   flex-direction: column;
-  //여기에 작성
+
   .content {
-    height: 34px;
-    overflow: hidden;
     font-size: 13px;
     font-weight: 400;
-    line-height: 17px;
     color: rgb(59, 64, 69);
     margin: 6px 0;
-    p {
-      width: 100%;
-      overflow: hidden;
-      text-overflow: ellipsis;
-      display: -webkit-box;
-      -webkit-line-clamp: 2;
-      -webkit-box-orient: vertical;
-    }
+    height: 34px;
+    line-height: 17px;
+    /* 여기 */
+    white-space: wrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
   }
   .meta {
     font-size: 12px;
@@ -66,6 +63,12 @@ const Content = styled.div`
   font-weight: 500;
   text-decoration: none solid rgb(10, 149, 255);
   color: #0063bf;
+  white-space: wrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
   cursor: pointer;
   :hover {
     color: #0a95ff;

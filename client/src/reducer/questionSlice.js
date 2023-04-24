@@ -4,6 +4,7 @@ const initialQuestions = {
   questionsList: [],
   question: {},
   pageInfo: {},
+  answers: [],
 };
 
 const questionsSlice = createSlice({
@@ -19,7 +20,10 @@ const questionsSlice = createSlice({
     setPageInfo(state, action) {
       state.pageInfo = action.payload;
     },
+    setAnswers(state, action) {
+      state.answers = action.payload;
+    },
   },
 });
-export const { setQuestions, setDetailQuestion, setPageInfo } = questionsSlice.actions;
+export const { setQuestions, setDetailQuestion, setPageInfo, setAnswers } = questionsSlice.actions;
 export default questionsSlice;
