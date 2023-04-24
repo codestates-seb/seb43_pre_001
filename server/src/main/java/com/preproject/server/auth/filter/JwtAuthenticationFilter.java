@@ -33,7 +33,7 @@ public class JwtAuthenticationFilter extends UsernamePasswordAuthenticationFilte
     @Override
     public Authentication attemptAuthentication(HttpServletRequest request, HttpServletResponse response) {
         ObjectMapper objectMapper = new ObjectMapper();
-        LoginDto.Post loginDto = objectMapper.readValue(request.getInputStream(), LoginDto.Post.class);
+        LoginDto loginDto = objectMapper.readValue(request.getInputStream(), LoginDto.class);
 
         UsernamePasswordAuthenticationToken authenticationToken =
                 new UsernamePasswordAuthenticationToken(loginDto.getEmail(), loginDto.getPassword());
@@ -50,11 +50,13 @@ public class JwtAuthenticationFilter extends UsernamePasswordAuthenticationFilte
 
         String accessToken = delegateAccessToken(member);
         String refreshToken = delegateRefreshToken(member);
-        String memberId = String.valueOf(member.getMemberId());
+        String memberId = String.valueOf(member.getMemberId()); // 로그인 성공 응답으로 memberId 추가
+        String nickname = member.getNickname(); // 로그인 성공 응답으로 nickname 추가
 
         response.setHeader("Authorization", "Bearer " + accessToken);
         response.setHeader("Refresh", refreshToken);
         response.setHeader("memberId",memberId);
+        response.setHeader("nickname", nickname);
         // AuthenticationSuccessHandler 호출
         this.getSuccessHandler().onAuthenticationSuccess(request, response, authResult);
     }

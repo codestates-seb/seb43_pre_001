@@ -27,11 +27,13 @@ public class MemberAuthenticationSuccessHandler implements AuthenticationSuccess
         String email = authentication.getName();
         String accessToken = response.getHeader("Authorization");
         String memberId = response.getHeader("memberId");
+        String nickname = response.getHeader("nickname");
 
         System.out.println("User " + email + " successfully authenticated");
         try(PrintWriter writer = response.getWriter()){
             JsonObject json = new JsonObject();
             json.addProperty("memberId", memberId);
+            json.addProperty("nickname", nickname);
             json.addProperty("AccessToken", accessToken);
 
             response.setStatus(HttpStatus.ACCEPTED.value());
