@@ -12,19 +12,19 @@ const StackProfileBlock = styled.div`
 
   .wrapper {
     width: 1266px;
-    height: 741px;
+    height: 689px;
   }
 `;
 
 const RealProfileBlock = styled.div`
   width: 660px;
-  height: 741px;
+  height: 689px;
   display: flex;
   justify-content: space-between;
 
   .wrapper-profile {
     width: 496px;
-    height: 741px;
+    height: 689px;
     border-left: 1px solid #d6d9dc;
     // 여기만 수정
     margin-left: 150px;
