@@ -1,15 +1,17 @@
 import styled from 'styled-components';
 import QuestionsCard from './QuestionsCard';
+import Loading from './Loading';
 import { useSelector, useDispatch } from 'react-redux';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useLayoutEffect } from 'react';
 import { setQuestions, setPageInfo } from '../../../reducer/questionSlice';
 import axios from 'axios';
+
 // import usePromise from '../../../hooks/usePromise';
 
 const QuestionsListBox = styled.div`
   display: flex;
   flex-direction: column;
-  min-height: 264px;
+  min-height: calc(132px * 3);
 `;
 const QuestionsList = ({ page, setTotal }) => {
   const [loading, setLoading] = useState(false);
@@ -29,7 +31,7 @@ const QuestionsList = ({ page, setTotal }) => {
     const process = async () => {
       setLoading(true);
       try {
-        const response = await axios.get(`/questions?page=${page}&size=2`, {
+        const response = await axios.get(`/questions?page=${page}&size=3`, {
           headers: {
             Authorization: accessToken,
           },
@@ -48,7 +50,11 @@ const QuestionsList = ({ page, setTotal }) => {
   //최초 렌더링시 undefined, 렌더링 직후 useEffect로 데이터를 받기에 아래와 같이 분기처리
   // 로딩중이면 로딩컴포넌트 보여주기, 추후에 만들기
   if (loading) {
-    return <QuestionsListBox></QuestionsListBox>;
+    return (
+      <QuestionsListBox>
+        <Loading />
+      </QuestionsListBox>
+    );
   }
   // 받아온 응답이 없다면
   if (!questions.questionsList) return null;

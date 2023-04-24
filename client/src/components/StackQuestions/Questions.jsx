@@ -72,7 +72,7 @@ const Questions = () => {
             <RightSideBar />
           </MainBox>
         </div>
-        <StackFoot />
+        <StackFoot num={500} />
       </Container>
     </>
   );
