@@ -19,6 +19,23 @@ const LoginFormBlock = styled.form`
   align-items: center;
   flex-direction: column;
 
+  #email {
+    border: ${({ errorsEmail }) => (errorsEmail ? '1px solid #eb2c32' : 'border: 1px solid #bcbfc3')};
+
+    &:focus {
+      border: ${({ errorsEmail }) => (errorsEmail ? '1px solid #eb2c32' : '1px solid #7eb9f2')};
+      outline: ${({ errorsEmail }) => (errorsEmail ? '4px solid #f8e1e0' : '4px solid #dae5f1')};
+    }
+  }
+  #pwd {
+    border: ${({ errorsPwd }) => (errorsPwd ? '1px solid #eb2c32' : 'border: 1px solid #bcbfc3')};
+
+    &:focus {
+      border: ${({ errorsPwd }) => (errorsPwd ? '1px solid #eb2c32' : '1px solid #7eb9f2')};
+      outline: ${({ errorsPwd }) => (errorsPwd ? '4px solid #f8e1e0' : '4px solid #dae5f1')};
+    }
+  }
+
   p {
     color: #f15a59;
     text-shadow: 0 0 0 #f15a59;
@@ -152,7 +169,7 @@ const LoginForm = () => {
   };
 
   return (
-    <LoginFormBlock onSubmit={handleSubmit(onSubmitFn)}>
+    <LoginFormBlock errorsPwd={errors.password} errorsEmail={errors.email} onSubmit={handleSubmit(onSubmitFn)}>
       <label className='label-email' htmlFor='email'>
         Email
       </label>
