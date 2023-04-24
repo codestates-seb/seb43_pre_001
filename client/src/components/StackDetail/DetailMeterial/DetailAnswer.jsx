@@ -4,9 +4,9 @@ import upIcon from '../../../assets/up-icon.svg';
 import downIcon from '../../../assets/down-icon.svg';
 import SharedButton from '../../SharedButton';
 import TextEditor from '../../Ask/TextEditor';
+import CreateAnswer from '../../Answer/CreateAnswer';
 import axios from 'axios';
 import Loading from '../../StackQuestions/QuestionsMeterial/Loading';
-
 import { useSelector, useDispatch } from 'react-redux';
 import { setAnswers } from '../../../reducer/questionSlice';
 
@@ -159,10 +159,10 @@ const AnswerAnswer = ({ questionId }) => {
       {/* Answer작성하는 폼 부분 */}
       <div className='answer-desc'>
         Know someone who can answer? Share a link to this <span>question</span> via <span>email</span>, <span>Twitter</span>, or <span>Facebook</span>
-        .
       </div>
       <div className='answer-title'>Your Answer</div>
       <TextEditor></TextEditor>
+      <CreateAnswer questionId={questionId} />
     </AnswerBox>
   );
 };

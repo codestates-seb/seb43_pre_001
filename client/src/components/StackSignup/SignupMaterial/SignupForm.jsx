@@ -2,8 +2,6 @@ import styled from 'styled-components';
 import { useForm } from 'react-hook-form';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
-import { changeName } from '../../../reducer/userSlice';
 
 const SignupFormBlock = styled.form`
   width: 317px;
@@ -183,7 +181,6 @@ const SignupFormBlock = styled.form`
 
 const SignupForm = () => {
   const navigate = useNavigate();
-  const dispatch = useDispatch();
 
   const {
     register,
@@ -195,13 +192,12 @@ const SignupForm = () => {
     const { nickname, email, password } = data;
 
     try {
-      const resData = await axios.post('/members/signup', {
+      await axios.post('/members/signup', {
         nickname,
         name: nickname,
         email,
         password,
       });
-      await dispatch(changeName({ nickname: resData.data.nickname }));
       await navigate('/login');
     } catch (err) {
       console.log(err);

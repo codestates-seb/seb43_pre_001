@@ -9,7 +9,7 @@ const Button = styled.button`
   box-shadow: inset 0 1px 0 0 hsla(0, 0%, 100%, 0.7);
   white-space: nowrap;
   cursor: pointer;
-
+  z-index: 1;
   ${(props) => {
     return (
       (props.text === 'Ask Question' ||
