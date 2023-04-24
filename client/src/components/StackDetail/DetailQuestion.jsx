@@ -32,6 +32,7 @@ const MainBox = styled.div`
   margin-left: 150px;
   padding: 24px;
   min-width: 800px;
+  max-width: 1264px;
   div.hr-line {
     margin-top: 12px;
     border-bottom: 1.5px solid #d6d9dc;
