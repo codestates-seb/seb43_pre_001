@@ -7,6 +7,8 @@ import com.preproject.server.exception.ExceptionCode;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -28,6 +30,14 @@ public class AnswerService {
         Optional<Answer> optionalAnswer = answerRepository.findById(answerId);
         Answer findAnswer = optionalAnswer.orElseThrow(() -> new BusinessLogicException(ExceptionCode.ANSWER_NOT_FOUND));
         return findAnswer;
+    }
+
+    public List<Answer> findVerifiedAnswers(long questionId){ // 요청된 답이 DB에 없으면 에러
+        List<Answer> optionalAnswers = answerRepository.findAllByQuestionId(questionId);
+//        for(Optional<Answer> answer : optionalAnswers) {
+//            findAnswers.add(answer.orElseThrow(() -> new BusinessLogicException(ExceptionCode.ANSWER_NOT_FOUND)));
+//        }
+        return optionalAnswers;
     }
 
     public Answer updateAnswer(Answer answer){

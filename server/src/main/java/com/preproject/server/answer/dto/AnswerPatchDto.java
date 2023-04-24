@@ -10,14 +10,14 @@ import lombok.Setter;
 @NoArgsConstructor
 public class AnswerPatchDto {
 
-    private Long member_id;
+    private Long memberId;
     @Setter
-    private Long answer_id;
+    private Long answerId;
     private String content; // 내용 수정
 
     public AnswerPatchDto(Long member_id, Long answer_id, String content) {
-        this.member_id = member_id;
-        this.answer_id = answer_id;
+        this.memberId = member_id;
+        this.answerId = answer_id;
         this.content = content;
     }
 }

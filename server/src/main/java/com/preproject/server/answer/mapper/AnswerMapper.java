@@ -26,7 +26,7 @@ public interface AnswerMapper {
     // AnswerPatchDto -> Answer
     default Answer answerPatchDtoToAnswer(AnswerPatchDto requestBody, Member member, Question question){
         Answer answer = new Answer(question, requestBody.getContent(), member);
-        answer.setAnswerId(requestBody.getAnswer_id());
+        answer.setAnswerId(requestBody.getAnswerId());
         return answer;
     }
 
@@ -34,11 +34,11 @@ public interface AnswerMapper {
     // Answer -> AnswerResponseDto
     default AnswerResponseDto answerToAnswerResponseDto(Answer answer){
         AnswerResponseDto answerResponseDto = new AnswerResponseDto();
-        answerResponseDto.setQuestion_id(answer.getQuestion().getQuestionId());
-        answerResponseDto.setAnswer_id(answer.getAnswerId());
+        answerResponseDto.setQuestionId(answer.getQuestion().getQuestionId());
+        answerResponseDto.setAnswerId(answer.getAnswerId());
         answerResponseDto.setContent(answer.getContent());
-        answerResponseDto.setCreated_at(answer.getCreatedAt());
-        answerResponseDto.setMember_id(answer.getMember().getMemberId());
+        answerResponseDto.setCreatedAt(answer.getCreatedAt());
+        answerResponseDto.setMemberId(answer.getMember().getMemberId());
 
 
         return answerResponseDto;
