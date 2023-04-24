@@ -22,7 +22,7 @@ public class Question {
     @Column(nullable = false)
     private String title;
 
-    @Column(nullable = false)
+    @Column(length = 1000, nullable = false)
     private String content;
     @CreatedDate
     @Column(name = "created_at", updatable = false)
