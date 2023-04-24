@@ -8,6 +8,7 @@ import axios from 'axios';
 import TextEditor from '../Ask/TextEditor';
 import { setContent, setTitle, setAllTags } from '../../reducer/askSlice';
 import SharedButton from '../SharedButton';
+import { ask } from '../../assets/askNoticeData';
 
 const EditContentWrapper = styled.div`
   background-color: white;
@@ -61,10 +62,12 @@ function EditAsk() {
   const navigate = useNavigate();
   const { state } = useLocation();
   const { answer, ask } = state;
-  console.log(answer);
-  let { title, allTags } = useSelector((state) => state.ask);
-  let Qcontent = useSelector((state) => state.ask.content);
+  const { title, allTags } = useSelector((state) => state.ask);
+  console.log('title:', title);
+  let Qcontent = useSelector((state) => state.ask);
+  console.log('Qcontent:', Qcontent);
   let Acontent = useSelector((state) => state.answer.content);
+  console.log('Acontent:', Acontent);
 
   let requestBody = answer
     ? {
@@ -79,7 +82,6 @@ function EditAsk() {
 
   // 질문/답변 수정
   const url = answer ? `/answers/{answer_id}` : `/questions/{question_id}`;
-  console.log(url);
   const patchHandler = async () => {
     await axios
       .patch(url, requestBody, {
@@ -90,7 +92,7 @@ function EditAsk() {
         withCredentials: true,
       })
       .then(function (response) {
-        console.log(response);
+        console.log('response:', response);
         navigate(`/questions/${ask.question_id}`);
         dispatch(setContent(null), setTitle(null), setAllTags(null));
       })

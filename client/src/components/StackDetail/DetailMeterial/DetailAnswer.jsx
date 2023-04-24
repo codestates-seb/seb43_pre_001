@@ -4,6 +4,7 @@ import downIcon from '../../../assets/down-icon.svg';
 import SharedButton from '../../SharedButton';
 import { setContent } from '../../../reducer/askSlice';
 import TextEditor from '../../Ask/TextEditor';
+import CreateAnswer from '../../Answer/CreateAnswer';
 
 const AnswerBox = styled.div`
   margin-top: 40px;
@@ -88,11 +89,9 @@ const AnswerAnswer = ({ questionId, answerList }) => {
           <AnswerContentBox>asd</AnswerContentBox>
           <RightArea></RightArea>
         </AnswerViewBox>
-        {/* 호승님 버튼 */}
-        <SharedButton></SharedButton>
       </AnswerItem>
       <HrTag />
-      <TextEditor></TextEditor>
+      <CreateAnswer questionId={questionId} />
     </AnswerBox>
   );
 };

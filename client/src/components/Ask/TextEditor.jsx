@@ -40,8 +40,7 @@ function TextEditor({ title, desc = null, initialValue = '' }) {
   const { contentFocus, discardEditor } = useSelector((state) => state.ask);
   const editorRef = useRef(null);
   const dispatch = useDispatch();
-  const { content } = title === 'Body' ? useSelector((state) => state.ask) : useSelector((state) => state.answer);
-
+  const content = title === 'Body' ? useSelector((state) => state.ask) : useSelector((state) => state.answerContent);
   const setContentText = () => {
     title === 'Body'
       ? dispatch(setContent(editorRef.current?.getInstance().getMarkdown()))
