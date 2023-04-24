@@ -9,10 +9,10 @@ import java.time.LocalDateTime;
 @Setter
 public class AnswerResponseDto {
     @Positive
-    private Long member_id;
-    private Long question_id;
-    private Long answer_id;
+    private Long memberId;
+    private Long questionId;
+    private Long answerId;
     private String content;
-    private LocalDateTime created_at;
+    private LocalDateTime createdAt;
 
 }

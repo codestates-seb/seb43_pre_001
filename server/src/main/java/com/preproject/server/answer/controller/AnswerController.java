@@ -1,6 +1,7 @@
 package com.preproject.server.answer.controller;
 
 import com.preproject.server.answer.repository.AnswerRepository;
+import com.preproject.server.response.MultiResponseDto;
 import com.preproject.server.response.SingleResponseDto;
 import com.preproject.server.exception.BusinessLogicException;
 import com.preproject.server.exception.ExceptionCode;
@@ -23,6 +24,7 @@ import org.springframework.web.bind.annotation.*;
 import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Positive;
+import java.util.List;
 
 
 @RestController
@@ -41,8 +43,8 @@ public class AnswerController {
     // 답변 작성
     @PostMapping
     public ResponseEntity postAnswer(@Valid @RequestBody AnswerPostDto answerPostDto){
-        Member member = memberRepository.findById(answerPostDto.getMember_id()).orElseThrow(() -> new BusinessLogicException(ExceptionCode.MEMBER_NOT_FOUND));
-        Question findQuestion = questionRepository.findById(answerPostDto.getQuestion_id()).orElseThrow(() -> new BusinessLogicException(ExceptionCode.QUESTION_NOT_FOUND));
+        Member member = memberRepository.findById(answerPostDto.getMemberId()).orElseThrow(() -> new BusinessLogicException(ExceptionCode.MEMBER_NOT_FOUND));
+        Question findQuestion = questionRepository.findById(answerPostDto.getQuestionId()).orElseThrow(() -> new BusinessLogicException(ExceptionCode.QUESTION_NOT_FOUND));
         Answer question = answerService.createAnswer(
                 mapper.answerPostDtoToAnswer(answerPostDto, member, findQuestion));
 
@@ -51,9 +53,9 @@ public class AnswerController {
 
     // 답변 조회
     @GetMapping("/{question_id}")
-    public ResponseEntity getAnswer(@PathVariable("question_id") @Positive long answerId) {
-        Answer answer = answerService.findVerifiedAnswer(answerId);
-        return new ResponseEntity<>(new SingleResponseDto<>(mapper.answerToAnswerResponseDto(answer)), HttpStatus.OK);
+    public ResponseEntity getAnswer(@PathVariable("question_id") @Positive long questionId) {
+        List<Answer> answers = answerService.findVerifiedAnswers(questionId);
+        return new ResponseEntity<>(new MultiResponseDto<>(mapper.answersToAnswerResponseDtos(answers)), HttpStatus.OK);
     }
 
     /**
@@ -64,9 +66,9 @@ public class AnswerController {
     @PatchMapping("/{answer_id}")
     public ResponseEntity patchAnswer(@PathVariable("answer_id") @Positive @NotNull long answerId,
                                       @Valid @RequestBody AnswerPatchDto requestBody){
-        requestBody.setAnswer_id(answerId);
-        Member member = memberRepository.findById(requestBody.getMember_id()).orElseThrow(() -> new BusinessLogicException(ExceptionCode.MEMBER_NOT_FOUND));
-        Answer findAnswer = answerRepository.findById(requestBody.getAnswer_id()).orElseThrow(() -> new BusinessLogicException(ExceptionCode.ANSWER_NOT_FOUND));
+        requestBody.setAnswerId(answerId);
+        Member member = memberRepository.findById(requestBody.getMemberId()).orElseThrow(() -> new BusinessLogicException(ExceptionCode.MEMBER_NOT_FOUND));
+        Answer findAnswer = answerRepository.findById(requestBody.getAnswerId()).orElseThrow(() -> new BusinessLogicException(ExceptionCode.ANSWER_NOT_FOUND));
         Answer answer = mapper.answerPatchDtoToAnswer(requestBody , member, findAnswer.getQuestion());
         Answer updatedAnswer = answerService.updateAnswer(answer);
 

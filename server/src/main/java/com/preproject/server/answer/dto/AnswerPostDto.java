@@ -14,15 +14,15 @@ import javax.validation.constraints.Positive;
 public class AnswerPostDto { // Request Body
     @NotNull
     @Positive
-    private Long question_id;
+    private Long questionId;
     @NotNull
-    private Long member_id;
+    private Long memberId;
     @NotBlank(message = "답변 내용을 적어주세요")
     private String content;
 
-    public AnswerPostDto(Long question_id, Long member_id, String content) {
-        this.question_id = question_id;
-        this.member_id = member_id;
+    public AnswerPostDto(Long questionId, Long memberId, String content) {
+        this.questionId = questionId;
+        this.memberId = memberId;
         this.content = content;
     }
 }
