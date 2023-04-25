@@ -298,9 +298,11 @@ const StyledLink = styled(Link)`
 const HeadLogin = () => {
   //헤더 로고 클릭시 sidebar 위치를 Users로 옮기기 위한 dispatch 적용
   const dispatch = useDispatch();
+
   const handleClick = () => {
     dispatch(setSidebar('Users'));
   };
+
   return (
     <HeadBlock>
       <div className='orange-line'></div>

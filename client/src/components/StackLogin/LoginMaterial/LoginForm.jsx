@@ -3,7 +3,7 @@ import { useForm } from 'react-hook-form';
 import { useDispatch } from 'react-redux';
 import { setAccessToken } from '../../../reducer/authSlice';
 import { useNavigate } from 'react-router-dom';
-import { login, changeName } from '../../../reducer/userSlice';
+import { login } from '../../../reducer/userSlice';
 import axios from 'axios';
 
 const LoginFormBlock = styled.form`

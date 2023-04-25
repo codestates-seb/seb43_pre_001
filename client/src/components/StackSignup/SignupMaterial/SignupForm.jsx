@@ -1,7 +1,6 @@
 import styled from 'styled-components';
 import { useForm } from 'react-hook-form';
 import axios from 'axios';
-import { useNavigate } from 'react-router-dom';
 
 const SignupFormBlock = styled.form`
   width: 317px;
@@ -180,8 +179,6 @@ const SignupFormBlock = styled.form`
 `;
 
 const SignupForm = () => {
-  const navigate = useNavigate();
-
   const {
     register,
     handleSubmit,
@@ -192,13 +189,13 @@ const SignupForm = () => {
     const { nickname, email, password } = data;
 
     try {
-      await axios.post('/members/signup', {
+      const resData = await axios.post('/members/signup', {
         nickname,
         name: nickname,
         email,
         password,
       });
-      await navigate('/login');
+      console.log(resData.data);
     } catch (err) {
       console.log(err);
       alert('이미 존재하는 회원입니다.');

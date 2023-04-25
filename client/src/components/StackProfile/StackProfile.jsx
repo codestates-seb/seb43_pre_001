@@ -1,9 +1,10 @@
 import styled from 'styled-components';
-// import LeftSideBarProfile from './ProfileMaterial/LeftSideBarProfile';
-//사이드바 변경 (현아님것)
 import LeftSideBar from '../StackSidebar/LeftSideBar';
 import ImgNameProfile from './ProfileMaterial/ImgNameProfile';
 import EditProfile from './ProfileMaterial/EditProfile';
+import { useNavigate } from 'react-router-dom';
+import { useEffect } from 'react';
+import { useSelector } from 'react-redux';
 
 const StackProfileBlock = styled.div`
   display: flex;
@@ -46,6 +47,15 @@ const Profile = styled.div`
 `;
 
 const StackProfile = () => {
+  const navigate = useNavigate();
+  const { isAuthenticated } = useSelector((state) => state.auth);
+
+  useEffect(() => {
+    if (!isAuthenticated) {
+      navigate('/login');
+    }
+  }, []);
+
   return (
     <StackProfileBlock>
       <div className='wrapper'>
