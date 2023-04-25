@@ -25,7 +25,7 @@ const persistConfig = {
   key: 'root',
   storage,
   whitelist: ['user', 'auth'],
-  blacklist: ['ask', 'questions'],
+  blacklist: ['ask', 'answer', 'questions', 'sidebar'],
   transforms: [
     expireReducer('auth', {
       expireSeconds: (state) => {
