@@ -28,7 +28,7 @@ const QuesionContent = styled.div`
   /* height: 125px; */
   display: flex;
   flex-direction: column;
-
+  /* 카드의 내용 */
   .content {
     font-size: 13px;
     font-weight: 400;
@@ -37,7 +37,8 @@ const QuesionContent = styled.div`
     height: 34px;
     line-height: 17px;
     /* 여기 */
-    white-space: wrap;
+    white-space: pre-line;
+    word-break: break-all;
     overflow: hidden;
     text-overflow: ellipsis;
     display: -webkit-box;
@@ -57,13 +58,14 @@ const QuesionContent = styled.div`
 const CustomLink = styled(Link)`
   text-decoration: none;
 `;
-
+// 카드의 제목부분
 const Content = styled.div`
   font-size: 17px;
   font-weight: 500;
   text-decoration: none solid rgb(10, 149, 255);
   color: #0063bf;
-  white-space: wrap;
+  white-space: pre-line;
+  word-break: break-all;
   overflow: hidden;
   text-overflow: ellipsis;
   display: -webkit-box;

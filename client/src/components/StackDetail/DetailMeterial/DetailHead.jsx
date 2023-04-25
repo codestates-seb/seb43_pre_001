@@ -11,6 +11,8 @@ const DetailHeadBox = styled.div`
     line-height: 36.45px;
     color: rgb(59, 64, 69);
     padding-right: 15px;
+    white-space: pre-line;
+    word-break: break-all;
   }
 `;
 const DetailInfo = styled.div`
