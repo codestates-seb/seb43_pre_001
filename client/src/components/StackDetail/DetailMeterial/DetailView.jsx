@@ -35,6 +35,8 @@ const DetailSideBar = styled.div`
 const DetailContentBox = styled.div`
   margin: 24px 24px 0 0;
   max-width: 710px;
+  white-space: pre-line;
+  word-break: break-all;
   flex-grow: 1;
   min-height: 300px;
 `;
