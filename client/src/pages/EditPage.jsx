@@ -1,11 +1,12 @@
 import styled from 'styled-components';
 import LeftSideBar from '../components/StackSidebar/LeftSideBar';
 import RightSideBar from '../components/StackSidebar/RightSideBar';
-import EditAsk from '../components/EditAsk/EditAsk';
-
+import EditAsk from '../components/EditPost/EditAsk';
+import EditQuestion from '../components/EditPost/EditQuestion';
+import HeadLogin from '../components/StackHead/HeadLogin';
 const EditWrapper = styled.div`
   display: flex;
-  /* justify-content: center; */
+  justify-content: center;
   margin: 0 auto;
   max-width: 1264px;
 `;
@@ -23,14 +24,18 @@ const EditPageMain = styled.main`
 
 function EditPage() {
   return (
-    <EditWrapper>
+    <>
+      <HeadLogin />
       <LeftSideBar curTab='questions' />
-      <EditPageContent>
-        <EditPageMain>
-          <EditAsk />
-        </EditPageMain>
-      </EditPageContent>
-    </EditWrapper>
+      <EditWrapper>
+        <EditPageContent>
+          <EditPageMain>
+            <EditQuestion />
+          </EditPageMain>
+          <RightSideBar />
+        </EditPageContent>
+      </EditWrapper>
+    </>
   );
 }
 

@@ -16,7 +16,7 @@ const AskPageInput = styled(InputStyle)`
     }};
   }
 `;
-function InputTitle({ questionTitle, desc = null, defaultValue }) {
+function InputTitle({ questionTitle, desc = null, defaultValue, onChange }) {
   const [titleErrorMsg, setTitleErrorMsg] = useState(null);
   const { title, discardTitle } = useSelector((state) => state.ask);
   const inputTitleRef = useRef(null);
@@ -25,6 +25,7 @@ function InputTitle({ questionTitle, desc = null, defaultValue }) {
   // Title
   const setTitleText = (e) => {
     dispatch(setTitle(e.target.value));
+    onChange(e);
   };
 
   // 유효성 검사

@@ -52,6 +52,9 @@ const DetailQuestion = () => {
 
   // questions 전역 상태관리
   const questions = useSelector((state) => state.questions);
+
+  console.log('questions:', questions);
+
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -65,7 +68,9 @@ const DetailQuestion = () => {
         });
 
         // 데이터를 전역 store에 저장하기위함
+
         dispatch(setDetailQuestion(response.data.data));
+
       } catch (e) {
         setError(e);
       }
@@ -95,7 +100,7 @@ const DetailQuestion = () => {
       await axios.delete(`/questions/${questionId}`, {
         data: {
           memberId,
-          questionId: questionId,
+          questionId,
         },
         headers: {
           'Content-Type': 'application/json',

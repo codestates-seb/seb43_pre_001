@@ -8,6 +8,7 @@ import { ask, body } from '../../assets/askNoticeData';
 import { useSelector } from 'react-redux';
 import TextEditor from '../Ask/TextEditor';
 import answerSlice from '../../reducer/answerSlice';
+import { useNavigate } from 'react-router-dom';
 
 const Container = styled.div`
   width: 727px;
@@ -48,7 +49,7 @@ function CreateAnswer({ questionId, initialValue = '' }) {
   const [text, setText] = useState('');
   const content = useSelector((state) => state.answerContent);
   const editorRef = useRef(null);
-
+  const navigate = useNavigate();
   /*
 작성 
 {
@@ -65,8 +66,8 @@ function CreateAnswer({ questionId, initialValue = '' }) {
 }
 */
   const requestBody = {
-    member_id: memberId,
-    question_id: questionId,
+    memberId,
+    questionId,
     content: text,
   };
 
@@ -76,7 +77,7 @@ function CreateAnswer({ questionId, initialValue = '' }) {
 
   const postAnswer = async () => {
     // if (isValidHandler()) {
-    console.log(requestBody);
+    // console.log(requestBody);
     if (text.length < 30) {
       setIsValid(false);
     } else {
@@ -88,11 +89,12 @@ function CreateAnswer({ questionId, initialValue = '' }) {
         },
         withCredentials: true,
       });
-      console.log(response);
+      // console.log(response);
       setText('');
       setIsValid(true);
       window.scrollTo(0, 0);
       editorRef.current?.getInstance().reset();
+      window.location.reload();
     }
   };
   const resetEditor = () => {

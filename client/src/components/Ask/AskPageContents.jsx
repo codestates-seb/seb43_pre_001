@@ -82,7 +82,6 @@ function AskPageContents() {
 
   const requestBody = {
     memberId,
-    // question_id: 1,
     title,
     content,
   };

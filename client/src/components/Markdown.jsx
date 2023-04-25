@@ -3,6 +3,19 @@ import remarkGfm from 'remark-gfm';
 import { PrismLight as SyntaxHighlighter } from 'react-syntax-highlighter';
 import prism from 'react-syntax-highlighter/dist/esm/styles/prism/prism';
 import styled from 'styled-components';
+
+const Rmarkdown = styled(ReactMarkdown)`
+  white-space: normal;
+  word-wrap: break-word;
+  padding-bottom: 10px;
+  > p {
+    margin-bottom: 16.5px;
+  }
+  ul {
+    list-style: none;
+  }
+`;
+
 const Markdown = ({ content }) => {
   return (
     <Rmarkdown
@@ -68,15 +81,3 @@ const Markdown = ({ content }) => {
   );
 };
 export default Markdown;
-
-const Rmarkdown = styled(ReactMarkdown)`
-  white-space: normal;
-  word-wrap: break-word;
-  padding-bottom: 10px;
-  > p {
-    margin-bottom: 16.5px;
-  }
-  ul {
-    list-style: none;
-  }
-`;
