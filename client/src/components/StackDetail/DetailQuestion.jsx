@@ -126,7 +126,7 @@ const DetailQuestion = () => {
               <DetailAnswer questionId={questionId}></DetailAnswer>
             </MainBox>
           </div>
-          <StackFoot />
+          <StackFoot num={980} />
         </Container>
       )}
     </>
