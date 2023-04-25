@@ -75,7 +75,7 @@ const Questions = () => {
         </div>
       </Container>
       <Box>
-        <StackFoot />
+        <StackFoot num={700} />
       </Box>
     </>
   );

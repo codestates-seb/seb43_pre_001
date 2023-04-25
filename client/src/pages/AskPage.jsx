@@ -23,7 +23,7 @@ function AskPage() {
       <Content>
         <AskPageContents />
       </Content>
-      <StackFoot />
+      <StackFoot num={1000} />
     </>
   );
 }
