@@ -125,6 +125,9 @@ function AskPageContents() {
   }, [title, content, allTags]);
   // console.log(isValidHandler());
 
+  const onChangeTitle = (e) => {
+    // console.log(e.target.value);
+  };
   return (
     <Main>
       <div>
@@ -136,7 +139,7 @@ function AskPageContents() {
           <AskPageMainNotice />
         </div>
         <InputSet>
-          <InputTitle quseiontTitle={ask.title} desc={ask.desc} />
+          <InputTitle quseiontTitle={ask.title} desc={ask.desc} onChange={onChangeTitle} />
           {titleFocus ? <AskPageSideNotice noticeTitle={ask.noticeTitle} noticeDesc={ask.noticeDesc} /> : null}
         </InputSet>
         <InputSet>

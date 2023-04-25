@@ -10,7 +10,6 @@ import Loading from '../../StackQuestions/QuestionsMeterial/Loading';
 import { useSelector, useDispatch } from 'react-redux';
 import { setAnswers } from '../../../reducer/questionSlice';
 
-
 const AnswerBox = styled.div`
   margin-top: 40px;
   display: flex;
@@ -75,7 +74,6 @@ const HrTag = styled.div`
   margin-top: 40px;
 `;
 
-
 const AnswerAnswer = ({ questionId }) => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
@@ -104,7 +102,6 @@ const AnswerAnswer = ({ questionId }) => {
 
   if (loading) {
     return (
-
       <AnswerItem>
         <Loading />
       </AnswerItem>
