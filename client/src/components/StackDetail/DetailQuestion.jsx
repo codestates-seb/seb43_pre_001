@@ -9,7 +9,6 @@ import { useState, useEffect } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { setDetailQuestion } from '../../reducer/questionSlice';
 import axios from 'axios';
-import TextEditor from '../Ask/TextEditor';
 import DetailButton from './DetailMeterial/DetailButton';
 import { setContent } from '../../reducer/askSlice';
 
@@ -33,6 +32,7 @@ const MainBox = styled.div`
   margin-left: 150px;
   padding: 24px;
   min-width: 800px;
+  max-width: 1264px;
   div.hr-line {
     margin-top: 12px;
     border-bottom: 1.5px solid #d6d9dc;
@@ -57,28 +57,20 @@ const DetailQuestion = () => {
 
   const dispatch = useDispatch();
 
-  //answer 조회를 위한 상태
-  const [answerList, setAnswerList] = useState([]);
-
   useEffect(() => {
     const process = async () => {
       setLoading(true);
       try {
-        const responseQuestion = await axios.get(`/questions/${questionId}`, {
+        const response = await axios.get(`/questions/${questionId}`, {
           headers: {
             Authorization: accessToken,
           },
         });
-        const responseAnswer = await axios.get(`/answers/${questionId}`, {
-          headers: {
-            Authorization: accessToken,
-          },
-        });
+
         // 데이터를 전역 store에 저장하기위함
-        dispatch(setDetailQuestion(responseQuestion.data.data));
-        // console.log(responseQuestion.data);
-        setAnswerList([responseAnswer.data]);
-        // console.log(responseAnswer.data);
+
+        dispatch(setDetailQuestion(response.data.data));
+
       } catch (e) {
         setError(e);
       }
@@ -86,19 +78,13 @@ const DetailQuestion = () => {
     };
     process();
   }, []);
-  //최초 렌더링시 undefined, 렌더링 직후 useEffect로 데이터를 받기에 아래와 같이 분기처리
-  // 로딩중이면 로딩컴포넌트 보여주기, 추후에 만들기
   if (loading) {
     return <Container>로딩중...</Container>;
   }
-  // 받아온 응답이 없다면
   if (!questions.question) return null;
-  // catch문의 Error처리
   if (error) {
     return <Container>에러 발생...</Container>;
   }
-
-  const stackFoot = <StackFoot num={980} />;
 
   // 질문 수정 페이지 이동
   const navigateToEditPage = () => {
@@ -138,7 +124,7 @@ const DetailQuestion = () => {
               <DetailHead question={questions.question} />
               <DetailView question={questions.question} />
               <DetailButton editFunction={navigateToEditPage} deleteFunction={deletePost} qMemberId={1} />
-              <DetailAnswer questionId={questionId} answerList={answerList}></DetailAnswer>
+              <DetailAnswer questionId={questionId}></DetailAnswer>
             </MainBox>
           </div>
           <StackFoot />

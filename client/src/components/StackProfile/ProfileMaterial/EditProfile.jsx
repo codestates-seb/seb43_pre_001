@@ -1,8 +1,9 @@
 import styled from 'styled-components';
 import { useState } from 'react';
 import { useForm } from 'react-hook-form';
-import { useDispatch } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import { changeName } from '../../../reducer/userSlice';
+import axios from 'axios';
 
 const EditProfileBlock = styled.div`
   #nickname {
@@ -127,6 +128,9 @@ const EditProfile = () => {
   const [open, setOpen] = useState(false);
   const dispatch = useDispatch();
 
+  const { memberId } = useSelector((state) => state.user);
+  const { accessToken } = useSelector((state) => state.auth);
+
   const {
     register,
     handleSubmit,
@@ -139,9 +143,20 @@ const EditProfile = () => {
   };
 
   const onSubmitFn = (data) => {
-    dispatch(changeName({ nickname: data.nickname }));
-    reset({ nickname: '' });
-    setOpen(!open);
+    const reqBody = {
+      memberId: memberId,
+      nickname: data.nickname,
+    };
+
+    axios
+      .patch(`members/update/${memberId}`, reqBody, { headers: { Authorization: accessToken } })
+      .then((res) => {
+        dispatch(changeName({ nickname: res.data.nickname }));
+      })
+      .then(() => {
+        setOpen(!open);
+        reset({ nickname: '' });
+      });
   };
 
   return (

@@ -25,6 +25,12 @@ const LeftTxt = styled.div`
   color: #000;
   text-shadow: 0 0 0 #000;
 
+  @media screen and (max-width: 768px) {
+    & {
+      display: none;
+    }
+  }
+
   h3 {
     font-size: 25px;
     margin-bottom: 32px;
@@ -115,6 +121,15 @@ const LeftTxt = styled.div`
 const RightSignup = styled.div`
   width: 317px;
   height: 558px;
+
+  @media screen and (max-width: 768px) {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    width: 100vw;
+    height: 100vh;
+  }
 `;
 
 const StackSignup = () => {

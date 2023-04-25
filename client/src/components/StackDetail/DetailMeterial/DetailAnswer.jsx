@@ -1,12 +1,15 @@
+import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import upIcon from '../../../assets/up-icon.svg';
 import downIcon from '../../../assets/down-icon.svg';
 import SharedButton from '../../SharedButton';
-import { setContent } from '../../../reducer/askSlice';
 import TextEditor from '../../Ask/TextEditor';
 import CreateAnswer from '../../Answer/CreateAnswer';
-import { useDispatch } from 'react-redux';
-import { useNavigate } from 'react-router-dom';
+import axios from 'axios';
+import Loading from '../../StackQuestions/QuestionsMeterial/Loading';
+import { useSelector, useDispatch } from 'react-redux';
+import { setAnswers } from '../../../reducer/questionSlice';
+
 
 const AnswerBox = styled.div`
   margin-top: 40px;
@@ -61,6 +64,7 @@ const AnswerSideBar = styled.div`
 const AnswerContentBox = styled.div`
   margin: 24px 24px 0 0;
   flex-grow: 1;
+  max-width: 710px;
   min-height: 300px;
   font-size: 15px;
   font-weight: 400;
@@ -71,37 +75,76 @@ const HrTag = styled.div`
   margin-top: 40px;
 `;
 
-const AnswerAnswer = ({ questionId, answerList }) => {
-  // let dispatch = useDispatch();
-  // const navigate = useNavigate();
-  // // 답변 수정 페이지 이동
-  // const navigateToEditPage = () => {
-  //   navigate(`/answers/${answer.answerId}/edit`, {
-  //     state: { answer, question },
-  //   });
-  //   dispatch(setContent(answer.content));
-  // };
 
+const AnswerAnswer = ({ questionId }) => {
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(null);
+  const { accessToken } = useSelector((state) => state.auth);
+
+  const answerList = useSelector((state) => state.questions);
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    const process = async () => {
+      setLoading(true);
+      try {
+        const response = await axios.get(`/answers/${questionId}`, {
+          headers: {
+            Authorization: accessToken,
+          },
+        });
+        dispatch(setAnswers(response.data.data));
+      } catch (e) {
+        setError(e);
+      }
+      setLoading(false);
+    };
+    process();
+  }, []);
+
+  if (loading) {
+    return (
+
+      <AnswerItem>
+        <Loading />
+      </AnswerItem>
+    );
+  }
+  if (error) {
+    return <AnswerItem>에러 발생...</AnswerItem>;
+  }
   return (
     <AnswerBox>
-      {answerList.length === 0 ? <AnswerHead> Answer</AnswerHead> : <AnswerHead>{answerList.length} Answer</AnswerHead>}
-      {/* 엔서아이템 맵처리해야함 */}
-      <AnswerItem>
-        <AnswerViewBox>
-          <AnswerSideBar>
-            <div className='arrow-img'>
-              <img src={upIcon} alt='up-icon'></img>
-            </div>
-            <div className='score'> 0</div>
-            <div className='arrow-img'>
-              <img src={downIcon} alt='down-icon'></img>
-            </div>
-          </AnswerSideBar>
-          <AnswerContentBox>asd</AnswerContentBox>
-          <RightArea></RightArea>
-        </AnswerViewBox>
-      </AnswerItem>
+      {answerList.answers.length === 0 ? null : (
+        <>
+          <AnswerHead>{answerList.answers.length} Answer</AnswerHead>
+          {answerList.answers.map((el) => {
+            return (
+              <React.Fragment key={el.answerId}>
+                <AnswerItem>
+                  <AnswerViewBox>
+                    <AnswerSideBar>
+                      <div className='arrow-img'>
+                        <img src={upIcon} alt='up-icon'></img>
+                      </div>
+                      <div className='score'> 0</div>
+                      <div className='arrow-img'>
+                        <img src={downIcon} alt='down-icon'></img>
+                      </div>
+                    </AnswerSideBar>
+                    {/* Answer의 content 내용이 담기는 부분 */}
+                    <AnswerContentBox>{el.content}</AnswerContentBox>
+                    <RightArea />
+                  </AnswerViewBox>
+                  <SharedButton></SharedButton>
+                </AnswerItem>
+              </React.Fragment>
+            );
+          })}
+        </>
+      )}
       <HrTag />
+      {/* Answer작성하는 폼 부분 */}
       <CreateAnswer questionId={questionId} />
     </AnswerBox>
   );
