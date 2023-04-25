@@ -73,17 +73,29 @@ public class MemberService {
     public Member updateMember(Member member) {
         // 회원 검증
         Member findMember = checkMember(member.getMemberId());
-        // 닉네임 수정
-        findMember.setNickname(member.getNickname());
-        // 비밀번호 수정 -> 암호화하여 저장
-        String updatedPassword = passwordEncoder.encode(findMember.getPassword());
-        findMember.setPassword(updatedPassword);
 
+        if (member.getMemberId() != findMember.getMemberId()) {
+            throw new BusinessLogicException(ExceptionCode.MEMBER_NOT_FOUND);
+        }
+
+        verifyExistsNickname(member.getNickname());
+
+        // 닉네임 수정
+        Optional.ofNullable(member.getNickname())
+                .ifPresent(nickname -> findMember.setNickname(nickname));
+        Optional.ofNullable(member.getPassword())
+                .ifPresent(password -> findMember.setPassword(passwordEncoder.encode(password)));
+
+
+//         비밀번호 수정 -> 암호화하여 저장
+//        String updatedPassword = passwordEncoder.encode(findMember.getPassword());
+//        findMember.setPassword(updatedPassword);
+
+        System.out.println("nickname : " + findMember.getNickname());
         // 저장
         return memberRepository.save(findMember);
 
     }
-
     /*
     <회원 정보 삭제>
     1. 회원 검증(존재O or 존재X)
