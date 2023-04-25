@@ -21,7 +21,7 @@ const EditPageMain = styled.main`
   max-width: 662px;
 `;
 
-function AnswerEditPage() {
+function EditAnswerPage() {
   return (
     <>
       <HeadLogin />
@@ -38,4 +38,4 @@ function AnswerEditPage() {
   );
 }
 
-export default AnswerEditPage;
+export default EditAnswerPage;
