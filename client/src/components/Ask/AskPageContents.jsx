@@ -99,7 +99,7 @@ function AskPageContents() {
         })
         .then(function (response) {
           console.log(response.data);
-          // navigate('/');
+          navigate('/');
         })
         .catch(function (error) {
           console.log(error);

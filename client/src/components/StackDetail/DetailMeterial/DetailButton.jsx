@@ -1,22 +1,22 @@
 import { useSelector } from 'react-redux';
 import styled from 'styled-components';
-function DetailButton({ editFunction, deleteFunction, qMemberId, aMemberId }) {
+function DetailButton({ editFunction, deleteFunction, qMemberId, aMemberId, answerData }) {
   const loggedIn = useSelector((state) => state.loggedIn);
   const member_id = useSelector((state) => state.member_id);
   const loginMemberId = Number(member_id);
   const QnAMemberId = qMemberId || aMemberId;
-
+  // console.log('answerData', answerData);
   return (
     <ButtonWrapper>
-      <QuestionButton>Share</QuestionButton>
+      {/* <QuestionButton>Share</QuestionButton> */}
       {/* {loggedIn && loginMemberId === QnAMemberId ? ( */}
       <>
         <QuestionButton onClick={editFunction}>Edit</QuestionButton>
         <QuestionButton onClick={deleteFunction}>Delete</QuestionButton>
-        <QuestionButton>Flag</QuestionButton>
+        {/* <QuestionButton>Flag</QuestionButton> */}
       </>
       {/* ) : ( */}
-      <QuestionButton>Follow</QuestionButton>
+      {/* <QuestionButton>Follow</QuestionButton> */}
       {/* ) */}
       {/* } */}
     </ButtonWrapper>

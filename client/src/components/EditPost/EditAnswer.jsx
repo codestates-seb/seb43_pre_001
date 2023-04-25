@@ -1,15 +1,14 @@
 // import InputTags from '../../components/Ask/InputTags';
 import styled from 'styled-components';
-import { useLocation, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
+import { Editor } from '@toast-ui/react-editor';
 import Markdown from '../Markdown';
 import InputTitle from '../Ask/InputTitle';
 import { useSelector, useDispatch } from 'react-redux';
 import axios from 'axios';
-import TextEditor from '../Ask/TextEditor';
 import { setContent, setTitle, setAllTags } from '../../reducer/askSlice';
 import SharedButton from '../SharedButton';
-import { ask } from '../../assets/askNoticeData';
-import { useState } from 'react';
+import { useState, useRef, useEffect } from 'react';
 
 const EditContentWrapper = styled.div`
   margin-top: 50px;
@@ -32,7 +31,7 @@ const Preview = styled(Markdown)`
 
 const EditTitle = styled(InputTitle)``;
 
-const EditorBox = styled(TextEditor)``;
+const EditorBox = styled(Editor)``;
 
 const SaveEditsOrCancel = styled.div`
   display: flex;
@@ -57,41 +56,23 @@ const CancelButton = styled.button`
     background-color: hsl(210deg 100% 97%);
   }
 `;
-// 질문 수정: 질문 title, 질문 content, 질문 tags
-// 답변 수정: 질문 title, 질문 content, 답변 content
-function EditAsk() {
+function EditAnswer() {
   const questionsEdit = useSelector((state) => state.questions);
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const { state } = useLocation();
-  const { answer, question } = state;
-  console.log(answer, question);
   const { memberId } = questionsEdit.question.member;
-  const { questionId } = questionsEdit.question;
-  const { title } = useSelector((state) => state.questions);
-  const { answerId } = '1';
+  const { questionId, content } = questionsEdit.question;
   const { accessToken } = useSelector((state) => state.auth);
-  console.log('questionsEdit:', questionsEdit);
+  const [newContent, setNewContent] = useState(content);
+  const editorRef = useRef(null);
 
-  const Qcontent = useSelector((state) => questionsEdit.question.content);
-  const [qText, setQtext] = useState(Qcontent);
-  const Acontent = useSelector((state) => state.answer.content);
+  const requestBody = {
+    content: newContent,
+    memberId,
+  };
 
-  const requestBody = answer
-    ? {
-        content: Acontent,
-        memberId,
-      }
-    : {
-        content: Qcontent,
-        title,
-        memberId,
-      };
-
-  // 질문/답변 수정
-  const url = answer ? `/answers/${answerId}` : `/questions/${questionId}`;
-  console.log(Qcontent);
-  console.log(url);
+  // 질문 수정
+  const url = `/answer/${1}`;
   const patchHandler = async () => {
     await axios
       .patch(url, requestBody, {
@@ -116,24 +97,14 @@ function EditAsk() {
     dispatch(setContent(null), setTitle(null), setAllTags(null));
   };
 
+  const onChangeEditor = () => {
+    setNewContent(editorRef.current?.getInstance().getMarkdown());
+  };
+
   return (
     <EditContentWrapper>
-      {answer ? null : <EditTitle quseiontTitle='Title' defaultValue={questionsEdit.question.title} />}
-      {answer ? (
-        <>
-          <QuestionTitle
-            onClick={() => {
-              navigate(`/questions/${ask.question_id}`);
-            }}
-          >
-            {ask.title}
-          </QuestionTitle>
-          <Preview content={ask.content} />
-        </>
-      ) : null}
-      <EditorBox title={answer ? 'Answer' : 'Body'} initialValue={answer ? answer.content : questionsEdit.question.content} />
-      <Preview content={answer ? Acontent : Qcontent} />
-      {/* {answer ? null : <InputTags defaultValue={question.tags} />} */}
+      <EditorBox title={'Body'} ref={editorRef} initialValue={content} hideModeSwitch={true} onChange={onChangeEditor} />
+      <Preview content={content} />
       <SaveEditsOrCancel>
         <SharedButton buttonText='Save edits' functionHandler={patchHandler} />
         <CancelButton onClick={handleCancel}>Cancel</CancelButton>
@@ -142,4 +113,4 @@ function EditAsk() {
   );
 }
 
-export default EditAsk;
+export default EditAnswer;

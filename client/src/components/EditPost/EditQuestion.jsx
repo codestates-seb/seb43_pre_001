@@ -1,17 +1,14 @@
 // import InputTags from '../../components/Ask/InputTags';
 import styled from 'styled-components';
-import { useLocation, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { Editor } from '@toast-ui/react-editor';
 import Markdown from '../Markdown';
 import InputTitle from '../Ask/InputTitle';
 import { useSelector, useDispatch } from 'react-redux';
 import axios from 'axios';
-import TextEditor from '../Ask/TextEditor';
 import { setContent, setTitle, setAllTags } from '../../reducer/askSlice';
 import SharedButton from '../SharedButton';
-import { ask } from '../../assets/askNoticeData';
 import { useState, useRef, useEffect } from 'react';
-import { setQuestions } from '../../reducer/questionSlice';
 
 const EditContentWrapper = styled.div`
   margin-top: 50px;
@@ -91,7 +88,7 @@ function EditQuestion() {
       })
       .then(function (response) {
         console.log('response:', response);
-        // navigate(`/questions/${questionId}`);
+        navigate(`/questions/${questionId}`);
         dispatch(setContent(null), setTitle(null), setAllTags(null));
       })
       .catch(function (error) {
@@ -105,13 +102,11 @@ function EditQuestion() {
   };
 
   const onChangeTitle = (e) => {
-    console.log(e);
     setNewTitle(e.target.value);
     // setQuestions.question.title(e.target.value);
   };
   const onChangeEditor = () => {
     setNewContent(editorRef.current?.getInstance().getMarkdown());
-    console.log(editorRef.current?.getInstance().getMarkdown());
   };
 
   return (

@@ -9,6 +9,7 @@ import DetailQuestionPage from './pages/DetailQuestion';
 import AskPage from './pages/AskPage';
 import ProfilePage from './pages/ProfilePage';
 import EditPage from './pages/EditPage';
+import AnswerEditPage from './pages/AnswerEditPage';
 
 function App() {
   //탭 메뉴 선택을 위한 state 설정
@@ -23,7 +24,7 @@ function App() {
         <Route path='/profile' element={<ProfilePage />} />
         <Route path='/questions/ask' element={<AskPage />} />
         <Route path='/questions/:id/edit' element={<EditPage />} />
-        <Route path='/answers/:id/edit' element={<EditPage />} />
+        <Route path='/answers/:id/edit' element={<AnswerEditPage />} />
 
         <Route path='*' element={<QuestionsPage />} />
       </Routes>

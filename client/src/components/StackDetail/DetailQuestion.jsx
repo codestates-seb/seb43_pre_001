@@ -53,8 +53,6 @@ const DetailQuestion = () => {
   // questions 전역 상태관리
   const questions = useSelector((state) => state.questions);
 
-  console.log('questions:', questions);
-
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -122,7 +120,7 @@ const DetailQuestion = () => {
             <MainBox>
               <DetailHead question={questions.question} />
               <DetailView question={questions.question} />
-              <DetailButton editFunction={navigateToEditPage} deleteFunction={deletePost} qMemberId={1} />
+              <DetailButton editFunction={navigateToEditPage} deleteFunction={deletePost} qMemberId={memberId} />
               <DetailAnswer questionId={questionId}></DetailAnswer>
             </MainBox>
           </div>
