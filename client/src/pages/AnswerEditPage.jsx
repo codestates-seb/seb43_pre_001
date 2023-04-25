@@ -1,8 +1,8 @@
 import styled from 'styled-components';
 import LeftSideBar from '../components/StackSidebar/LeftSideBar';
 import RightSideBar from '../components/StackSidebar/RightSideBar';
-import EditQuestion from '../components/EditPost/EditQuestion';
 import HeadLogin from '../components/StackHead/HeadLogin';
+import EditAnswer from '../components/EditPost/EditAnswer';
 const EditWrapper = styled.div`
   display: flex;
   justify-content: center;
@@ -21,7 +21,7 @@ const EditPageMain = styled.main`
   max-width: 662px;
 `;
 
-function EditPage() {
+function AnswerEditPage() {
   return (
     <>
       <HeadLogin />
@@ -29,7 +29,7 @@ function EditPage() {
       <EditWrapper>
         <EditPageContent>
           <EditPageMain>
-            <EditQuestion />
+            <EditAnswer />
           </EditPageMain>
           <RightSideBar />
         </EditPageContent>
@@ -38,4 +38,4 @@ function EditPage() {
   );
 }
 
-export default EditPage;
+export default AnswerEditPage;

@@ -75,6 +75,7 @@ function CreateAnswer({ questionId, initialValue = '' }) {
     setText(editorRef.current?.getInstance().getMarkdown());
   };
 
+  useEffect(() => {}, [text]);
   const postAnswer = async () => {
     // if (isValidHandler()) {
     // console.log(requestBody);
@@ -89,7 +90,7 @@ function CreateAnswer({ questionId, initialValue = '' }) {
         },
         withCredentials: true,
       });
-      // console.log(response);
+      console.log(response);
       setText('');
       setIsValid(true);
       window.scrollTo(0, 0);

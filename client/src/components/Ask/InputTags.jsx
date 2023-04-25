@@ -58,7 +58,7 @@ function InputTags({ defaultValue = null }) {
   };
   useEffect(() => {
     validationHandler();
-    console.log(allTags);
+    // console.log(allTags);
   }, [allTags]);
 
   const resetInputTags = () => {
