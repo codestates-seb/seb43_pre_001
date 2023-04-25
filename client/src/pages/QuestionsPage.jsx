@@ -5,6 +5,7 @@ import { useSelector } from 'react-redux';
 
 const QuestionsPage = () => {
   const { loggedIn } = useSelector((state) => state.user);
+
   return (
     <>
       {loggedIn ? <HeadLogin /> : <HeadNotLoginMain />}

@@ -3,10 +3,9 @@ import storage from 'redux-persist/lib/storage';
 import { combineReducers } from 'redux';
 import { persistReducer } from 'redux-persist';
 import expireReducer from 'redux-persist-expire';
-import jwt_decode from 'jwt-decode';
 
-import { userSlice } from '../reducer/userSlice';
-import { authSlice } from '../reducer/authSlice';
+import { userSlice, logout } from '../reducer/userSlice';
+import { authSlice, removeToken } from '../reducer/authSlice';
 import askSlice from '../reducer/askSlice';
 import questionSlice from '../reducer/questionSlice';
 import sidebarSlice from '../reducer/sidebarSlice';
@@ -28,31 +27,16 @@ const persistConfig = {
   blacklist: ['ask', 'answer', 'questions', 'sidebar'],
   transforms: [
     expireReducer('auth', {
-      expireSeconds: (state) => {
-        const exp = jwt_decode(state.auth.accessToken).exp;
-        const now = Date.now() / 1000;
-        return exp - now;
-      },
-      expiredState: {
-        accessToken: null,
-        isAuthenticated: false,
-      },
+      expireSeconds: 3600,
       autoExpire: true,
-      stateExpireKey: 'auth.accessToken.exp',
+      persistedAtKey: 'auth_exp',
+      expiredAction: removeToken,
     }),
     expireReducer('user', {
-      expireSeconds: (state) => {
-        const exp = jwt_decode(state.auth.accessToken).exp;
-        const now = Date.now() / 1000;
-        return exp - now;
-      },
-      expiredState: {
-        memberId: null,
-        nickname: null,
-        loggedIn: false,
-      },
+      expireSeconds: 3600,
       autoExpire: true,
-      stateExpireKey: 'auth.accessToken.exp',
+      persistedAtKey: 'auth_exp',
+      expiredAction: logout,
     }),
   ],
 };
