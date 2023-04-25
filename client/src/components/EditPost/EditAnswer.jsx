@@ -57,22 +57,28 @@ const CancelButton = styled.button`
   }
 `;
 function EditAnswer() {
+  const answerEdit = useSelector((state) => state.answer);
   const questionsEdit = useSelector((state) => state.questions);
+
+  console.log('answerEdit:', answerEdit);
+  console.log('questionsEdit:', questionsEdit);
+
+  const { answerId } = answerEdit;
+  const { memberId } = questionsEdit.question.member;
+  const { questionId } = questionsEdit.question;
+  const { accessToken } = useSelector((state) => state.auth);
+  const [newContent, setNewContent] = useState(answerEdit.content);
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const { memberId } = questionsEdit.question.member;
-  const { questionId, content } = questionsEdit.question;
-  const { accessToken } = useSelector((state) => state.auth);
-  const [newContent, setNewContent] = useState(content);
   const editorRef = useRef(null);
-
   const requestBody = {
     content: newContent,
     memberId,
   };
 
   // 질문 수정
-  const url = `/answer/${1}`;
+  const url = `/answers/${answerId}`;
+
   const patchHandler = async () => {
     await axios
       .patch(url, requestBody, {
@@ -84,8 +90,8 @@ function EditAnswer() {
       })
       .then(function (response) {
         console.log('response:', response);
-        // navigate(`/questions/${questionId}`);
         dispatch(setContent(null), setTitle(null), setAllTags(null));
+        navigate(`/questions/${questionId}`);
       })
       .catch(function (error) {
         console.log(error);
@@ -103,8 +109,8 @@ function EditAnswer() {
 
   return (
     <EditContentWrapper>
-      <EditorBox title={'Body'} ref={editorRef} initialValue={content} hideModeSwitch={true} onChange={onChangeEditor} />
-      <Preview content={content} />
+      <EditorBox title={'Body'} ref={editorRef} initialValue={newContent} hideModeSwitch={true} onChange={onChangeEditor} />
+      <Preview content={newContent} />
       <SaveEditsOrCancel>
         <SharedButton buttonText='Save edits' functionHandler={patchHandler} />
         <CancelButton onClick={handleCancel}>Cancel</CancelButton>

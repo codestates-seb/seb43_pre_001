@@ -4,13 +4,17 @@ const answerSlice = createSlice({
   name: 'answerSlice',
   initialState: {
     answerContent: null,
+    answerId: null,
   },
   reducers: {
-    setContent: (state, action) => {
+    setAnswerContent: (state, action) => {
       state.content = action.payload;
+    },
+    setAnswerId: (state, action) => {
+      state.answerId = action.payload;
     },
   },
 });
 
 export default answerSlice;
-export const { setContent, answerContent } = answerSlice.actions;
+export const { setAnswerContent, answerContent, setAnswerId } = answerSlice.actions;
