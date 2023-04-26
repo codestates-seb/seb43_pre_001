@@ -12,6 +12,6 @@ import java.util.Optional;
 @Repository
 public interface AnswerRepository extends JpaRepository<Answer, Long> {
 
-    @Query(value = "SELECT * FROM Answer WHERE question_Id = :questionId", nativeQuery = true)
+    @Query(value = "SELECT * FROM answer WHERE question_Id = :questionId", nativeQuery = true)
     List<Answer> findAllByQuestionId(@Param("questionId") long questionId);
 }
