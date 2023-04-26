@@ -155,7 +155,7 @@ const LoginForm = () => {
     const { email, password } = data;
 
     axios
-      .post('${baseURL}/members/login', { email, password })
+      .post(`${baseURL}/members/login`, { email, password })
       .then((res) => {
         dispatch(setAccessToken({ accessToken: res.data.AccessToken }));
         dispatch(login({ memberId: Number(res.data.memberId), nickname: res.data.nickname }));

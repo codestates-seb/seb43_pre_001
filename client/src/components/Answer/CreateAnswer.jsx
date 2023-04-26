@@ -70,8 +70,6 @@ function CreateAnswer({ questionId, initialValue = '' }) {
         headers: {
           'ngrok-skip-browser-warning': '69420',
           'Content-Type': 'application/json',
-          'Access-Control-Allow-Credentials': 'true',
-          'Access-Control-Allow-Origin': `http://localhost:3000`,
           Authorization: accessToken,
         },
         withCredentials: true,

@@ -201,7 +201,7 @@ const SignupForm = () => {
         {
           headers: {
             'Access-Control-Allow-Credentials': 'true',
-            'Access-Control-Allow-Origin': 'http://localhost:3000/',
+            'Access-Control-Allow-Origin': 'http://e1i5.s3-website.ap-northeast-2.amazonaws.com',
           },
           withCredentials: true,
         },
