@@ -61,12 +61,10 @@ function CreateAnswer({ questionId, initialValue = '' }) {
   useEffect(() => {}, [text]);
   const baseURL = process.env.REACT_APP_BASE_URL;
   const postAnswer = async () => {
-    // if (isValidHandler()) {
-    // console.log(requestBody);
     if (text.length < 30) {
       setIsValid(false);
     } else {
-      const response = await axios.post(`${baseURL}/answers`, requestBody, {
+      await axios.post(`${baseURL}/answers`, requestBody, {
         headers: {
           'ngrok-skip-browser-warning': '69420',
           'Content-Type': 'application/json',
@@ -74,7 +72,6 @@ function CreateAnswer({ questionId, initialValue = '' }) {
         },
         withCredentials: true,
       });
-      console.log(response);
       setText('');
       setIsValid(true);
       window.scrollTo(0, 0);

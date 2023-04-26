@@ -48,10 +48,6 @@ function TextEditor({ title, desc = null, initialValue = '', onChange, ref }) {
       : dispatch(setAnswerContent(editorRef.current?.getInstance().getMarkdown()));
   };
 
-  // const showEditorData = () => {
-  //   console.log(editorRef.current?.getInstance().getHTML());
-  // };
-
   //유효성 검사
   let isContentValid = false;
   let validationContent = () => {

@@ -43,7 +43,6 @@ const Box = styled.div``;
 const Questions = () => {
   //페이지 네이션 버튼관리
   const { accessToken } = useSelector((state) => state.auth);
-  // console.log(accessToken);
   const [page, setPage] = useState('1');
   const [totalPage, setTotalPage] = useState(0);
   const clickPageNum = (e) => {

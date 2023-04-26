@@ -81,7 +81,6 @@ function EditAnswer() {
         withCredentials: true,
       })
       .then(function (response) {
-        console.log('response:', response);
         dispatch(setContent(null), setTitle(null), setAllTags(null));
         navigate(`/questions/${questionId}`);
       })

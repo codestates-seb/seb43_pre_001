@@ -88,7 +88,6 @@ const AnswerItem = ({ el }) => {
           withCredentials: true,
         })
         .then((res) => {
-          console.log(res);
           window.location.reload();
         });
     } else {

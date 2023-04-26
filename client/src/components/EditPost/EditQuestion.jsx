@@ -57,7 +57,6 @@ const CancelButton = styled.button`
 `;
 function EditQuestion() {
   const questionsEdit = useSelector((state) => state.questions);
-  // console.log('questionsEdit:', questionsEdit.question.title);
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const { memberId } = questionsEdit.question.member;
@@ -86,7 +85,6 @@ function EditQuestion() {
         withCredentials: true,
       })
       .then(function (response) {
-        console.log('response:', response);
         navigate(`/questions/${questionId}`);
         dispatch(setContent(null), setTitle(null), setAllTags(null));
       })

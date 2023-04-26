@@ -97,7 +97,6 @@ function AskPageContents() {
           },
         })
         .then(function (response) {
-          console.log(response.data);
           navigate('/');
         })
         .catch(function (error) {

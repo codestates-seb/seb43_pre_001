@@ -190,7 +190,7 @@ const SignupForm = () => {
     const { nickname, email, password } = data;
 
     try {
-      const resData = await axios.post(
+      await axios.post(
         `${process.env.REACT_APP_BASE_URL}/members/signup`,
         {
           nickname,
@@ -206,7 +206,6 @@ const SignupForm = () => {
           withCredentials: true,
         },
       );
-      console.log(resData.data);
     } catch (err) {
       console.log(err);
       alert('이미 존재하는 회원입니다.');

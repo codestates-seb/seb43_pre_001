@@ -58,7 +58,6 @@ function InputTags({ defaultValue = null }) {
   };
   useEffect(() => {
     validationHandler();
-    // console.log(allTags);
   }, [allTags]);
 
   const resetInputTags = () => {
@@ -124,7 +123,6 @@ function InputTags({ defaultValue = null }) {
   useEffect(() => {
     if (defaultValue?.length > 0) {
       let arr = [];
-      // console.log(defaultValue);
       defaultValue?.forEach((el) => {
         makeTag(el);
         arr.push(el);
