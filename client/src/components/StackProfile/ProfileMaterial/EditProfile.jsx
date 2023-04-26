@@ -141,7 +141,7 @@ const EditProfile = () => {
   const changeOpen = () => {
     setOpen(!open);
   };
-
+  const baseURL = process.env.REACT_APP_BASE_URL;
   const onSubmitFn = (data) => {
     const reqBody = {
       memberId: memberId,
@@ -149,7 +149,7 @@ const EditProfile = () => {
     };
 
     axios
-      .patch(`members/update/${memberId}`, reqBody, { headers: { Authorization: accessToken } })
+      .patch(`${baseURL}/members/update/${memberId}`, reqBody, { headers: { Authorization: accessToken } })
       .then((res) => {
         dispatch(changeName({ nickname: res.data.nickname }));
       })

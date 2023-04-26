@@ -150,11 +150,12 @@ const LoginForm = () => {
   } = useForm();
 
   // submit
+  const baseURL = process.env.REACT_APP_BASE_URL;
   const onSubmitFn = (data) => {
     const { email, password } = data;
 
     axios
-      .post('/members/login', { email, password })
+      .post('${baseURL}/members/login', { email, password })
       .then((res) => {
         dispatch(setAccessToken({ accessToken: res.data.AccessToken }));
         dispatch(login({ memberId: Number(res.data.memberId), nickname: res.data.nickname }));

@@ -27,11 +27,12 @@ const QuestionsList = ({ page, setTotal }) => {
 
   const dispatch = useDispatch();
 
+  const baseURL = process.env.REACT_APP_BASE_URL;
   useEffect(() => {
     const process = async () => {
       setLoading(true);
       try {
-        const response = await axios.get(`/questions?page=${page}&size=3`, {
+        const response = await axios.get(`${baseURL}/questions?page=${page}&size=3`, {
           headers: {
             Authorization: accessToken,
           },

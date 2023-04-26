@@ -185,16 +185,27 @@ const SignupForm = () => {
     formState: { errors },
   } = useForm();
 
+  const baseURL = process.env.REACT_APP_BASE_URL;
   const onSubmit = async (data) => {
     const { nickname, email, password } = data;
 
     try {
-      const resData = await axios.post('/members/signup', {
-        nickname,
-        name: nickname,
-        email,
-        password,
-      });
+      const resData = await axios.post(
+        `${process.env.REACT_APP_BASE_URL}/members/signup`,
+        {
+          nickname,
+          name: nickname,
+          email,
+          password,
+        },
+        {
+          headers: {
+            'Access-Control-Allow-Credentials': 'true',
+            'Access-Control-Allow-Origin': 'http://localhost:3000/',
+          },
+          withCredentials: true,
+        },
+      );
       console.log(resData.data);
     } catch (err) {
       console.log(err);
