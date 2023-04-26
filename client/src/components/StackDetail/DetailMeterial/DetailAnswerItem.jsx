@@ -6,6 +6,7 @@ import DetailButton from './DetailButton';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
+import { setAnswerContent, setAnswerId } from '../../../reducer/answerSlice';
 
 const AnswerItemBox = styled.div`
   padding-bottom: 30px;
@@ -62,14 +63,12 @@ const AnswerItem = ({ el }) => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const { answerId, content, memberId, questionId } = el;
-  console.log('content:', content);
-  console.log('questionId:', questionId);
-  console.log('memberId:', memberId);
-  console.log('answerId:', answerId);
+
   // 질문 수정 페이지 이동
   const navigateToEditPage = () => {
+    dispatch(setAnswerContent(content));
+    dispatch(setAnswerId(el.answerId));
     navigate(`/answers/${answerId}/edit`);
-    // dispatch(setContent(content));
   };
 
   // // 질문 삭제

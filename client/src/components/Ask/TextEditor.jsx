@@ -5,7 +5,7 @@ import { useRef, useEffect, useState, useLayoutEffect } from 'react';
 import { AskBoxStyle } from './AskStyle';
 import { useDispatch, useSelector } from 'react-redux';
 import { setContent, setContentFocus, setDiscardEditor } from '../../reducer/askSlice';
-import { setContent as setAnswerContent } from '../../reducer/answerSlice';
+import { setAnswerContent } from '../../reducer/answerSlice';
 import SharedButton from '../SharedButton';
 
 const Div = styled(AskBoxStyle)`
