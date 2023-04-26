@@ -1,4 +1,3 @@
-// import InputTags from '../../components/Ask/InputTags';
 import styled from 'styled-components';
 import { useNavigate } from 'react-router-dom';
 import { Editor } from '@toast-ui/react-editor';
@@ -76,10 +75,10 @@ function EditQuestion() {
   };
 
   // 질문 수정
-  const url = `/questions/${questionId}`;
+  const baseURL = process.env.REACT_APP_BASE_URL;
   const patchHandler = async () => {
     await axios
-      .patch(url, requestBody, {
+      .patch(`${baseURL}/questions/${questionId}`, requestBody, {
         headers: {
           'Content-Type': 'application/json',
           Authorization: accessToken,

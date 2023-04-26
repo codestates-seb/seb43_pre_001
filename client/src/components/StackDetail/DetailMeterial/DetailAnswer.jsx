@@ -5,7 +5,6 @@ import axios from 'axios';
 import Loading from '../../StackQuestions/QuestionsMeterial/Loading';
 import { useSelector, useDispatch } from 'react-redux';
 import { setAnswers } from '../../../reducer/questionSlice';
-import DetailButton from './DetailButton';
 import DetailAnswerItem from './DetailAnswerItem';
 
 const AnswerBox = styled.div`
@@ -38,11 +37,12 @@ const AnswerAnswer = ({ questionId }) => {
   const answerList = useSelector((state) => state.questions);
   const dispatch = useDispatch();
 
+  const baseURL = process.env.REACT_APP_BASE_URL;
   useEffect(() => {
     const process = async () => {
       setLoading(true);
       try {
-        const response = await axios.get(`/answers/${questionId}`, {
+        const response = await axios.get(`${baseURL}/answers/${questionId}`, {
           headers: {
             Authorization: accessToken,
           },
@@ -66,6 +66,7 @@ const AnswerAnswer = ({ questionId }) => {
   if (error) {
     return <AnswerItem>에러 발생...</AnswerItem>;
   }
+
   return (
     <AnswerBox>
       {answerList.answers.length === 0 ? null : (

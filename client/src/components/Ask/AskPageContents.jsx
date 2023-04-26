@@ -1,10 +1,9 @@
 import InputTitle from './InputTitle';
-import InputTags from './InputTags';
 import TextEditor from './TextEditor';
 import styled from 'styled-components';
 import AskPageMainNotice from './AskPageMainNotice';
 import AskPageSideNotice from './AskPageSideNotice';
-import { ask, tags, body } from '../../assets/askNoticeData';
+import { ask, body } from '../../assets/askNoticeData';
 import { ReactComponent as Background } from '../../assets/robot-img.svg';
 import axios from 'axios';
 import SharedButton from '../SharedButton';
@@ -86,11 +85,11 @@ function AskPageContents() {
     content,
   };
 
+  const baseURL = process.env.REACT_APP_BASE_URL;
   const postAsk = async () => {
     if (isValidHandler()) {
-      const content = await axios
-        .post(`/questions/ask`, requestBody, {
-          // .post(`/answers`, requestBody, {
+      await axios
+        .post(`${baseURL}/questions/ask`, requestBody, {
           headers: {
             'ngrok-skip-browser-warning': '69420',
             'Content-Type': 'application/json',
@@ -109,7 +108,6 @@ function AskPageContents() {
 
   const isValidHandler = () => {
     return title?.length >= 15 && content?.length;
-    //  allTags?.length && allTags?.length <= 5;
   };
 
   const discardHandler = () => {
@@ -123,11 +121,8 @@ function AskPageContents() {
   useEffect(() => {
     isValidHandler();
   }, [title, content, allTags]);
-  // console.log(isValidHandler());
 
-  const onChangeTitle = (e) => {
-    // console.log(e.target.value);
-  };
+  const onChangeTitle = (e) => {};
   return (
     <Main>
       <div>
@@ -146,10 +141,6 @@ function AskPageContents() {
           <TextEditor title={body.title} desc={body.desc} />
           {contentFocus ? <AskPageSideNotice noticeTitle={body.noticeTitle} noticeDesc={body.noticeDesc} /> : null}
         </InputSet>
-        {/* <InputSet>
-          <InputTags title={tags.title} desc={tags.desc} />
-          {tagsFocus ? <AskPageSideNotice noticeTitle={tags.noticeTitle} noticeDesc={tags.noticeDesc} /> : null}
-        </InputSet> */}
         <PostOrDiscardButtons>
           <SharedButton buttonText='Post your question' functionHandler={postAsk}></SharedButton>
           <Button onClick={discardHandler}>Discard draft</Button>

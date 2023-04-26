@@ -1,9 +1,7 @@
-// import InputTags from '../../components/Ask/InputTags';
 import styled from 'styled-components';
 import { useNavigate } from 'react-router-dom';
 import { Editor } from '@toast-ui/react-editor';
 import Markdown from '../Markdown';
-import InputTitle from '../Ask/InputTitle';
 import { useSelector, useDispatch } from 'react-redux';
 import axios from 'axios';
 import { setContent, setTitle, setAllTags } from '../../reducer/askSlice';
@@ -28,8 +26,6 @@ const Preview = styled(Markdown)`
     margin-bottom: 16.5px;
   }
 `;
-
-const EditTitle = styled(InputTitle)``;
 
 const EditorBox = styled(Editor)``;
 
@@ -59,10 +55,6 @@ const CancelButton = styled.button`
 function EditAnswer() {
   const answerEdit = useSelector((state) => state.answer);
   const questionsEdit = useSelector((state) => state.questions);
-
-  console.log('answerEdit:', answerEdit);
-  console.log('questionsEdit:', questionsEdit);
-
   const { answerId } = answerEdit;
   const { memberId } = questionsEdit.question.member;
   const { questionId } = questionsEdit.question;
@@ -77,11 +69,11 @@ function EditAnswer() {
   };
 
   // 질문 수정
-  const url = `/answers/${answerId}`;
 
+  const baseURL = process.env.REACT_APP_BASE_URL;
   const patchHandler = async () => {
     await axios
-      .patch(url, requestBody, {
+      .patch(`${baseURL}/answers/${answerId}`, requestBody, {
         headers: {
           'Content-Type': 'application/json',
           Authorization: accessToken,

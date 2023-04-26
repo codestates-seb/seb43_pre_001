@@ -4,10 +4,7 @@ import { Editor } from '@toast-ui/react-editor';
 import { useRef, useEffect, useState, useLayoutEffect } from 'react';
 import SharedButton from '../SharedButton';
 import axios from 'axios';
-import { ask, body } from '../../assets/askNoticeData';
 import { useSelector } from 'react-redux';
-import TextEditor from '../Ask/TextEditor';
-import answerSlice from '../../reducer/answerSlice';
 import { useNavigate } from 'react-router-dom';
 
 const Container = styled.div`
@@ -50,21 +47,7 @@ function CreateAnswer({ questionId, initialValue = '' }) {
   const content = useSelector((state) => state.answerContent);
   const editorRef = useRef(null);
   const navigate = useNavigate();
-  /*
-작성 
-{
-    "question_id" : long,
-    "member_id" : long,
-    "content" : String
-}
-    console.log('question:', question);
 
-수정
-{
-    "member_id" : long,
-    "content" : String
-}
-*/
   const requestBody = {
     memberId,
     questionId,
@@ -76,13 +59,14 @@ function CreateAnswer({ questionId, initialValue = '' }) {
   };
 
   useEffect(() => {}, [text]);
+  const baseURL = process.env.REACT_APP_BASE_URL;
   const postAnswer = async () => {
     // if (isValidHandler()) {
     // console.log(requestBody);
     if (text.length < 30) {
       setIsValid(false);
     } else {
-      const response = await axios.post(`/answers`, requestBody, {
+      const response = await axios.post(`${baseURL}/answers`, requestBody, {
         headers: {
           'ngrok-skip-browser-warning': '69420',
           'Content-Type': 'application/json',
@@ -127,7 +111,6 @@ function CreateAnswer({ questionId, initialValue = '' }) {
           onChange={onChangeEditor}
         />
       </EditorContainer>
-
       <ButtonContainer>
         <SharedButton buttonText='Post Your Answer' functionHandler={postAnswer} />
       </ButtonContainer>

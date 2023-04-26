@@ -72,10 +72,11 @@ const AnswerItem = ({ el }) => {
   };
 
   // // 질문 삭제
+  const baseURL = process.env.REACT_APP_BASE_URL;
   const deletePost = async () => {
     if (confirm(`Delete this post?`)) {
       await axios
-        .delete(`/answers/${answerId}`, {
+        .delete(`${baseURL}/answers/${answerId}`, {
           data: {
             memberId,
             content,

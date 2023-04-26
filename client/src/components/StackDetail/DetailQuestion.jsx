@@ -55,11 +55,13 @@ const DetailQuestion = () => {
 
   const dispatch = useDispatch();
 
+  const baseURL = process.env.REACT_APP_BASE_URL;
+
   useEffect(() => {
     const process = async () => {
       setLoading(true);
       try {
-        const response = await axios.get(`/questions/${questionId}`, {
+        const response = await axios.get(`${baseURL}/questions/${questionId}`, {
           headers: {
             Authorization: accessToken,
           },
@@ -94,7 +96,7 @@ const DetailQuestion = () => {
   // 질문 삭제
   const deletePost = async () => {
     if (confirm(`Delete this post?`)) {
-      await axios.delete(`/questions/${questionId}`, {
+      await axios.delete(`${baseURL}/questions/${questionId}`, {
         data: {
           memberId,
           questionId,
