@@ -31,7 +31,7 @@ const QuestionsList = ({ page, setTotal }) => {
     const process = async () => {
       setLoading(true);
       try {
-        const response = await axios.get(`/questions?page=${page}&size=3`, {
+        const response = await axios.get(`/api/questions?page=${page}&size=3`, {
           headers: {
             Authorization: accessToken,
           },

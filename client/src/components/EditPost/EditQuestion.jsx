@@ -76,7 +76,7 @@ function EditQuestion() {
   };
 
   // 질문 수정
-  const url = `/questions/${questionId}`;
+  const url = `/api/questions/${questionId}`;
   const patchHandler = async () => {
     await axios
       .patch(url, requestBody, {

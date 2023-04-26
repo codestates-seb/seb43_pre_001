@@ -77,7 +77,7 @@ function EditAnswer() {
   };
 
   // 질문 수정
-  const url = `/answers/${answerId}`;
+  const url = `/api/answers/${answerId}`;
 
   const patchHandler = async () => {
     await axios

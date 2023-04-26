@@ -89,7 +89,7 @@ function AskPageContents() {
   const postAsk = async () => {
     if (isValidHandler()) {
       const content = await axios
-        .post(`/questions/ask`, requestBody, {
+        .post(`/api/questions/ask`, requestBody, {
           // .post(`/answers`, requestBody, {
           headers: {
             'ngrok-skip-browser-warning': '69420',

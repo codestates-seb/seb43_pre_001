@@ -42,7 +42,7 @@ const AnswerAnswer = ({ questionId }) => {
     const process = async () => {
       setLoading(true);
       try {
-        const response = await axios.get(`/answers/${questionId}`, {
+        const response = await axios.get(`/api/answers/${questionId}`, {
           headers: {
             Authorization: accessToken,
           },

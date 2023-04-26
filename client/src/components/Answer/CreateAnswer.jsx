@@ -82,7 +82,7 @@ function CreateAnswer({ questionId, initialValue = '' }) {
     if (text.length < 30) {
       setIsValid(false);
     } else {
-      const response = await axios.post(`/answers`, requestBody, {
+      const response = await axios.post(`/api/answers`, requestBody, {
         headers: {
           'ngrok-skip-browser-warning': '69420',
           'Content-Type': 'application/json',

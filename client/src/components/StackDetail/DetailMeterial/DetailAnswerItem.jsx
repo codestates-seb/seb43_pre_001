@@ -75,7 +75,7 @@ const AnswerItem = ({ el }) => {
   const deletePost = async () => {
     if (confirm(`Delete this post?`)) {
       await axios
-        .delete(`/answers/${answerId}`, {
+        .delete(`/api/answers/${answerId}`, {
           data: {
             memberId,
             content,

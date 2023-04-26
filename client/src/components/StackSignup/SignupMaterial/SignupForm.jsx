@@ -189,7 +189,7 @@ const SignupForm = () => {
     const { nickname, email, password } = data;
 
     try {
-      const resData = await axios.post('/members/signup', {
+      const resData = await axios.post('/api/members/signup', {
         nickname,
         name: nickname,
         email,
