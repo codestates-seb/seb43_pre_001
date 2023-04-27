@@ -1,24 +1,23 @@
 import { useSelector } from 'react-redux';
 import styled from 'styled-components';
-function DetailButton({ editFunction, deleteFunction, qMemberId, aMemberId, answerData }) {
-  const loggedIn = useSelector((state) => state.loggedIn);
-  const member_id = useSelector((state) => state.member_id);
-  const loginMemberId = Number(member_id);
-  const QnAMemberId = qMemberId || aMemberId;
-  // console.log('answerData', answerData);
+
+function DetailButton({ editFunction, deleteFunction, questionMemberId, answerMemberId, type }) {
+  const { loggedIn, memberId } = useSelector((state) => state.user);
   return (
     <ButtonWrapper>
-      {/* <QuestionButton>Share</QuestionButton> */}
-      {/* {loggedIn && loginMemberId === QnAMemberId ? ( */}
-      <>
-        <QuestionButton onClick={editFunction}>Edit</QuestionButton>
-        <QuestionButton onClick={deleteFunction}>Delete</QuestionButton>
-        {/* <QuestionButton>Flag</QuestionButton> */}
-      </>
-      {/* ) : ( */}
-      {/* <QuestionButton>Follow</QuestionButton> */}
-      {/* ) */}
-      {/* } */}
+      {type === 'question' ? (
+        loggedIn && memberId === questionMemberId ? (
+          <>
+            <QuestionButton onClick={editFunction}>Edit</QuestionButton>
+            <QuestionButton onClick={deleteFunction}>Delete</QuestionButton>
+          </>
+        ) : null
+      ) : loggedIn && memberId === answerMemberId ? (
+        <>
+          <QuestionButton onClick={editFunction}>Edit</QuestionButton>
+          <QuestionButton onClick={deleteFunction}>Delete</QuestionButton>
+        </>
+      ) : null}
     </ButtonWrapper>
   );
 }
