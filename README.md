@@ -28,7 +28,7 @@
 
 # 프로젝트 소개
 
-<a href ="http://e1i5.s3-website.ap-northeast-2.amazonaws.com/"><img src = "./client/src/assets/stack-logo.svg"/> 배포 링크 </a>
+<a href ="http://e1i5.s3-website.ap-northeast-2.amazonaws.com/" target = "_blank" ><img src = "./client/src/assets/stack-logo.svg"/> 배포 링크 </a>
 
 ## 주기능
 
