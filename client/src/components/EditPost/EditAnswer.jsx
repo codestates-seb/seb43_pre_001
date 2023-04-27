@@ -56,7 +56,7 @@ function EditAnswer() {
   const answerEdit = useSelector((state) => state.answer);
   const questionsEdit = useSelector((state) => state.questions);
   const { answerId } = answerEdit;
-  const { memberId } = questionsEdit.question.member;
+  const { memberId } = useSelector((state) => state.user);
   const { questionId } = questionsEdit.question;
   const { accessToken } = useSelector((state) => state.auth);
   const [newContent, setNewContent] = useState(answerEdit.content);
@@ -69,8 +69,8 @@ function EditAnswer() {
   };
 
   // 질문 수정
-
   const baseURL = process.env.REACT_APP_BASE_URL;
+
   const patchHandler = async () => {
     if (!isValidHandler()) {
       return;

@@ -54,9 +54,7 @@ const DetailQuestion = () => {
   const questions = useSelector((state) => state.questions);
   const questionMemberId = questions.question?.member?.memberId;
   const dispatch = useDispatch();
-
   const baseURL = process.env.REACT_APP_BASE_URL;
-
   useEffect(() => {
     const process = async () => {
       setLoading(true);
