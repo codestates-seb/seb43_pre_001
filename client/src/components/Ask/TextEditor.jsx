@@ -38,11 +38,13 @@ const EditorBox = styled(Editor)`
 function TextEditor({ title, desc = null, initialValue = '', onChange, ref }) {
   const [contentErrorMsg, setContentErrorMsg] = useState(null);
   const { contentFocus, discardEditor } = useSelector((state) => state.ask);
+  const [text, setText] = useState('');
   const editorRef = useRef(null);
   const dispatch = useDispatch();
   const content = title === 'Body' ? useSelector((state) => state.ask) : useSelector((state) => state.answerContent);
 
   const setContentText = () => {
+    setText(editorRef.current?.getInstance().getMarkdown());
     title === 'Body'
       ? dispatch(setContent(editorRef.current?.getInstance().getMarkdown()))
       : dispatch(setAnswerContent(editorRef.current?.getInstance().getMarkdown()));
@@ -51,10 +53,10 @@ function TextEditor({ title, desc = null, initialValue = '', onChange, ref }) {
   //유효성 검사
   let isContentValid = false;
   let validationContent = () => {
-    if (!content?.length) {
+    if (!text?.length) {
       isContentValid = false;
       setContentErrorMsg('Body is missing.');
-    } else if (content?.length < 30) {
+    } else if (text?.length < 30) {
       isContentValid = false;
       setContentErrorMsg('Body must be at least 30 characters.');
     } else {

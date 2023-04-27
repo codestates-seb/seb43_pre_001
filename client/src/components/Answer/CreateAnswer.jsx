@@ -42,7 +42,6 @@ const QuestionBottomAsk = styled.span`
 function CreateAnswer({ questionId, initialValue = '' }) {
   const { memberId } = useSelector((state) => state.user);
   const { accessToken } = useSelector((state) => state.auth);
-  const [isValid, setIsValid] = useState(false);
   const [text, setText] = useState('');
   const content = useSelector((state) => state.answerContent);
   const editorRef = useRef(null);
@@ -61,8 +60,8 @@ function CreateAnswer({ questionId, initialValue = '' }) {
   useEffect(() => {}, [text]);
   const baseURL = process.env.REACT_APP_BASE_URL;
   const postAnswer = async () => {
-    if (text.length < 30) {
-      setIsValid(false);
+    if (!isValidHandler()) {
+      return;
     } else {
       await axios.post(`${baseURL}/answers`, requestBody, {
         headers: {
@@ -73,7 +72,6 @@ function CreateAnswer({ questionId, initialValue = '' }) {
         withCredentials: true,
       });
       setText('');
-      setIsValid(true);
       window.scrollTo(0, 0);
       editorRef.current?.getInstance().reset();
       window.location.reload();
@@ -85,6 +83,10 @@ function CreateAnswer({ questionId, initialValue = '' }) {
   useLayoutEffect(() => {
     resetEditor();
   }, [initialValue]);
+
+  const isValidHandler = () => {
+    return text?.length >= 30;
+  };
   return (
     <Container>
       <QuestionBottom>
@@ -109,7 +111,11 @@ function CreateAnswer({ questionId, initialValue = '' }) {
         />
       </EditorContainer>
       <ButtonContainer>
-        <SharedButton buttonText='Post Your Answer' functionHandler={postAnswer} />
+        {!isValidHandler() ? (
+          <div style={{ color: 'red' }}>must be at least 30 characters.</div>
+        ) : (
+          <SharedButton buttonText='Post Your Answer' functionHandler={postAnswer} />
+        )}
       </ButtonContainer>
     </Container>
   );

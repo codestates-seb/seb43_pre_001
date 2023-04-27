@@ -72,21 +72,25 @@ function EditAnswer() {
 
   const baseURL = process.env.REACT_APP_BASE_URL;
   const patchHandler = async () => {
-    await axios
-      .patch(`${baseURL}/answers/${answerId}`, requestBody, {
-        headers: {
-          'Content-Type': 'application/json',
-          Authorization: accessToken,
-        },
-        withCredentials: true,
-      })
-      .then(function (response) {
-        dispatch(setContent(null), setTitle(null), setAllTags(null));
-        navigate(`/questions/${questionId}`);
-      })
-      .catch(function (error) {
-        console.log(error);
-      });
+    if (!isValidHandler()) {
+      return;
+    } else {
+      await axios
+        .patch(`${baseURL}/answers/${answerId}`, requestBody, {
+          headers: {
+            'Content-Type': 'application/json',
+            Authorization: accessToken,
+          },
+          withCredentials: true,
+        })
+        .then((response) => {
+          dispatch(setContent(null), setTitle(null), setAllTags(null));
+          navigate(`/questions/${questionId}`);
+        })
+        .catch(function (error) {
+          console.log(error);
+        });
+    }
   };
 
   const handleCancel = () => {
@@ -97,10 +101,13 @@ function EditAnswer() {
   const onChangeEditor = () => {
     setNewContent(editorRef.current?.getInstance().getMarkdown());
   };
-
+  const isValidHandler = () => {
+    return newContent?.length >= 30;
+  };
   return (
     <EditContentWrapper>
       <EditorBox title={'Body'} ref={editorRef} initialValue={newContent} hideModeSwitch={true} onChange={onChangeEditor} />
+      {!isValidHandler() ? <div style={{ color: 'red' }}>must be at least 30 characters.</div> : null}
       <Preview content={newContent} />
       <SaveEditsOrCancel>
         <SharedButton buttonText='Save edits' functionHandler={patchHandler} />

@@ -106,7 +106,7 @@ function AskPageContents() {
   };
 
   const isValidHandler = () => {
-    return title?.length >= 15 && content?.length;
+    return title?.length >= 15 && content?.length >= 30;
   };
 
   const discardHandler = () => {

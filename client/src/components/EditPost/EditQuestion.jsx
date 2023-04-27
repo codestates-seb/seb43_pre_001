@@ -76,21 +76,25 @@ function EditQuestion() {
   // 질문 수정
   const baseURL = process.env.REACT_APP_BASE_URL;
   const patchHandler = async () => {
-    await axios
-      .patch(`${baseURL}/questions/${questionId}`, requestBody, {
-        headers: {
-          'Content-Type': 'application/json',
-          Authorization: accessToken,
-        },
-        withCredentials: true,
-      })
-      .then(function (response) {
-        navigate(`/questions/${questionId}`);
-        dispatch(setContent(null), setTitle(null), setAllTags(null));
-      })
-      .catch(function (error) {
-        console.log(error);
-      });
+    if (!isValidHandler()) {
+      return;
+    } else {
+      await axios
+        .patch(`${baseURL}/questions/${questionId}`, requestBody, {
+          headers: {
+            'Content-Type': 'application/json',
+            Authorization: accessToken,
+          },
+          withCredentials: true,
+        })
+        .then(function (response) {
+          navigate(`/questions/${questionId}`);
+          dispatch(setContent(null), setTitle(null), setAllTags(null));
+        })
+        .catch(function (error) {
+          console.log(error);
+        });
+    }
   };
 
   const handleCancel = () => {
@@ -105,12 +109,15 @@ function EditQuestion() {
   const onChangeEditor = () => {
     setNewContent(editorRef.current?.getInstance().getMarkdown());
   };
-
+  const isValidHandler = () => {
+    return newContent?.length >= 30;
+  };
   return (
     <EditContentWrapper>
       <EditTitle quseiontTitle='Title' defaultValue={newTitle} onChange={onChangeTitle} />
       <EditorBox title={'Body'} ref={editorRef} initialValue={content} hideModeSwitch={true} onChange={onChangeEditor} />
-      <Preview content={content} />
+      {!isValidHandler() ? <div style={{ color: 'red' }}>must be at least 30 characters.</div> : null}
+      <Preview content={newContent} />
       <SaveEditsOrCancel>
         <SharedButton buttonText='Save edits' functionHandler={patchHandler} />
         <CancelButton onClick={handleCancel}>Cancel</CancelButton>
