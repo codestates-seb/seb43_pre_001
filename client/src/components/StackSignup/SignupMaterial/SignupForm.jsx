@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import { useForm } from 'react-hook-form';
 import axios from 'axios';
-
+import { useNavigate } from 'react-router-dom';
 const SignupFormBlock = styled.form`
   width: 317px;
   height: 411px;
@@ -179,6 +179,7 @@ const SignupFormBlock = styled.form`
 `;
 
 const SignupForm = () => {
+  const navigate = useNavigate();
   const {
     register,
     handleSubmit,
@@ -191,7 +192,7 @@ const SignupForm = () => {
 
     try {
       await axios.post(
-        `${process.env.REACT_APP_BASE_URL}/members/signup`,
+        `${baseURL}/members/signup`,
         {
           nickname,
           name: nickname,
@@ -199,13 +200,10 @@ const SignupForm = () => {
           password,
         },
         {
-          headers: {
-            'Access-Control-Allow-Credentials': 'true',
-            'Access-Control-Allow-Origin': 'http://e1i5.s3-website.ap-northeast-2.amazonaws.com',
-          },
           withCredentials: true,
         },
       );
+      await navigate('/login');
     } catch (err) {
       console.log(err);
       alert('이미 존재하는 회원입니다.');

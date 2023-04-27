@@ -110,7 +110,7 @@ const AnswerItem = ({ el }) => {
         <AnswerContentBox>{content}</AnswerContentBox>
         <RightArea />
       </AnswerViewBox>
-      <DetailButton editFunction={navigateToEditPage} deleteFunction={deletePost} qMemberId={memberId} />
+      <DetailButton editFunction={navigateToEditPage} deleteFunction={deletePost} answerMemberId={el.memberId} />
     </AnswerItemBox>
   );
 };

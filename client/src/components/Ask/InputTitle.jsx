@@ -38,8 +38,8 @@ function InputTitle({ questionTitle, desc = null, defaultValue, onChange }) {
       isTitleValid = false;
       setTitleErrorMsg('Title must be at least 15 characters.');
     } else {
-      isTitleValid = true;
       setTitleErrorMsg('');
+      isTitleValid = true;
     }
   };
   const resetInputTitle = () => {

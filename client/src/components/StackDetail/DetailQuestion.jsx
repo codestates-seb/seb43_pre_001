@@ -52,7 +52,7 @@ const DetailQuestion = () => {
 
   // questions 전역 상태관리
   const questions = useSelector((state) => state.questions);
-
+  const questionMemberId = questions.question?.member?.memberId;
   const dispatch = useDispatch();
 
   const baseURL = process.env.REACT_APP_BASE_URL;
@@ -98,7 +98,7 @@ const DetailQuestion = () => {
     if (confirm(`Delete this post?`)) {
       await axios.delete(`${baseURL}/questions/${questionId}`, {
         data: {
-          memberId,
+          memberId: questionMemberId,
           questionId,
         },
         headers: {
@@ -122,7 +122,7 @@ const DetailQuestion = () => {
             <MainBox>
               <DetailHead question={questions.question} />
               <DetailView question={questions.question} />
-              <DetailButton editFunction={navigateToEditPage} deleteFunction={deletePost} qMemberId={memberId} />
+              <DetailButton type='question' editFunction={navigateToEditPage} deleteFunction={deletePost} questionMemberId={questionMemberId} />
               <DetailAnswer questionId={questionId}></DetailAnswer>
             </MainBox>
           </div>
